@@ -12,6 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Hello the Boutique of the Century !</h1>
     </body>
 </html>
