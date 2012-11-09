@@ -172,6 +172,7 @@ strong {
 #contenu .grid_element {
 	color: white;
 	background-color: black;
+     border: 1px solid black;
 }
 
 /* Pied de page */
@@ -181,6 +182,8 @@ strong {
 }
 
 
+
+
 /* --- POSITIONNEMENT --- */
 
 /* Page */
@@ -188,12 +191,11 @@ body {
 	padding: 15px 0 25px 0;
 }
 #global {
-	width: 750px;
-	margin-left: 20px;
-	margin-right: auto; 
+	width: 850px;
+	margin: auto; 
 }
 
-/* En-t�te */
+/* En-tete */
 #entete {
 	padding: 15px 20px 10px 0;
 }
@@ -250,15 +252,18 @@ body {
 }
 #contenu .grid_element {
 	display: inline-block;
+	vertical-align: top;
 	margin-right: 6px;
-	width: 180px;
-	height: 200px;
+     margin-bottom: 5px;
+	width: 150px;
+	height: 170px;
 	position : relative;
 }
-#grid_element img {
-	vertical-align: top;
-	text-align: center;
-	width: 180px;
+#grid_element .product-name {
+   padding-left: 5px;
+}
+#grid_element .price-box {
+   float: right;
 }
 
 /* Pied de page */
