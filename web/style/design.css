@@ -1,12 +1,12 @@
 /* ==============================================
    FEUILLE DE style DES GABARITS HTML/CSS
-   © Elephorm & Alsacreations.com
+   ï¿½ Elephorm & Alsacreations.com
    Conditions d'utilisation:
    http://creativecommons.org/licenses/by/2.0/fr/
    ============================================== */
 
 
-/* --- style DE BASE POUR LE TEXTE ET LES PRINCIPAUX ÉLÉMENTS --- */
+/* --- style DE BASE POUR LE TEXTE ET LES PRINCIPAUX ï¿½Lï¿½MENTS --- */
 
 /* Page */
 html {
@@ -15,7 +15,7 @@ html {
 body {
 	margin: 0;
 	padding: 10px 20px; 
-	font-family: Verdana, "Bitstream Vera Sans", "Lucida Grande", sans-serif; /* 3 */
+	font-family: Verdana, "Bitstream Vera Sans", "Lucida Grande", sans-serif;
 	font-size: .8em; 
 	line-height: 1.25; 
 	color: black;
@@ -84,7 +84,7 @@ a img {
 	border: none; 
 }
 
-/* Divers éléments de type en-ligne */
+/* Divers ï¿½lï¿½ments de type en-ligne */
 em {
 	font-style: italic;
 }
@@ -129,7 +129,7 @@ pre strong {
 
 /* --- COULEURS --- */
 
-/* Général */
+/* Gï¿½nï¿½ral */
 body {
 	color: #F0E39E;
 	background: #2C2F22;
@@ -193,7 +193,7 @@ body {
 	margin-right: auto; 
 }
 
-/* En-tête */
+/* En-tï¿½te */
 #entete {
 	padding: 15px 20px 10px 0;
 }
