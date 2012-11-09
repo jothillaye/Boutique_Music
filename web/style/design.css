@@ -108,71 +108,13 @@ body {
 }
 
 
-/* --- style DE BASE POUR LE TEXTE ET LES PRINCIPAUX �L�MENTS --- */
-
-/* Titres */
-h1, h2, h3, h4, h5, h6 {
-	margin: 1em 0 .5em 0; 
-}
-h1, h2 {
-	font-family: Georgia, "Bitstream Vera Serif", Norasi, serif;
-	font-weight: normal; 
-}
-h1 {
-	font-size: 3em;
-}
-h2 {font-size: 1.8em;}
-h3 {font-size: 1.2em;}
-h4 {font-size: 1em;}
-
-/* Listes */
-ul, ol {
-	margin: .75em 0 .75em 24px;
-	padding: 0; 
-}
-ul {
-	list-style: square;
-}
-li {
-	margin: 0;
-	padding: 0;
-}
-
-/* Paragraphes */
-p {
-	margin: .75em 0;
-}
-li p, blockquote p {
-	margin: .5em 0;
-}
-
-/* Liens */
-a {
-	color: mediumblue;
-	text-decoration: underline;
-}
-a:hover, a:focus {
-	color: crimson;
-}
-a img {
-	border: none; 
-}
-
-/* Divers �l�ments de type en-ligne */
-em {
-	font-style: italic;
-}
-strong {
-	font-weight: bold;
-	color: dimgray;
-}
 
 /* --- COULEURS --- */
 
 /* G�n�ral */
 body {
 	color: #F0E39E;
-     background: url(./img/background2.jpg) no-repeat;
+     background: url(./img/background2.jpg) top center no-repeat;
 
 }
 a {
@@ -180,6 +122,9 @@ a {
 }
 a:hover, a:focus {
 	color: #FF4C00;
+}
+a:visited {
+     color: #FF4C00;
 }
 strong {
 	color: #A1B55D;
@@ -233,4 +178,66 @@ strong {
 #pied {
 	color: white;
 	background: rgba(0, 0, 0, 0.5);
+}
+
+
+
+
+/* --- style DE BASE POUR LE TEXTE ET LES PRINCIPAUX �L�MENTS --- */
+
+/* Titres */
+h1, h2, h3, h4, h5, h6 {
+	margin: 1em 0 .5em 0; 
+}
+h1, h2 {
+	font-family: Georgia, "Bitstream Vera Serif", Norasi, serif;
+	font-weight: normal; 
+}
+h1 {
+	font-size: 3em;
+}
+h2 {font-size: 1.8em;}
+h3 {font-size: 1.2em;}
+h4 {font-size: 1em;}
+
+/* Listes */
+ul, ol {
+	margin: .75em 0 .75em 24px;
+	padding: 0; 
+}
+ul {
+	list-style: square;
+}
+li {
+	margin: 0;
+	padding: 0;
+}
+
+/* Paragraphes */
+p {
+	margin: .75em 0;
+}
+li p, blockquote p {
+	margin: .5em 0;
+}
+
+/* Liens */
+a {
+	color: #FF4C00;
+	text-decoration: underline;
+}
+a:hover, a:focus {
+	color: crimson;
+}
+a img {
+	border: none; 
+}
+
+/* Divers �l�ments de type en-ligne */
+em {
+	font-style: italic;
+}
+strong {
+	font-weight: bold;
+	color: dimgray;
 }
