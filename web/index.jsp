@@ -45,37 +45,37 @@
 		<div id="grid">
 			<div class="grid_element">
 				<a href="element_link">
-					<img alt="" src="./style/img/pochette.jpg" width="150px" height="150px" />
+					<img alt="" src="./style/img/pochette/pochette.jpg" width="150px" height="150px" />
 				</a>
-				<span class="product-name">Miouzik</span>
+				<span class="product-name">BluePrint</span>
 				<span class="price-box">18$</span>
 			</div>
 			<div class="grid_element">
 				<a href="element_link">
-					<img alt="" src="./style/img/pochette2.jpg" width="150px" height="150px" />
+					<img alt="" src="./style/img/pochette/pochette2.jpg" width="150px" height="150px" />
 				</a>
-				<span class="product-name">Miouzik</span>
+				<span class="product-name">Ray Charles</span>
 				<span class="price-box">34$</span>
 			</div>
 			<div class="grid_element">
 				<a href="element_link">
-					<img alt="" src="./style/img/pochette3.jpg" width="150px" height="150px" />
+					<img alt="" src="./style/img/pochette/pochette3.jpg" width="150px" height="150px" />
 				</a>
-				<span class="product-name">Miouzik</span>
+				<span class="product-name">Justine Bieber</span>
 				<span class="price-box">2$</span>
 			</div>
 			<div class="grid_element">
 				<a href="element_link">
-					<img alt="" src="./style/img/pochette4.jpg" width="150px" height="150px" />
+					<img alt="" src="./style/img/pochette/pochette4.jpg" width="150px" height="150px" />
 				</a>
-				<span class="product-name">Miouzik</span>
+				<span class="product-name">Dim Mak</span>
 				<span class="price-box">19$</span>
 			</div>
                <div class="grid_element">
                       <a href="element_link">
-                           <img alt="" src="./style/img/pochette5.jpg" width="150px" height="150px" />
+                           <img alt="" src="./style/img/pochette/pochette5.jpg" width="150px" height="150px" />
                       </a>
-                      <span class="product-name">Miouzik</span>
+                      <span class="product-name">This is It</span>
                       <span class="price-box">188$</span>
                </div>
 		</div>
