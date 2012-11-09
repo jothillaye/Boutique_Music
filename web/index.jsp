@@ -22,9 +22,7 @@
 
 	<!-- #entete -->	
 	<div id="entete">
-		<h1>
-			El Miouzik Store
-		</h1>
+          <img alt="" src="./style/img/page_title.png" width="400" />
 		<p class="sous-titre">
 			Who are you ? <strong><a href="register.jsp">Register</a></strong>
 		</p>
@@ -84,14 +82,7 @@
 	<!-- #pied -->
 	<div id="pied">
 		<p>
-			Le contenu de mon pied de page. Nulla tincidunt tincidunt mi.
-			Curabitur iaculis, lorem vel rhoncus faucibus, felis magna fermentum
-			augue, et ultricies lacus lorem varius purus. Curabitur eu amet.
-		</p>
-		<p id="copyright">
-			Mise en page &copy; 2008
-			<a href="http://www.elephorm.com">Elephorm</a> et
-			<a href="http://www.alsacreations.com">Alsacréations</a>
+			© 2012 El Miouzik Store S.A. All Rights Reserved.
 		</p>
 	</div>
 
