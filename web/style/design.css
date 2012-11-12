@@ -1,0 +1,252 @@
+/* 
+    Document   : design
+    Created on : 12-nov.-2012, 9:00:13
+    Author     : BAVAY Emilien - THILLAYE Joachim
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* ==============================================
+   FEUILLE DE style DES GABARITS HTML/CSS
+   � Elephorm & Alsacreations.com
+   Conditions d'utilisation:
+   http://creativecommons.org/licenses/by/2.0/fr/
+   ============================================== */
+
+/* Page */
+html {
+	font-size: 100%; 
+}
+body {
+	margin: 0;
+     padding: 0;
+	font-family: Verdana, "Bitstream Vera Sans", "Lucida Grande", sans-serif;
+	font-size: .8em; 
+	line-height: 1.25; 
+}
+#global {
+	width: 850px;
+	margin: auto; 
+}
+
+/* En-tete */
+#entete {
+	padding: 10px 0px 5px 10px; /* top-right-bottom-left */
+}
+#entete h1 {
+	margin: 0;
+}
+#entete h1 img {
+	float: left;
+	margin: 7px 20px 10px 0;
+}
+#entete .sous-titre {
+	margin: 4px 0 15px 25px;
+}
+
+/* Menu de navigation */
+#navigation {
+	padding: 12px 15px;
+}
+#navigation ul {
+	width: 100%; 
+	overflow: hidden; 
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+#navigation li.gauche {
+	float: left; 
+	margin-right: 10px;
+	font-size: 1.4em;
+	font-style: italic;
+}
+#navigation li.droite {
+	float: right;
+	margin-right: 0;
+	margin-left: 10px;
+	padding: 3px 0;
+}
+#navigation a {
+	padding: 10px;
+	line-height: 1.5;
+	font-size: .9em;
+	text-decoration: none;
+}
+
+/* Contenu */
+#contenu {
+	padding: 10px 20px;
+}
+#contenu > :first-child {
+	margin-top: 10px;
+}
+#contenu p, #contenu li {
+	line-height: 1.5;
+}
+#contenu .grid_element {
+	display: inline-block;
+	vertical-align: top;
+	margin-right: 6px;
+     margin-bottom: 5px;
+	width: 150px;
+	height: 175px;
+	position : relative;
+}
+.grid_element .product-name {
+   padding-left: 2px;
+}
+.grid_element .price-box {
+   padding-right: 2px;
+   position: relative;
+   float: right;
+}
+
+/* Pied de page */
+#pied {
+	padding: 5px;
+	font-size: .85em;
+}
+#pied p {
+     margin: 0;
+     font-family: verdana;
+     font-size: .8em;
+     text-transform: uppercase;    
+     text-align: center;
+}
+
+
+
+/* --- COULEURS --- */
+
+/* G�n�ral */
+body {
+	color: #F0E39E;
+     background: url(./img/background2.jpg) top center no-repeat;
+
+}
+a {
+	color: #FF6533;
+}
+a:hover, a:focus {
+	color: #FF4C00;
+}
+a:visited {
+     color: #FF4C00;
+}
+strong {
+	color: #A1B55D;
+}
+
+/* Entete */
+#entete {
+     background: rgba(0, 0, 0, 0.5);
+}
+
+/* Navigation */
+#navigation {	
+	background: linen;
+}
+#navigation a {
+	color: #FF6533;
+}
+#navigation a:hover, #navigation a:focus {
+	background: white;
+}
+
+/* Contenu principal */
+#contenu {     
+	color: #363B29;
+     background: white;
+}
+#contenu a {
+	color: #332510;
+}
+#contenu a:hover, #contenu a:focus {
+	color: #6E5122;
+}
+#contenu strong {
+	color: #181A12;
+}
+#contenu .grid_element {
+	color: white;
+     border: 1px solid black;
+	background-color: black;
+}
+.grid_element .product-name {
+     font-family: verdana;
+     font-size: .8em;
+     text-transform: uppercase;     
+}
+.grid_element .price-box {
+     font-size: 1.4em;
+}
+
+/* Pied de page */
+#pied {
+	color: white;
+	background: rgba(0, 0, 0, 0.5);
+}
+
+
+
+
+/* --- style DE BASE POUR LE TEXTE ET LES PRINCIPAUX �L�MENTS --- */
+
+/* Titres */
+h1, h2, h3, h4, h5, h6 {
+	margin: 1em 0 .5em 0; 
+}
+h1, h2 {
+	font-family: Georgia, "Bitstream Vera Serif", Norasi, serif;
+	font-weight: normal; 
+}
+h1 {
+	font-size: 3em;
+}
+h2 {font-size: 1.8em;}
+h3 {font-size: 1.2em;}
+h4 {font-size: 1em;}
+
+/* Listes */
+ul, ol {
+	margin: .75em 0 .75em 24px;
+	padding: 0; 
+}
+ul {
+	list-style: square;
+}
+li {
+	margin: 0;
+	padding: 0;
+}
+
+/* Paragraphes */
+p {
+	margin: .75em 0;
+}
+li p, blockquote p {
+	margin: .5em 0;
+}
+
+/* Liens */
+a {
+	color: #FF4C00;
+	text-decoration: underline;
+}
+a:hover, a:focus {
+	color: crimson;
+}
+a img {
+	border: none; 
+}
+
+/* Divers �l�ments de type en-ligne */
+em {
+	font-style: italic;
+}
+strong {
+	font-weight: bold;
+	color: dimgray;
+}
+
