@@ -1,7 +1,7 @@
 <%-- 
     Document   : index
     Created on : 8 nov. 2012, 15:26:25
-    Author     : Joachim
+    Author     : BAVAY Emilien - THILLAYE Joachim
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
