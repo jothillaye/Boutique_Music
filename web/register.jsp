@@ -18,7 +18,15 @@
     <script>
         function validateForm()
         {
-            var pseudo = documents.forms["register"]["Prenom"].value;
+            alert("eeee");
+            /*var pseudo = document.forms["register"]["prenom"].value;
+               if (pseudo == "" || pseudo=="")
+                {
+                   //document.forms["register"]["prenom"].bgColor="red";
+                   document.getElementById("prenom").style.borderColor='#FF3300';
+                   return false;
+                }*/
+    
         }
     </script>
 
@@ -32,9 +40,9 @@
     
     <div id="contenu">
         
-        <form class="style" name="register" method="post" action="register" onsubmit="return validateForm()">
+        <form class="style" name="register" method="post" onsubmit="return validateForm();"><!--action="register"--> 
                 
-            <label for="Prenom">Prenom</label> <input type="text" name="prenom"/><br/>
+            <label for="Prenom">Prenom</label> <input type="text" name="prenom"  onchange="validateForm()" /><br/>
             <label for="Nom">Nom</label> <input type="text" name="nom"/><br/>
             <label for="Rue">Rue</label> <input type="text" name="rue"><br/>
             <label for="Numero">Numero</label> <input type="text" name="numero"/><br/>
@@ -44,7 +52,7 @@
             <label for="Mail">Mail</label> <input type="text" name="mail"/><br/>
             <label for="Mot de passe">Mot de passe</label> <input type="password" name="pw"/><br/>
             <label for="Confirmation">Confirmation</label> <input type="password" name="pwconfirm"/><br/>                           
-                           <input type="submit" value="S'inscrire"/>
+            <input type="submit" value="S'inscrire"/>
         </form>
         
         
