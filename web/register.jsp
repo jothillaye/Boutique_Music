@@ -22,9 +22,10 @@
             var myPrenomTest = new RegExp("^[a-zA-Z]{5,9}$","g"); // 5 à 9 caractères
                if (myPrenomTest.test(prenom)==false)
                 {
-                    
-                    getElementById('span_prenom').InnerHTML="Prenom invalide";
-                   //document.getElementById("prenom").style.borderColor='RED';                   
+                   //document.forms["register"]["span_prenom"].value = "erreur";
+                   //getElementById('span_prenom').InnerHTML='Prenom invalide';
+                   //document.getElementById("prenom").style.borderColor='RED';  
+                   span_prenom.innerHTML="erreur";
                 }
                 else
                 {
@@ -60,7 +61,7 @@
         
         <form class="style" name="register" method="post" onsubmit="return validateForm()"><!--action="register"--> 
                 
-            <label for="Prenom">Prenom</label> <input type="text" name="prenom" id="prenom" onkeyup="validatePrenom();" /><span id="span_prenom"/><br/>
+            <label for="Prenom">Prenom</label> <input type="text" name="prenom" id="prenom" onkeyup="validatePrenom();" /><span name ="span_prenom" id="span_prenom"> </span><br/>
             <label for="Nom">Nom</label> <input type="text" name="nom" id="nom" onkeyup="validateNom();"/><br/>
             <label for="Rue">Rue</label> <input type="text" name="rue" id="rue"/><br/>
             <label for="Numero">Numero</label> <input type="text" name="numero" id="numero"/><br/>
