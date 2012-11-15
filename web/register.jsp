@@ -19,16 +19,15 @@
         function validatePrenom()
         {           
             var prenom = document.forms["register"]["prenom"].value;
-            var myPrenomTest = new RegExp("^[a-zA-Z]{5,9}$","g"); // 5 à 9 caractères
+            var myPrenomTest = new RegExp("^[a-zA-Z]{2,25}$","g"); // 5 à 9 caractères
                if (myPrenomTest.test(prenom)==false)
                 {
-                   //document.forms["register"]["span_prenom"].value = "erreur";
-                   //getElementById('span_prenom').InnerHTML='Prenom invalide';
-                   //document.getElementById("prenom").style.borderColor='RED';  
-                   span_prenom.innerHTML="erreur";
+                   span_prenom.innerHTML="<font color='red' > Prenom invalide</font>";
+                   document.getElementById("prenom").style.borderColor='Red';
                 }
                 else
                 {
+                    span_prenom.innerHTML="";
                     document.getElementById("prenom").style.borderColor='Green';
                 }
         }
@@ -36,13 +35,15 @@
         function validateNom()
         {
             var nom = document.forms["register"]["nom"].value;
-            var myNomTest = new RegExp("^[a-zA-Z]{5,9}$","g"); // 5 à 9 caractères
+            var myNomTest = new RegExp("^[a-zA-Z]{2,25}$","g"); // 5 à 9 caractères
                if (myNomTest.test(nom)==false || nom == "" || nom==null)
                 {
+                   span_nom.innerHTML="<font color='red' > Nom invalide</font>";
                    document.getElementById("nom").style.borderColor='RED';                   
                 }
                 else
                 {
+                    span_nom.innerHTML="";
                     document.getElementById("nom").style.borderColor='Green';
                 }     
         }
@@ -62,15 +63,15 @@
         <form class="style" name="register" method="post" onsubmit="return validateForm()"><!--action="register"--> 
                 
             <label for="Prenom">Prenom</label> <input type="text" name="prenom" id="prenom" onkeyup="validatePrenom();" /><span name ="span_prenom" id="span_prenom"> </span><br/>
-            <label for="Nom">Nom</label> <input type="text" name="nom" id="nom" onkeyup="validateNom();"/><br/>
-            <label for="Rue">Rue</label> <input type="text" name="rue" id="rue"/><br/>
-            <label for="Numero">Numero</label> <input type="text" name="numero" id="numero"/><br/>
-            <label for="Localite">Boite</label> <input type="text" name="boite" id="boite" /><br/>
-            <label for="Localite">Localite</label> <input type="text" name="localite" id="localite"/><br/>
-            <label for="Code postal">Code Postal</label> <input type="text" name="codepostal" id="codepostal"/><br/>
-            <label for="Mail">Mail</label> <input type="text" name="mail" id="mail"/><br/>
-            <label for="Mot de passe">Mot de passe</label> <input type="password" name="pw" id="pw"/><br/>
-            <label for="Confirmation">Confirmation</label> <input type="password" name="pwconfirm" id="pwconfirm"/><br/>                           
+            <label for="Nom">Nom</label> <input type="text" name="nom" id="nom" onkeyup="validateNom();"/> <span name ="span_nom" id="span_nom"> </span><br/>
+            <label for="Rue">Rue</label> <input type="text" name="rue" id="rue"/> <span name ="span_rue" id="span_rue"> </span><br/>
+            <label for="Numero">Numero</label> <input type="text" name="numero" id="numero"/> <span name ="span_numero" id="span_numero"> </span><br/>
+            <label for="Localite">Boite</label> <input type="text" name="boite" id="boite" /> <span name ="span_boite" id="span_boite"> </span><br/>
+            <label for="Localite">Localite</label> <input type="text" name="localite" id="localite"/> <span name ="span_localite" id="span_localite"> </span><br/>
+            <label for="Code postal">Code Postal</label> <input type="text" name="codepostal" id="codepostal"/> <span name ="span_codepostal" id="span_codepostal"> </span><br/>
+            <label for="Mail">Mail</label> <input type="text" name="mail" id="mail"/> <span name ="span_mail" id="span_mail"> </span><br/>
+            <label for="Mot de passe">Mot de passe</label> <input type="password" name="pw" id="pw"/> <span name ="span_pw" id="span_pw"> </span><br/>
+            <label for="Confirmation">Confirmation</label> <input type="password" name="pwconfirm" id="pwconfirm"/> <span name ="span_pwconfirm" id="span_pwconfirm"> </span><br/>                           
             <input type="submit" value="S'inscrire"/>
         </form>
         
