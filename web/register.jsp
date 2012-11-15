@@ -27,16 +27,17 @@
     <div id="contenu">
         
         <form name="inscription" method="post" action="inscription" onsubmit="return validateInscriptionForm()">
-
-                           Prenom <input type="text" name="prenom"/><br/>
-                           Nom <input type="text" name="nom"/><br/>
-                           Rue <input type="text" name="rue"><br/>
-                           Numero <input type="text" name="num"/><br/>
-                           Localite <input type="text" name="localite"/><br/>
-                           CP <input type="text" name="codepostal"/><br/>
-                           Mail <input type="text" name="mail"/><br/>
-                           Mot de passe <input type="password" name="mdp"/><br/>
-                           Confirmation <input type="password" name="mdpconfirm"/><br/>                           
+                
+            <label for="Prenom">Prenom</label> <input type="text" name="prenom"/><br/>
+            <label for="Nom">Nom</label> <input type="text" name="nom"/><br/>
+            <label for="Rue">Rue</label> <input type="text" name="rue"><br/>
+            <label for="Numero">Numero</label> <input type="text" name="numero"/><br/>
+            <label for="Localite">Boite</label> <input type="text" name="boite"/><br/>
+            <label for="Localite">Localite</label> <input type="text" name="localite"/><br/>
+            <label for="Code postal">Code Postal</label> <input type="text" name="codepostal"/><br/>
+            <label for="Mail">Mail</label> <input type="text" name="mail"/><br/>
+            <label for="Mot de passe">Mot de passe</label> <input type="password" name="pw"/><br/>
+            <label for="Confirmation">Confirmation</label> <input type="password" name="pwconfirm"/><br/>                           
                            <input type="submit" value="S'inscrire"/>
         </form>
         
