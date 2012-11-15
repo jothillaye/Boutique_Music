@@ -115,6 +115,14 @@ body {
      text-align: center;
 }
 
+form.style label{
+	display: inline;
+	float: left;
+	text-align: left;
+	width: 200px;
+	padding-right:20px;
+
+}
 
 
 /* --- COULEURS --- */
