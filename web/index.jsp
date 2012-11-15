@@ -23,15 +23,7 @@
 	<!-- #entete -->	
 	<%@include file="header.jspf" %>
 	
-	<!-- #navigation -->
-	<div id="navigation">
-		<ul>
-			<li class="gauche"><a href="cart.jsp">View Cart</a></li>
-			<li class="gauche"><a href="connexion.jsp">Log in</a></li>
-			<li class="droite"><a href="account.jps">My Account</a></li>
-			<li class="droite"><a href="info.jsp">Info</a></li>
-		</ul>
-	</div>
+
 	
 	<!-- #contenu -->
 	<div id="contenu">
@@ -74,7 +66,7 @@
 		</div>
  	</div>
 	
-
+        <%@include file="footer.jspf" %>
 
 </div>
 
