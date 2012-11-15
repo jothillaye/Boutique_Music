@@ -15,6 +15,12 @@
 	<title>Boutique de musique</title>
 	<link rel="stylesheet" type="text/css" href="style/design.css" media="all" />
 </head>
+    <script>
+        function validateForm()
+        {
+            var pseudo = documents.forms["register"]["Prenom"].value;
+        }
+    </script>
 
 <body>
 
@@ -26,7 +32,7 @@
     
     <div id="contenu">
         
-        <form name="inscription" method="post" action="inscription" onsubmit="return validateInscriptionForm()">
+        <form class="style" name="register" method="post" action="register" onsubmit="return validateForm()">
                 
             <label for="Prenom">Prenom</label> <input type="text" name="prenom"/><br/>
             <label for="Nom">Nom</label> <input type="text" name="nom"/><br/>
