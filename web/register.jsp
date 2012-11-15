@@ -15,17 +15,18 @@
 	<title>Boutique de musique</title>
 	<link rel="stylesheet" type="text/css" href="style/design.css" media="all" />
 </head>
-    <script>
+    <script type="text/javascript">
         function validateForm()
         {
-            alert("eeee");
-            /*var pseudo = document.forms["register"]["prenom"].value;
+            
+            var pseudo = document.forms["register"]["prenom"].value;
                if (pseudo == "" || pseudo=="")
                 {
+                    //alert("erreur");
                    //document.forms["register"]["prenom"].bgColor="red";
-                   document.getElementById("prenom").style.borderColor='#FF3300';
-                   return false;
-                }*/
+                   document.getElementByName("prenom").style.borderColor='#FF3300';
+                   
+                }
     
         }
     </script>
@@ -40,9 +41,9 @@
     
     <div id="contenu">
         
-        <form class="style" name="register" method="post" onsubmit="return validateForm();"><!--action="register"--> 
+        <form class="style" name="register" method="post" onsubmit="return validateForm()"><!--action="register"--> 
                 
-            <label for="Prenom">Prenom</label> <input type="text" name="prenom"  onchange="validateForm()" /><br/>
+            <label for="Prenom">Prenom</label> <input type="text" name="prenom"  onkeyup="validateForm();" /><br/>
             <label for="Nom">Nom</label> <input type="text" name="nom"/><br/>
             <label for="Rue">Rue</label> <input type="text" name="rue"><br/>
             <label for="Numero">Numero</label> <input type="text" name="numero"/><br/>
