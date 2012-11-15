@@ -21,17 +21,12 @@
 <div id="global">
 
 	<!-- #entete -->	
-	<div id="entete">
-          <img alt="" src="./style/img/page_title.png" width="400" />
-		<p class="sous-titre">
-			Who are you ? <strong><a href="register.jsp">Register</a></strong>
-		</p>
-	</div>
+	<%@include file="header.jspf" %>
 	
 	<!-- #navigation -->
 	<div id="navigation">
 		<ul>
-			<li class="gauche"><a href="cart.jps">View Cart</a></li>
+			<li class="gauche"><a href="cart.jsp">View Cart</a></li>
 			<li class="gauche"><a href="connexion.jsp">Log in</a></li>
 			<li class="droite"><a href="account.jps">My Account</a></li>
 			<li class="droite"><a href="info.jsp">Info</a></li>
@@ -79,12 +74,7 @@
 		</div>
  	</div>
 	
-	<!-- #pied -->
-	<div id="pied">
-		<p>
-			© 2012 El Miouzik Store S.A. All Rights Reserved.
-		</p>
-	</div>
+
 
 </div>
 
