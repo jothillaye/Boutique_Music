@@ -3,6 +3,7 @@
     Created on : 8 nov. 2012, 15:26:25
     Author     : BAVAY Emilien - THILLAYE Joachim
 --%>
+<%-- any content can be specified here e.g.: --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"

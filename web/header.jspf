@@ -1,5 +1,4 @@
-<%-- any content can be specified here e.g.: --%>
-<%@ page pageEncoding="UTF-8" %>
+
 	<!-- #entete -->	
 	<div id="entete">
           <img alt="" src="./style/img/page_title.png" width="400" />
