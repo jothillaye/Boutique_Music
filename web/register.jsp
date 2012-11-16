@@ -12,24 +12,31 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-	<title>Boutique de musique</title>
+	<title>Register</title>
 	<link rel="stylesheet" type="text/css" href="style/design.css" media="all" />
 </head>
     <script type="text/javascript">
+        function blockSubmit(block)
+        {
+            document.getElementById("submitForm").disabled = block;
+        }
+        
         function validatePrenom()
         {           
             var prenom = document.forms["register"]["prenom"].value;
-            var myPrenomTest = new RegExp("^[a-zA-Z]{2,25}$","g"); // 5 à 9 caractères
-               if (myPrenomTest.test(prenom)==false)
-                {
-                   span_prenom.innerHTML="<font color='red' > Prenom invalide</font>";
-                   document.getElementById("prenom").style.borderColor='Red';
-                }
-                else
-                {
-                    span_prenom.innerHTML="";
-                    document.getElementById("prenom").style.borderColor='Green';
-                }
+            var myPrenomTest = new RegExp("^[a-zA-Z]{1}[a-zA-Z-]{1,15}$","g"); // 2 à 16 caractères
+            if (myPrenomTest.test(prenom)==false)
+             {
+                span_prenom.innerHTML="<font color='red' > Prenom invalide</font>";
+                document.getElementById("prenom").style.borderColor='Red';
+                blockSubmit(true);
+             }
+             else
+             {
+                 span_prenom.innerHTML="";
+                 document.getElementById("prenom").style.borderColor='Green';
+                 blockSubmit(false);
+             }
         }
         
         function validateNom()
@@ -39,18 +46,20 @@
                if (myNomTest.test(nom)==false || nom == "" || nom==null)
                 {
                    span_nom.innerHTML="<font color='red' > Nom invalide</font>";
-                   document.getElementById("nom").style.borderColor='RED';                   
+                   document.getElementById("nom").style.borderColor='RED'; 
+                   blockSubmit(true);
                 }
                 else
                 {
                     span_nom.innerHTML="";
                     document.getElementById("nom").style.borderColor='Green';
+                    blockSubmit(false);
                 }     
         }
         
     </script>
 
-<body>
+<body onload="blockSubmit(true);">
 
 <!-- #global -->
 <div id="global">
@@ -72,7 +81,7 @@
             <label for="Mail">Mail</label> <input type="text" name="mail" id="mail"/> <span name ="span_mail" id="span_mail"> </span><br/>
             <label for="Mot de passe">Mot de passe</label> <input type="password" name="pw" id="pw"/> <span name ="span_pw" id="span_pw"> </span><br/>
             <label for="Confirmation">Confirmation</label> <input type="password" name="pwconfirm" id="pwconfirm"/> <span name ="span_pwconfirm" id="span_pwconfirm"> </span><br/>                           
-            <input type="submit" value="S'inscrire"/>
+            <input type="submit" value="S'inscrire" id="submitForm" />
         </form>
         
         
