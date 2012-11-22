@@ -12,7 +12,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-	<title>Register</title>
+	<title>My Cart</title>
 	<link rel="stylesheet" type="text/css" href="style/design.css" media="all" />
 </head>
     <script type="text/javascript">
@@ -28,9 +28,35 @@
     
     
     <div id="contenu">
-        
-       
-        
+        <table id="tableCart">
+            <thead>
+                <tr>
+                    <td width="10%"> </td>
+                    <td width="50%">Product Name</td>
+                    <td width="10%">Unit Price</td>
+                    <td width="15%">Quantity</td>
+                    <td width="10%">Subtotal</td>              
+                    <td width="5%"> </td>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <td colspan="2"><a href="index.jsp">Continue Shopping</a></td>
+                    <td colspan="4" class="droite"><a href="cart.jsp">Update</a></td>
+                </tr>
+            </tfoot>
+            <tbody>
+                <tr>
+                    <td><img alt="" src="./style/img/pochette/pochette5.jpg" width="50px" height="50px" /></td>
+                    <td class="alignLeft"><h5><a href="detail.jps?album=1">Michael Jackson - This is it</a></h5></td>
+                    <td>188$</td>
+                    <td><input type="text" name="qte" id="qte"/></td>
+                    <td>188$</td>
+                    <td><img alt="" src="./style/img/Delete.png" width="20px" /></td>
+                </tr>
+            </tbody>
+            
+        </table>
     </div>
     
     

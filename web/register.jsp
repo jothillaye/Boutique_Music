@@ -1,7 +1,7 @@
 <%-- 
     Document   : inscription
     Created on : 15 nov. 2012, 13:53:57
-    Author     : Emilien
+    Author     : BAVAY Emilien - THILLAYE Joachim
 --%>
 <%-- any content can be specified here e.g.: --%>
 
@@ -26,17 +26,17 @@
             var prenom = document.forms["register"]["prenom"].value;
             var myPrenomTest = new RegExp("^[a-zA-Z]{1}[a-zA-Z-]{1,15}$","g"); // 2 à 16 caractères
             if (myPrenomTest.test(prenom)==false)
-             {
+            {
                 span_prenom.innerHTML="<font color='red' > Prenom invalide</font>";
                 document.getElementById("prenom").style.borderColor='Red';
                 blockSubmit(true);
-             }
-             else
-             {
+            }
+            else
+            {
                  span_prenom.innerHTML="";
                  document.getElementById("prenom").style.borderColor='Green';
                  blockSubmit(false);
-             }
+            }
         }
         
         function validateNom()
@@ -69,8 +69,7 @@
     
     <div id="contenu">
         
-        <form class="style" name="register" method="post" onsubmit="return validateForm()"><!--action="register"--> 
-                
+        <form class="style" name="register" method="post" onsubmit="return validateForm()"><!--action="register"-->                 
             <label for="Prenom">Prenom</label> <input type="text" name="prenom" id="prenom" onkeyup="validatePrenom();" /><span name ="span_prenom" id="span_prenom"> </span><br/>
             <label for="Nom">Nom</label> <input type="text" name="nom" id="nom" onkeyup="validateNom();"/> <span name ="span_nom" id="span_nom"> </span><br/>
             <label for="Rue">Rue</label> <input type="text" name="rue" id="rue"/> <span name ="span_rue" id="span_rue"> </span><br/>

@@ -1,7 +1,7 @@
 
 	<!-- #entete -->	
 	<div id="entete">
-          <img alt="" src="./style/img/page_title.png" width="400" />
+        <a href="index.jsp"><img alt="" src="./style/img/page_title.png" width="400" /></a>
 		<p class="sous-titre">
 			Who are you ? <strong><a href="register.jsp">Register</a></strong>
 		</p>
