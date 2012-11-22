@@ -22,8 +22,17 @@
 <div id="global">
 
     <%@include file="header.jspf" %>
-    
-    
+    <div id="contenu">
+    <table width="800" height="500" border="1">
+  <tr>
+      <td width="500" height="284">Le titre et la pochette <br><img src="http://a3.idata.over-blog.com/320x320/4/69/94/92/MI-OCTOBRE/michael-jackson-this-is-it-pochette-album.jpg" height="400" width="400"/></td>
+    <td width="200">La modif de quantité etc ...</td>
+  </tr>
+  <tr>
+    <td colspan="2">la description phénoménale</td>
+  </tr>
+</table>
+    </div>
     
      	
 	
