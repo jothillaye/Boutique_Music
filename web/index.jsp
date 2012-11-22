@@ -23,9 +23,7 @@
 
 	<!-- #entete -->	
 	<%@include file="header.jspf" %>
-	
-
-	
+        
 	<!-- #contenu -->
 	<div id="contenu">
 		<div id="grid">
@@ -57,13 +55,13 @@
 				<span class="product-name">Dim Mak</span>
 				<span class="price-box">19$</span>
 			</div>
-               <div class="grid_element">
-                      <a href="element_link">
-                           <img alt="" src="./style/img/pochette/pochette5.jpg" width="150px" height="150px" />
-                      </a>
-                      <span class="product-name">This is It</span>
-                      <span class="price-box">188$</span>
-               </div>
+            <div class="grid_element">
+                <a href="element_link">
+                    <img alt="" src="./style/img/pochette/pochette5.jpg" width="150px" height="150px" />
+                </a>
+                <span class="product-name">This is It</span>
+                <span class="price-box">188$</span>
+            </div>
 		</div>
  	</div>
 	
