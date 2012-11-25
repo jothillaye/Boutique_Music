@@ -42,7 +42,7 @@
             <tfoot>
                 <tr>
                     <td colspan="2"><a href="index.jsp">Continue Shopping</a></td>
-                    <td colspan="4" class="droite"><a href="cart.jsp">Update</a></td>
+                    <td colspan="4"><a href="cart.jsp">Update</a></td>
                 </tr>
             </tfoot>
             <tbody>

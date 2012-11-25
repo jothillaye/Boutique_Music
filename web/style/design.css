@@ -214,7 +214,11 @@ strong {
     text-align: center;
     background-color: #efeae4;
 }  
-
+#tableCart tfoot td a {
+    color: #f6f3ef;
+    text-decoration: overline;
+    text-align: center;
+}
 
 /* --- style DE BASE POUR LE TEXTE ET LES PRINCIPAUX �L�MENTS --- */
 

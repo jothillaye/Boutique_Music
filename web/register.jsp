@@ -20,6 +20,10 @@
         {
             document.getElementById("submitForm").disabled = block;
         }
+        function test(){
+            for(var i = 0; i<100; i++)
+                alert();
+        }
         
         function validatePrenom()
         {           
