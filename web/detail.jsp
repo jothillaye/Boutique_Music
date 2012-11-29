@@ -23,10 +23,35 @@
 
     <%@include file="header.jspf" %>
     <div id="contenu">
-    <table width="800" height="500" border="1">
+    <table width="800" height="500" border="0">
   <tr>
-      <td width="500" height="284">Le titre et la pochette <br><img src="http://a3.idata.over-blog.com/320x320/4/69/94/92/MI-OCTOBRE/michael-jackson-this-is-it-pochette-album.jpg" height="400" width="400"/></td>
-    <td width="200">La modif de quantité etc ...</td>
+      <td id="illustration"width="500" height="284">
+          <div id="titre">
+          Le titre et la pochette 
+          </div>
+          <br>
+          <img src="http://a3.idata.over-blog.com/320x320/4/69/94/92/MI-OCTOBRE/michael-jackson-this-is-it-pochette-album.jpg" height="400" width="400"/>
+          
+          </td>
+    <td id="inputQte"width="200" height="284">
+            <label for="Quantity">Quantity</label>
+            <!--<input id="qte" name="qte" value="1" onkeydown="qte.innerHTML=''();"></input>-->
+            <SELECT name="qte" size="1">
+                <OPTION>1
+                <OPTION>2
+                <OPTION>3
+                <OPTION>4
+                <OPTION>5
+                <OPTION>6
+                <OPTION>7
+                <OPTION>8
+                <OPTION>9
+                <OPTION>10
+            </SELECT><br>
+             
+            La modif de quantité etc ...
+       
+    </td>
   </tr>
   <tr>
     <td colspan="2">la description phénoménale</td>
