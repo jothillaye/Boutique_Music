@@ -132,12 +132,10 @@ form.style input[type=submit]{
 	width:120px;
 } 
 
-#inputQte
+
+td.sytle label
 {
-    padding-left : 10px;
-    border-color: #FFFFFF;
-    
-    
+    background-color : #FEBA31;  
 }
 
 

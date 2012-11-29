@@ -33,8 +33,11 @@
           <img src="http://a3.idata.over-blog.com/320x320/4/69/94/92/MI-OCTOBRE/michael-jackson-this-is-it-pochette-album.jpg" height="400" width="400"/>
           
           </td>
-    <td id="inputQte"width="200" height="284">
-            <label for="Quantity">Quantity</label>
+    <td id="inputQte" name="inputQte" class="style" width="200" height="284">
+        
+        <label for="Price">Price : "Here the price form the db"</label>
+        <br>
+        <label for="Quantity">Quantity</label>
             <!--<input id="qte" name="qte" value="1" onkeydown="qte.innerHTML=''();"></input>-->
             <SELECT name="qte" size="1">
                 <OPTION>1
