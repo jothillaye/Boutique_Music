@@ -46,7 +46,7 @@
         function validateNom()
         {
             var nom = document.forms["register"]["nom"].value;
-            var myNomTest = new RegExp("^[a-zA-Z]{2,25}$","g"); // 5 à 9 caractères
+            var myNomTest = new RegExp("^[a-zA-Z]{2,25}$","g"); // 2 à 25 caractères
                if (myNomTest.test(nom)==false || nom == "" || nom==null)
                 {
                    span_nom.innerHTML="<font color='red' > Nom invalide</font>";
@@ -57,6 +57,24 @@
                 {
                     span_nom.innerHTML="";
                     document.getElementById("nom").style.borderColor='Green';
+                    blockSubmit(false);
+                }     
+        }
+        
+        function validateNumero()
+        {
+            var nom = document.forms["register"]["numero"].value;
+            var myNomTest = new RegExp("[0-9]$","g"); 
+               if (myNomTest.test(nom)==false || nom == "" || nom==null)
+                {
+                   span_numero.innerHTML="<font color='red' > Numero invalide</font>";
+                   document.getElementById("numero").style.borderColor='RED'; 
+                   blockSubmit(true);
+                }
+                else
+                {
+                    span_numero.innerHTML="";
+                    document.getElementById("numero").style.borderColor='Green';
                     blockSubmit(false);
                 }     
         }
@@ -77,7 +95,7 @@
             <label for="Prenom">Prenom</label> <input type="text" name="prenom" id="prenom" onkeyup="validatePrenom();" /><span name ="span_prenom" id="span_prenom"> </span><br/>
             <label for="Nom">Nom</label> <input type="text" name="nom" id="nom" onkeyup="validateNom();"/> <span name ="span_nom" id="span_nom"> </span><br/>
             <label for="Rue">Rue</label> <input type="text" name="rue" id="rue"/> <span name ="span_rue" id="span_rue"> </span><br/>
-            <label for="Numero">Numero</label> <input type="text" name="numero" id="numero"/> <span name ="span_numero" id="span_numero"> </span><br/>
+            <label for="Numero">Numero</label> <input type="text" name="numero" id="numero" onkeyup="validateNumero();"/> <span name ="span_numero" id="span_numero"> </span><br/>
             <label for="Localite">Boite</label> <input type="text" name="boite" id="boite" /> <span name ="span_boite" id="span_boite"> </span><br/>
             <label for="Localite">Localite</label> <input type="text" name="localite" id="localite"/> <span name ="span_localite" id="span_localite"> </span><br/>
             <label for="Code postal">Code Postal</label> <input type="text" name="codepostal" id="codepostal"/> <span name ="span_codepostal" id="span_codepostal"> </span><br/>

@@ -33,7 +33,7 @@
           <img src="http://a3.idata.over-blog.com/320x320/4/69/94/92/MI-OCTOBRE/michael-jackson-this-is-it-pochette-album.jpg" height="400" width="400"/>
           
           </td>
-    <td id="inputQte" name="inputQte" class="style" width="200" height="284">
+    <td id="inputQte" name="inputQte" class="Orange" width="200" height="284">
         
         <label for="Price">Price : "Here the price form the db"</label>
         <br>
@@ -50,9 +50,16 @@
                 <OPTION>8
                 <OPTION>9
                 <OPTION>10
-            </SELECT><br>
+            </SELECT>
+            <br>
+            <br>
+            <br>
+                
+        <input type="submit" value="Add to cart" id="submitAdd" />
+        
+        
              
-            La modif de quantité etc ...
+            
        
     </td>
   </tr>

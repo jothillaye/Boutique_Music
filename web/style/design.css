@@ -133,9 +133,24 @@ form.style input[type=submit]{
 } 
 
 
-td.sytle label
+td.Orange label
 {
+    display: inline;
+    float: left;
+    text-align: left;
+    padding : 7px 7px 7px 7px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
     background-color : #FEBA31;  
+}
+
+td.Orange input
+{
+    background-color : #FEBA31;
+    margin-left: 10px;
+    color : #FFFFFF;
+    padding : 5px 5px 5px 5px;
 }
 
 
