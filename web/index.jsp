@@ -46,7 +46,7 @@
 					<img alt="" src="./style/img/pochette/pochette3.jpg" width="150px" height="150px" />
 				</a>
 				<span class="product-name">Justine Bieber</span>
-				<span class="price-box">2$</span>
+				<span class="price-box">.99$</span>
 			</div>
 			<div class="grid_element">
 				<a href="element_link">
