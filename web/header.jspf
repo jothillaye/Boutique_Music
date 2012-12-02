@@ -1,18 +1,22 @@
+<!-- #entete -->	
+<div id="entete">
+    <div id="lang">
+        <a href="ServletLangue?lang=nl&pagename=${requestScope.pagename}"><img alt="" src="./style/img/lang/flag_nl.png" width="16" /></a>
+        <a href="ServletLangue?lang=fr&pagename=${requestScope.pagename}"><img alt="" src="./style/img/lang/flag_fr.png" width="16" /></a>
+        <a href="ServletLangue?lang=en&pagename=${requestScope.pagename}"><img alt="" src="./style/img/lang/flag_en.png" width="16" /></a>
+    </div>
+    <a href="index.jsp"><img alt="" src="./style/img/page_title.png" width="400" /></a>
+    <p class="sous-titre">
+        <fmt:message key="notRegisteredMsg"/> <strong><a href="register.jsp"><fmt:message key="registerLink"/></a></strong>
+    </p>
+</div>
 
-	<!-- #entete -->	
-	<div id="entete">
-        <a href="index.jsp"><img alt="" src="./style/img/page_title.png" width="400" /></a>
-		<p class="sous-titre">
-			Who are you ? <strong><a href="register.jsp">Register</a></strong>
-		</p>
-	</div>
-        
-        	<!-- #navigation -->
-	<div id="navigation">
-		<ul>
-			<li class="gauche"><a href="cart.jsp">View Cart</a></li>
-			<li class="gauche"><a href="connexion.jsp">Log in</a></li>
-			<li class="droite"><a href="account.jps">My Account</a></li>
-			<li class="droite"><a href="info.jsp">Info</a></li>
-		</ul>
-	</div>
+<!-- #navigation -->
+<div id="navigation">
+    <ul>
+        <li class="gauche"><a href="cart.jsp"><fmt:message key="viewCart"/></a></li>
+	<li class="gauche"><a href="connexion.jsp"><fmt:message key="logIn"/></a></li>
+	<li class="droite"><a href="account.jps"><fmt:message key="myAccount"/></a></li>
+	<li class="droite"><a href="info.jsp"><fmt:message key="info"/></a></li>
+    </ul>
+</div>

@@ -6,241 +6,236 @@
         Purpose of the stylesheet follows.
 */
 
-/* ==============================================
-   FEUILLE DE style DES GABARITS HTML/CSS
-   � Elephorm & Alsacreations.com
-   Conditions d'utilisation:
-   http://creativecommons.org/licenses/by/2.0/fr/
-   ============================================== */
-
 /* Page */
 html {
 	font-size: 100%; 
 }
 body {
-	margin: 0;
-     padding: 0;
-	font-family: Verdana, "Bitstream Vera Sans", "Lucida Grande", sans-serif;
-	font-size: .8em; 
-	line-height: 1.25; 
+    margin: 0;
+    padding: 0;
+    font-family: Verdana, "Bitstream Vera Sans", "Lucida Grande", sans-serif;
+    font-size: .8em; 
+    line-height: 1.25; 
+    
+    background: url(./img/background2.jpg) top center no-repeat;
 }
 #global {
-	width: 850px;
-	margin: auto; 
+    width: 850px;
+    margin: auto;
+    color: #F0E39E;
 }
 
 /* En-tete */
 #entete {
-	padding: 10px 0px 5px 10px; /* top-right-bottom-left */
+    padding: 10px 0px 5px 10px; /* top-right-bottom-left */
+    background: rgba(0, 0, 0, 0.5);
 }
 #entete h1 {
-	margin: 0;
+    margin: 0;
 }
 #entete h1 img {
-	float: left;
-	margin: 7px 20px 10px 0;
+    float: left;
+    margin: 7px 20px 10px 0;
 }
 #entete .sous-titre {
-	margin: 4px 0 15px 25px;
+    margin: 4px 0 15px 25px;
+}
+
+#lang a{
+    float: right;
+    margin-right: 6px;
+    opacity: .6;
+}
+#lang a:hover{
+    opacity: 1;
 }
 
 /* Menu de navigation */
 #navigation {
-	padding: 12px 15px;
+    padding: 12px 15px;
+    background: linen;
 }
 #navigation ul {
-	width: 100%; 
-	overflow: hidden; 
-	margin: 0;
-	padding: 0;
-	list-style: none;
+    width: 100%; 
+    overflow: hidden; 
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
 #navigation li.gauche {
-	float: left; 
-	margin-right: 10px;
-	font-size: 1.4em;
-	font-style: italic;
+    float: left; 
+    margin-right: 10px;
+    font-size: 1.4em;
+    font-style: italic;
 }
 #navigation li.droite {
-	float: right;
-	margin-right: 0;
-	margin-left: 10px;
-	padding: 3px 0;
+    float: right;
+    margin-right: 0;
+    margin-left: 10px;
+    padding: 3px 0;
 }
 #navigation a {
-	padding: 10px;
-	line-height: 1.5;
-	font-size: .9em;
-	text-decoration: none;
+    padding: 10px;
+    line-height: 1.5;
+    font-size: .9em;
+    text-decoration: none;
+    color: #FF6533;
+}
+#navigation a:hover, #navigation a:focus {
+    background: white;
 }
 
 /* Contenu */
 #contenu {
-	padding: 10px 20px;
+    padding: 10px 20px;
+    color: #363B29;
+    background: white;
+    min-height: 300px;
 }
 #contenu > :first-child {
-	margin-top: 10px;
+    margin-top: 10px;
 }
-#contenu p, #contenu li {
-	line-height: 1.5;
+#contenu a {
+    color: #332510;
+}
+#contenu a:hover, #contenu a:focus {
+    color: #6E5122;
+}
+#contenu strong {
+    color: #181A12;
 }
 #contenu .grid_element {
-	display: inline-block;
-	vertical-align: top;
-	margin-right: 6px;
-     margin-bottom: 5px;
-	width: 150px;
-	height: 175px;
-	position : relative;
+    color: white;
+    border: 1px solid black;
+    background-color: black;
 }
-.grid_element .product-name {
-   padding-left: 2px;
+#contenu p, #contenu li {
+    line-height: 1.5;
 }
-.grid_element .price-box {
-   padding-right: 2px;
-   position: relative;
-   float: right;
-}
-
 
 /* Pied de page */
 #pied {
-	padding: 5px;
-	font-size: .85em;
+    color: white;
+    background: rgba(0, 0, 0, 0.5);
 }
-#pied p {
-     margin: 0;
-     font-family: verdana;
-     font-size: .8em;
-     text-transform: uppercase;    
-     text-align: center;
+#pied p { 
+    margin: 0;
+    padding: 5px;
+    font-size: .8em;    
+    font-family: verdana;
+    text-transform: uppercase;
+    text-align: center;
 }
 
-form {
-	padding-left:10px;
-	padding-top:10px;
-	padding-bottom:30px;
-}
-form.style label{
-	display: inline;
-	float: left;
-	text-align: left;
-	width: 200px;
-}
-form.style input[type=submit]{
-    margin-top: 20px;
-	width:120px;
-} 
 
+/* STYLE PAR PAGES */
+/* Index */
+.grid_element {
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 6px;
+    margin-bottom: 5px;
+    width: 150px;
+    height: 175px;
+    position : relative;
+}
+.grid_element .product-name {
+    padding-left: 2px;
+    font-family: verdana;
+    font-size: .8em;
+    text-transform: uppercase;     
+}
+.grid_element .price-box {
+    padding-right: 2px;
+    position: relative;
+    float: right;
+    font-size: 1.4em;
+}
 
-td.Orange label
-{
+/* Formulaire d'enregistrement */
+form.register{
+    padding-left:10px;
+    padding-top:10px;
+    padding-bottom:30px;
+}
+form.register label{
     display: inline;
     float: left;
     text-align: left;
-    padding : 7px 7px 7px 7px;
-    margin-bottom: 10px;
-    margin-left: 10px;
-    margin-right: 10px;
-    background-color : #FEBA31;  
+    width: 200px;
+}
+form.register input[type=submit]{
+    margin-top: 20px;
+    width: 120px;
+} 
+form.register span {
+    color: #cc3300;
 }
 
-td.Orange input
-{
-    background-color : #FEBA31;
-    margin-left: 10px;
-    color : #FFFFFF;
-    padding : 5px 5px 5px 5px;
+/* Page détails */
+#detailPage {
+    height: 450px;
 }
-
-
-/* --- COULEURS --- */
-
-/* G�n�ral */
-body {
-	color: #F0E39E;
-     background: url(./img/background2.jpg) top center no-repeat;
-
-}
-a {
-	color: #FF6533;
-}
-a:hover, a:focus {
-	color: #FF4C00;
-}
-a:visited {
-     color: #FF4C00;
-}
-strong {
-	color: #A1B55D;
-}
-
-/* Entete */
-#entete {
-     background: rgba(0, 0, 0, 0.5);
-}
-
-/* Navigation */
-#navigation {	
-	background: linen;
-}
-#navigation a {
-	color: #FF6533;
-}
-#navigation a:hover, #navigation a:focus {
-	background: white;
-}
-
-/* Contenu principal */
-#contenu {     
-	color: #363B29;
-     background: white;
-}
-#contenu a {
-	color: #332510;
-}
-#contenu a:hover, #contenu a:focus {
-	color: #6E5122;
-}
-#contenu strong {
-	color: #181A12;
-}
-#contenu .grid_element {
-	color: white;
-     border: 1px solid black;
-	background-color: black;
-}
-
-#titre
-{
+#titre {
     color: #FFFFFF;
     background-color: #A4A4A4;
+    margin-bottom: 5px;
+    padding: 5px;
+    font-family: Arial;
+    font-size: 1.6em;
+    font-weight: 900;
+    text-transform: uppercase;
 }
-#inputQte
-{
+#illustration {
+    float: left;
+    width: 550px;
+    height: 400px;
+    background-color: #000000;
+}
+#inputQte {
+    float: right;
+    width: 255px;
+    min-height: 400px;
     background-color: #000000;
     color : #FFFFFF;
 }
+#inputQte #desc {
+    padding: 8px;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    border-bottom: 1px dotted #D8D8D8;
+    color: #D8D8D8;
+    font-size: .8em;
+    font-style: italic;
+}
+#inputQte #option {
+     background-color: #F6911D;
+     margin: 8px;
+     margin-bottom: 15px;
+     padding: 2px;
+     text-align: center;
+     color: #000000;
+     font-weight: bold;
+}
+#inputQte p {
+    margin: 8px;
+    padding : 5px;
+    background-color: #F6911D;
+}
+#inputQte input[type=submit]{
+    width: 210px;
+    height: 35px;
+    margin: 8px;
+    border: none;
+    padding-right: 20px;
+    font-size: 1.1em;
+    text-align: right;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    background: url(./img/btnSubmit.png) top left no-repeat;
+}
 
-#illustration
-{
-    background-color : #D8D8D8;
-}
-.grid_element .product-name {
-     font-family: verdana;
-     font-size: .8em;
-     text-transform: uppercase;     
-}
-.grid_element .price-box {
-     font-size: 1.4em;
-}
-
-/* Pied de page */
-#pied {
-	color: white;
-	background: rgba(0, 0, 0, 0.5);
-}
-
+/* Page Cart */
 #tableCart thead, tfoot{
     color: #f6f3ef;
     background-color: #91887c;
@@ -258,8 +253,10 @@ strong {
     text-align: center;
 }
 
-/* --- style DE BASE POUR LE TEXTE ET LES PRINCIPAUX �L�MENTS --- */
 
+
+
+/* --- STYLE DE BASE POUR LE TEXTE ET LES PRINCIPAUX ELEMENTS --- */
 /* Titres */
 h1, h2, h3, h4, h5, h6 {
 	margin: 1em 0 .5em 0; 
@@ -298,22 +295,18 @@ li p, blockquote p {
 
 /* Liens */
 a {
-	color: #FF4C00;
-	text-decoration: underline;
+    color: #FF6533;
 }
 a:hover, a:focus {
-	color: crimson;
+    color: #FF4C00;
 }
-a img {
-	border: none; 
-}
-
-/* Divers �l�ments de type en-ligne */
-em {
-	font-style: italic;
+a:visited {
+    color: #FF4C00;
 }
 strong {
-	font-weight: bold;
-	color: dimgray;
+    color: #A1B55D;
 }
 
+img {
+    border: 0px;    
+}

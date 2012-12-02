@@ -1,8 +1,4 @@
-<%-- any content can be specified here e.g.: --%>
-<%@ page pageEncoding="UTF-8" %>
-	<!-- #pied -->
-	<div id="pied">
-		<p>
-			Â© 2012 El Miouzik Store S.A. All Rights Reserved.
-		</p>
-	</div>
+
+    <div id="pied">
+        <p>© 2012 El Miouzik Store S.A. All Rights Reserved.</p>		
+    </div>

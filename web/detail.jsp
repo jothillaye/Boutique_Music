@@ -6,14 +6,17 @@
 <%-- any content can be specified here e.g.: --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-	<title>Boutique de musique</title>
-	<link rel="stylesheet" type="text/css" href="style/design.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="style/design.css" media="all" />
+        <fmt:setBundle basename="packageLangue.lang" scope="session"/>
+        <c:set var="pagename" scope="request" value="detail.jsp" />
+	<title>MusicStore - <fmt:message key="detailTitle"/></title>	
 </head>
 
 <body>
@@ -22,60 +25,51 @@
 <div id="global">
 
     <%@include file="header.jspf" %>
-    <div id="contenu">
-    <table width="800" height="500" border="0">
-  <tr>
-      <td id="illustration"width="500" height="284">
-          <div id="titre">
-          Le titre et la pochette 
-          </div>
-          <br>
-          <img src="http://a3.idata.over-blog.com/320x320/4/69/94/92/MI-OCTOBRE/michael-jackson-this-is-it-pochette-album.jpg" height="400" width="400"/>
-          
-          </td>
-    <td id="inputQte" name="inputQte" class="Orange" width="200" height="284">
-        
-        <label for="Price">Price : "Here the price form the db"</label>
-        <br>
-        <label for="Quantity">Quantity</label>
-            <!--<input id="qte" name="qte" value="1" onkeydown="qte.innerHTML=''();"></input>-->
-            <SELECT name="qte" size="1">
-                <OPTION>1
-                <OPTION>2
-                <OPTION>3
-                <OPTION>4
-                <OPTION>5
-                <OPTION>6
-                <OPTION>7
-                <OPTION>8
-                <OPTION>9
-                <OPTION>10
-            </SELECT>
-            <br>
-            <br>
-            <br>
-                
-        <input type="submit" value="Add to cart" id="submitAdd" />
-        
-        
-             
-            
-       
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">la description phénoménale</td>
-  </tr>
-</table>
-    </div>
     
-     	
+    <div id="contenu">
+        <div id="detailPage">
+            <div id="titre">Le titre et la pochette</div>
+            
+            <div id="illustration">
+                <img alt="" src="http://a3.idata.over-blog.com/320x320/4/69/94/92/MI-OCTOBRE/michael-jackson-this-is-it-pochette-album.jpg" height="400" width="400" />
+            </div>
+            
+            <div id="inputQte">
+                <center><img alt="" src="./style/img/label/universal.png" width="100" /></center>
+                <div id="desc">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                </div>
+                <div id="option">
+                    Options
+                </div>
+                <p><span class="titleBox"><fmt:message key="priceAlbum"/> :</span> "Here the price form the db"</p>            
+                <form name="addToCart">
+                    <p>
+                    <span class="titleBox"><fmt:message key="quantityAlbum"/></span>            
+                    <select name="qte">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                        <option>8</option>
+                        <option>9</option>
+                        <option>10</option>
+                    </select>
+                    </p>    
+                    <input type="submit" value=" <fmt:message key="addToCartButton"/>" />              
+                </form>
+            </div>
+        </div>
+    </div>    	
 	
     <%@include file="footer.jspf" %>
 
 </div>
-
-
-<!-- #global -->
-    </body>
+    
+</body>
 </html>
