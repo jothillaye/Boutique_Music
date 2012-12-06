@@ -1,3 +1,5 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!-- #entete -->	
 <div id="entete">
     <div id="lang">
@@ -15,8 +17,8 @@
 <div id="navigation">
     <ul>
         <li class="gauche"><a href="cart.jsp"><fmt:message key="viewCart"/></a></li>
-	<li class="gauche"><a href="connexion.jsp"><fmt:message key="logIn"/></a></li>
-	<li class="droite"><a href="account.jps"><fmt:message key="myAccount"/></a></li>
-	<li class="droite"><a href="info.jsp"><fmt:message key="info"/></a></li>
+        <li class="gauche"><a href="connexion.jsp"><fmt:message key="logIn"/></a></li>
+        <li class="droite"><a href="account.jps"><fmt:message key="myAccount"/></a></li>
+        <li class="droite"><a href="info.jsp"><fmt:message key="info"/></a></li>
     </ul>
 </div>

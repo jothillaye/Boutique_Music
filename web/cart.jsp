@@ -6,7 +6,8 @@
 <%-- any content can be specified here e.g.: --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
@@ -16,7 +17,7 @@
 	<link rel="stylesheet" type="text/css" href="style/design.css" media="all" />
         <fmt:setBundle basename="packageLangue.lang" scope="session"/>
         <c:set var="pagename" scope="request" value="cart.jsp" />
-	<title>MusicStore - <fmt:message key="carTitle"/></title>
+	<title>MusicStore - <fmt:message key="cartTitle"/></title>
 </head>
 
 <body>
