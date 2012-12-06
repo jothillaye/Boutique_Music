@@ -11,9 +11,9 @@ package packageBusiness;
 public class Business {
     
     
-    public void addUser(String nom,String prenom,String rue,int numero,String boite,String localite,int codePostal, String email,String motDePasse)
+    public void addUser(String nom,String prenom,String rue,String numero,String boite,String localite,String codePostal, String email,String motDePasse)
     {
-    
+        
     }
     
 }
