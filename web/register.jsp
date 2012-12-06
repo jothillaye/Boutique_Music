@@ -78,6 +78,44 @@
                         blockSubmit(false);
                     }     
             }
+            
+            
+            function validateRue()
+            {
+                var rue = document.forms["register"]["rue"].value;
+                var myNomTest = new RegExp("^[a-zA-Z0-9]{2,50}","g"); // 2 à 25 caractères
+                   if (myNomTest.test(rue)==false || rue == "" || nom==null)
+                    {
+                       span_rue.innerHTML="<fmt:message key="invalidStreet"/>";
+                       document.getElementById("rue").style.borderColor='RED'; 
+                       blockSubmit(true);
+                    }
+                    else
+                    {
+                        span_rue.innerHTML="";
+                        document.getElementById("rue").style.borderColor='Green';
+                        blockSubmit(false);
+                    }     
+            }
+            
+            
+            function validateBoite()
+            {
+                var boite = document.forms["register"]["boite"].value;
+                var myNomTest = new RegExp("^[a-zA-Z0-9]{2,50}","g"); // 2 à 25 caractères
+                   if (myNomTest.test(boite)==false || rue == "" || nom==null)
+                    {
+                       span_rue.innerHTML="<fmt:message key="invalidStreet"/>";
+                       document.getElementById("boite").style.borderColor='RED'; 
+                       blockSubmit(true);
+                    }
+                    else
+                    {
+                        span_rue.innerHTML="";
+                        document.getElementById("boite").style.borderColor='Green';
+                        blockSubmit(false);
+                    }     
+            }
 
         </script>        
 </head>
@@ -97,7 +135,7 @@
                 <span id="span_prenom"> </span><br/>
             <label for="Nom"><fmt:message key="lastName"/></label> <input type="text" name="nom" id="nom" onkeyup="validateNom();"/> 
                 <span id="span_nom"> </span><br/>
-            <label for="Rue"><fmt:message key="street"/></label> <input type="text" name="rue" id="rue"/> 
+                <label for="Rue"><fmt:message key="street"/></label> <input type="text" name="rue" id="rue"  onkeyup="validateRue();"/> 
                 <span id="span_rue"> </span><br/>
             <label for="Numero"><fmt:message key="houseNumber"/></label> <input type="text" name="numero" id="numero" onkeyup="validateNumero();" /> 
                 <span id="span_numero"> </span><br/>
