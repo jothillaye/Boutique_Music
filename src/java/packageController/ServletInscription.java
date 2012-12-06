@@ -5,21 +5,17 @@
 package packageController;
 
 import java.io.IOException;
-import java.util.Locale;
-import javax.servlet.RequestDispatcher;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.servlet.jsp.jstl.core.Config;
-
 
 /**
  *
- * @author Joachim
+ * @author Emilien
  */
-public class ServletLangue extends HttpServlet {
+public class ServletInscription extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -33,17 +29,21 @@ public class ServletLangue extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        HttpSession session = request.getSession();
-        
-        Locale locale = new Locale(request.getParameter("lang"));
-        
-        Config.set(session,Config.FMT_LOCALE,locale);
-        
-        String page = (String) (request.getParameter("pagename"));
-        RequestDispatcher rd = request.getRequestDispatcher(page);
-        
-        rd.forward(request,response);
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        try {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet ServletInscription</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet ServletInscription at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        } finally {            
+            out.close();
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

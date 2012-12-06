@@ -4,9 +4,17 @@
         <servlet-name>ServletLangue</servlet-name>
         <servlet-class>packageController.ServletLangue</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletInscription</servlet-name>
+        <servlet-class>packageController.ServletInscription</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletLangue</servlet-name>
         <url-pattern>/ServletLangue</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletInscription</servlet-name>
+        <url-pattern>/ServletInscription</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -20,62 +20,84 @@
         <title>MusicStore - <fmt:message key="registerTitle"/></title>
         
         <script type="text/javascript">
-            function blockSubmit(block)
+            
+            
+
+            
+            function valider()
             {
-                document.getElementById("submitForm").disabled = block;
+                if(validateLocalite()==true && validatePrenom()==true && validateNom()==true && validateNumero()==true && validateRue()==true && validateboite()==true && validateCodePostal()==false && validateMail()==false && validateBoite()==true && validatePw()==true && validateSamePw()==true )
+                {
+                        
+                        return true;
+                }
+                else
+                {
+                        
+                        return false;
+                }
             }
+            
+            
+          
 
             function validatePrenom()
             {           
                 var prenom = document.forms["register"]["prenom"].value;
                 var myPrenomTest = new RegExp("^[a-zA-Z]{1}[a-zA-Z-]{1,15}$","g"); // 2 à 16 caractères
-                if (myPrenomTest.test(prenom)==false)
+                if (myPrenomTest.test(prenom)==false || prenom=="" || prenom==null)
                 {
                     span_prenom.innerHTML="<fmt:message key="invalidFirstName"/>";
                     document.getElementById("prenom").style.borderColor='Red';
-                    blockSubmit(true);
+                    
+                    return false;
                 }
                 else
                 {
                      span_prenom.innerHTML="";
                      document.getElementById("prenom").style.borderColor='Green';
-                     blockSubmit(false);
+                     
+                     return true;
                 }
             }
 
             function validateNom()
             {
                 var nom = document.forms["register"]["nom"].value;
-                var myNomTest = new RegExp("^[a-zA-Z]{2,25}$","g"); // 2 à 25 caractères
-                   if (myNomTest.test(nom)==false || nom == "" || nom==null)
+                var myTest = new RegExp("^[a-zA-Z]{2,25}$","g"); // 2 à 25 caractères
+                   if (myTest.test(nom)==false || nom == "" || nom==null)
                     {
                        span_nom.innerHTML="<fmt:message key="invalidName"/>";
                        document.getElementById("nom").style.borderColor='RED'; 
-                       blockSubmit(true);
+                       
+                       return false;
                     }
                     else
                     {
                         span_nom.innerHTML="";
                         document.getElementById("nom").style.borderColor='Green';
-                        blockSubmit(false);
+                        
+                        return true;
                     }     
             }
 
             function validateNumero()
             {
-                var nom = document.forms["register"]["numero"].value;
-                var myNomTest = new RegExp("[0-9]$","g"); 
-                   if (myNomTest.test(nom)==false || nom == "" || nom==null)
+                var numero = document.forms["register"]["numero"].value;
+                var myTest = new RegExp("[0-9]$","g"); 
+                   if (myTest.test(numero)==false || numero == "" || numero==null)
                     {
                        span_numero.innerHTML="<fmt:message key="invalidNumber"/>";
                        document.getElementById("numero").style.borderColor='RED'; 
-                       blockSubmit(true);
+                       
+                       return false;
                     }
                     else
                     {
                         span_numero.innerHTML="";
                         document.getElementById("numero").style.borderColor='Green';
-                        blockSubmit(false);
+                        
+                        return true;
                     }     
             }
             
@@ -83,18 +105,20 @@
             function validateRue()
             {
                 var rue = document.forms["register"]["rue"].value;
-                var myNomTest = new RegExp("^[a-zA-Z0-9]{2,50}","g"); // 2 à 25 caractères
-                   if (myNomTest.test(rue)==false || rue == "" || nom==null)
+                var myTest = new RegExp("^[a-zA-Z0-9]{2,50}","g"); // 2 à 25 caractères
+                   if (myTest.test(rue)==false || rue == "" || rue==null)
                     {
                        span_rue.innerHTML="<fmt:message key="invalidStreet"/>";
                        document.getElementById("rue").style.borderColor='RED'; 
-                       blockSubmit(true);
+                       
+                       return false;
                     }
                     else
                     {
                         span_rue.innerHTML="";
                         document.getElementById("rue").style.borderColor='Green';
-                        blockSubmit(false);
+                        
+                        return true;
                     }     
             }
             
@@ -102,25 +126,134 @@
             function validateBoite()
             {
                 var boite = document.forms["register"]["boite"].value;
-                var myNomTest = new RegExp("^[a-zA-Z0-9]{2,50}","g"); // 2 à 25 caractères
-                   if (myNomTest.test(boite)==false || rue == "" || nom==null)
+                var myTest = new RegExp("^[a-zA-Z0-9]{1,15}","g"); // 2 à 25 caractères
+                   if (myTest.test(boite)==false || boite == "" || boite==null)
                     {
-                       span_rue.innerHTML="<fmt:message key="invalidStreet"/>";
+                       span_boite.innerHTML="<fmt:message key="invalidBox"/>";
                        document.getElementById("boite").style.borderColor='RED'; 
-                       blockSubmit(true);
+                       
+                       return false;
                     }
                     else
                     {
-                        span_rue.innerHTML="";
+                        span_boite.innerHTML="";
                         document.getElementById("boite").style.borderColor='Green';
-                        blockSubmit(false);
+                        
+                        return true;
                     }     
             }
+            
+            function validateCodePostal()
+            {
+                var codepostal = document.forms["register"]["codepostal"].value;
+                var myTest = new RegExp("^[a-zA-Z0-9]{4,4}","g"); // 2 à 25 caractères
+                   if (myTest.test(codepostal)==false || codepostal == "" || codepostal==null)
+                    {
+                       
+                       span_codepostal.innerHTML="<fmt:message key="invalidPostalCode"/>";
+                       document.getElementById("codepostal").style.borderColor='RED'; 
+                       
+                       return false;
+                    }
+                    else
+                    {
+                        span_codepostal.innerHTML="";
+                        document.getElementById("codepostal").style.borderColor='Green';
+                        
+                        return true;
+                    }     
+            }
+            
+            
+            function validateMail() 
+            {
+                var email = document.forms["register"]["mail"].value;
+                var myTest = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+                if (!myTest.test(email)) 
+                {
+                    span_mail.innerHTML="<fmt:message key="invalidMail"/>";
+                    document.getElementById("mail").style.borderColor='RED'; 
+                    
+                    return false;
+                }
+                else
+                {
+                    span_mail.innerHTML="";
+                    document.getElementById("mail").style.borderColor='Green';
+                    
+                    return true;
+                }     
+                
+            }
+            
+            function validatePw()
+            {
+                var pw = document.forms["register"]["pw"].value;
+                var myTest = /^([a-zA-Z0-9_\.\-]{6,20})+$/;
+                 if (myTest.test(pw)==false || pw == "" || pw==null)
+                {
+                    span_pw.innerHTML="<fmt:message key="invalidPassword"/>";
+                    document.getElementById("pw").style.borderColor='RED'; 
+                    
+                    return false;
+                }
+                else
+                {
+                    span_pw.innerHTML="";
+                    document.getElementById("pw").style.borderColor='Green';
+                    
+                    return true;
+                }     
+            }
+            
+            function validateSamePw()
+            {
+                var pw = document.forms["register"]["pw"].value;
+                var pwconf = document.forms["register"]["pwconfirm"].value;
+                if(pwconf.toString()!=pw.toString())
+                {
+                        span_pwconfirm.innerHTML="<fmt:message key="invalidPasswordConfirm"/>";
+                        document.getElementById("pwconfirm").style.borderColor='RED'; 
+                        
+                        return false;
+                }
+                else
+                {
+                        span_pwconfirm.innerHTML="";
+                        document.getElementById("pwconfirm").style.borderColor='Green';
+                        
+                }
+            }
+            
+            function validateLocalite()
+            {
+                var loc = document.forms["register"]["localite"].value;
+                var myTest = new RegExp("^[a-zA-Z0-9]{4,4}","g"); // 2 à 25 caractères
+                   if (myTest.test(loc)==false || loc == "" || loc==null)
+                    {
+                       
+                       span_localite.innerHTML="<fmt:message key="invalidLocalite"/>";
+                       document.getElementById("localite").style.borderColor='RED'; 
+                       
+                       return false;
+                    }
+                    else
+                    {
+                        span_localite.innerHTML="";
+                        document.getElementById("localire").style.borderColor='Green';
+                        
+                        return true;
+                    }     
+            }
+            
+
+            
+            
 
         </script>        
 </head>
 
-<body onload="blockSubmit(true);">
+<body>
 
 <!-- #global -->
 <div id="global">
@@ -130,29 +263,29 @@
     
     <div id="contenu">
         
-        <form class="register" name="register" method="post" onsubmit="return validateForm()"><!--action="register"-->                 
-            <label for="Prenom"><fmt:message key="firstName"/></label> <input type="text" name="prenom" id="prenom" onkeyup="validatePrenom();" /> 
+        <form class="register" name="register" method="post" action="inscription" onsubmit="return valider();"><!--action="register"-->                 
+            <label for="Prenom"><fmt:message key="firstName"/></label> <input type="text" name="prenom" id="prenom" onkeyup="validatePrenom();  " /> 
                 <span id="span_prenom"> </span><br/>
-            <label for="Nom"><fmt:message key="lastName"/></label> <input type="text" name="nom" id="nom" onkeyup="validateNom();"/> 
+            <label for="Nom"><fmt:message key="lastName"/></label> <input type="text" name="nom" id="nom" onkeyup="validateNom();  "/> 
                 <span id="span_nom"> </span><br/>
-                <label for="Rue"><fmt:message key="street"/></label> <input type="text" name="rue" id="rue"  onkeyup="validateRue();"/> 
+                <label for="Rue"><fmt:message key="street"/></label> <input type="text" name="rue" id="rue"  onkeyup="validateRue();  "/> 
                 <span id="span_rue"> </span><br/>
-            <label for="Numero"><fmt:message key="houseNumber"/></label> <input type="text" name="numero" id="numero" onkeyup="validateNumero();" /> 
+            <label for="Numero"><fmt:message key="houseNumber"/></label> <input type="text" name="numero" id="numero" onkeyup="validateNumero();  " /> 
                 <span id="span_numero"> </span><br/>
-            <label for="Localite"><fmt:message key="houseBox"/></label> <input type="text" name="boite" id="boite" /> 
+            <label for="Localite"><fmt:message key="houseBox"/></label> <input type="text" name="boite" id="boite" onkeyup="validateBoite();  "/> 
                 <span id="span_boite"> </span><br/>
-            <label for="Localite"><fmt:message key="locality"/></label> <input type="text" name="localite" id="localite"/> 
+            <label for="Localite"><fmt:message key="locality"/></label> <input type="text" name="localite" id="localite" onkeyup="validateLocalite();"/> 
                 <span id="span_localite"> </span><br/>
-            <label for="Code postal"><fmt:message key="postalCode"/></label> <input type="text" name="codepostal" id="codepostal"/> 
+                <label for="Code postal"><fmt:message key="postalCode"/></label> <input type="text" name="codepostal" id="codepostal" onkeyup="validateCodePostal();  "/> 
                 <span id="span_codepostal"> </span><br/>
-            <label for="Mail"><fmt:message key="mail"/></label> <input type="text" name="mail" id="mail"/> 
+            <label for="Mail"><fmt:message key="mail"/></label> <input type="text" name="mail" id="mail" onkeyup="validateMail();  "/> 
                 <span id="span_mail"> </span><br/>
-            <label for="Mot de passe"><fmt:message key="password"/></label> <input type="password" name="pw" id="pw"/> 
+            <label for="Mot de passe"><fmt:message key="password"/></label> <input type="password" name="pw" id="pw" onkeyup="validatePw();  "/> 
                 <span id="span_pw"> </span><br/>
-            <label for="Confirmation"><fmt:message key="passConfirm"/></label> <input type="password" name="pwconfirm" id="pwconfirm"/> 
+                <label for="Confirmation"><fmt:message key="passConfirm"/></label> <input type="password" name="pwconfirm" id="pwconfirm" onkeyup="validateSamePw(); "/> 
                 <span id="span_pwconfirm"> </span><br/>
                 
-            <input type="submit" value="<fmt:message key="buttonSubmit"/>" id="submitForm" />
+            <input type="submit"  value="<fmt:message key="buttonSubmit"/>" id="submitForm"  />
         </form>
         
         
