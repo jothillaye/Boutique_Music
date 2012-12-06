@@ -10,7 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import packageBusiness.Business;
 /**
  *
  * @author Emilien
@@ -30,9 +30,9 @@ public class ServletInscription extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
+        /*PrintWriter out = response.getWriter();
         try {
-            /* TODO output your page here. You may use following sample code. */
+            
             out.println("<html>");
             out.println("<head>");
             out.println("<title>Servlet ServletInscription</title>");            
@@ -43,7 +43,17 @@ public class ServletInscription extends HttpServlet {
             out.println("</html>");
         } finally {            
             out.close();
-        }
+        }*/
+        Business business = new Business();
+        
+        String nom = request.getParameter("nom");
+        String prenom = request.getParameter("prenom");
+        String rue = request.getParameter("rue");
+        String numero = request.getParameter("numero");
+        String boite = request.getParameter("boite");
+        String localite = request.getParameter("localite");
+        String 
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
