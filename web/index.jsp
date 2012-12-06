@@ -16,7 +16,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />	
         <link rel="stylesheet" type="text/css" href="style/design.css" media="all" />
         <fmt:setBundle basename="packageLangue.lang" scope="session"/>
-        <c:set var="pagename" scope="request" value="index.jsp" />
+        <c:set var="pagename" scope="request" value="index.jsp" />        
         <title>MusicStore - <fmt:message key="indexTitle"/></title>
     </head>
 
@@ -27,7 +27,6 @@
 
 	<!-- #entete -->	
 	<%@include file="header.jspf" %>
-        
 	<!-- #contenu -->
 	<div id="contenu">
 		<div id="grid">
@@ -58,7 +57,17 @@
 				</a>
 				<span class="product-name">Dim Mak</span>
 				<span class="price-box">19$</span>
-			</div>
+			</div>                    
+                        <jsp:include page="/albums"></jsp:include>
+                        <c:forEach var="album" items="${requestScope.albums}">
+                            <div class="grid_element">
+                                    <a href="detail.jsp?album=4">
+                                            <img alt="" src="./style/img/pochette/pochette4.jpg" width="150px" height="150px" />
+                                    </a>
+                                    <span class="product-name">${album}<br />${article.titre}</span>
+                                    <span class="price-box">${album.prix}$</span>
+                            </div>                           
+                        </c:forEach>
             <div class="grid_element">
                 <a href="detail.jsp?album=5">
                     <img alt="" src="./style/img/pochette/pochette5.jpg" width="150px" height="150px" />

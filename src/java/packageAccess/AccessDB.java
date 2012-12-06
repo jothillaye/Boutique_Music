@@ -22,7 +22,7 @@ import packageModel.Album;
 public class AccessDB {
     private Connection connexion;
     
-    public ArrayList<Album> getLastsAlbum() throws ListAlbumException
+    public ArrayList<Album> getLastAlbums() throws ListAlbumException
     {
         ArrayList<Album> arrayAlbum = new ArrayList<Album>();
         
@@ -33,11 +33,10 @@ public class AccessDB {
             connexion = source.getConnection();
 
             String requeteSQL = "SELECT Album.idAlbum, Album.titre, Album.prix, Album.image, Artiste.nom "
-                                + "FROM Album, Album_Artiste, Artiste "
-                                + "WHERE Artiste_Album.idAlbum = Album.idAlbum AND Artiste_Album.idArtiste";
+                    + "FROM Album, Artiste_Album, Artiste "
+                    + "WHERE Artiste_Album.idAlbum = Album.idAlbum AND Artiste_Album.idArtiste = Artiste.idArtiste";
             PreparedStatement prepStat = connexion.prepareStatement(requeteSQL);
             ResultSet donnees = prepStat.executeQuery();
-            boolean result = false; // Variable utilisée pour savoir si la requête retourne un résultat
             
             while (donnees.next())
             {
@@ -48,23 +47,22 @@ public class AccessDB {
                 album.setImage(donnees.getString(4));
                 album.setArtiste(donnees.getString(4));
                 arrayAlbum.add(album);
-                result = true; // Au moins un résultat
+                System.out.println("testDB");
             }
             
-            if (!result) // Si pas de résultat, renvoi d'une erreur
+            if (arrayAlbum.isEmpty() == true) // Envoi erreur si aucune album
             {    
                 throw new ListAlbumException("Aucun album présent dans la BD.");
-            }
-            
+            }            
             connexion.close();
         }
-        catch (SQLException exc)
+        catch (SQLException e)
         {
-            throw new ListAlbumException("Erreur Listing Album SQL");
+            throw new ListAlbumException("Erreur Listing Album SQL <br />" + e.getMessage());
         }
-        catch (NamingException exc) 
+        catch (NamingException e) 
         {
-            throw new ListAlbumException("Erreur Listing Album SQL");
+            throw new ListAlbumException("Erreur Listing Album SQL <br />" + e.getMessage());
         }
         
         return arrayAlbum;
