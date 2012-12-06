@@ -13,13 +13,6 @@ public class Album {
     private double prix;
     
     public Album() {}
-    
-    public Album(String titre, double prix) 
-    {
-        this.titre = titre;
-        this.prix = prix;
-    }  
-    
     // Getters
     public int getId() {return id;}
     public String getTitre() {return titre;}

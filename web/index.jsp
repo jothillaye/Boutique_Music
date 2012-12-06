@@ -25,60 +25,28 @@
 <!-- #global -->
 <div id="global">
 
-	<!-- #entete -->	
-	<%@include file="header.jspf" %>
-	<!-- #contenu -->
-	<div id="contenu">
-		<div id="grid">
-			<div class="grid_element">
-				<a href="detail.jsp?album=1">
-					<img alt="" src="./style/img/pochette/pochette.jpg" width="150px" height="150px" />
-				</a>
-				<span class="product-name">BluePrint</span>
-				<span class="price-box">18$</span>
-			</div>
-			<div class="grid_element">
-				<a href="detail.jsp?album=2">
-					<img alt="" src="./style/img/pochette/pochette2.jpg" width="150px" height="150px" />
-				</a>
-				<span class="product-name">Ray Charles</span>
-				<span class="price-box">34$</span>
-			</div>
-			<div class="grid_element">
-				<a href="detail.jsp?album=3">
-					<img alt="" src="./style/img/pochette/pochette3.jpg" width="150px" height="150px" />
-				</a>
-				<span class="product-name">Justine Bieber</span>
-				<span class="price-box">.99$</span>
-			</div>
-			<div class="grid_element">
-				<a href="detail.jsp?album=4">
-					<img alt="" src="./style/img/pochette/pochette4.jpg" width="150px" height="150px" />
-				</a>
-				<span class="product-name">Dim Mak</span>
-				<span class="price-box">19$</span>
-			</div>                    
-                        <jsp:include page="/albums"></jsp:include>
-                        <c:forEach var="album" items="${requestScope.albums}">
-                            <div class="grid_element">
-                                    <a href="detail.jsp?album=4">
-                                            <img alt="" src="./style/img/pochette/pochette4.jpg" width="150px" height="150px" />
-                                    </a>
-                                    <span class="product-name">${album}<br />${article.titre}</span>
-                                    <span class="price-box">${album.prix}$</span>
-                            </div>                           
-                        </c:forEach>
+<!-- #entete -->	
+<%@include file="header.jspf" %>
+
+<!-- #contenu -->
+<div id="contenu">
+    <div id="grid">
+        <center>
+        <jsp:include page="/albums"></jsp:include>
+        <c:forEach var="album" items="${requestScope.albums}">
             <div class="grid_element">
-                <a href="detail.jsp?album=5">
-                    <img alt="" src="./style/img/pochette/pochette5.jpg" width="150px" height="150px" />
+                <a href="detail.jsp?album=${album.id}">
+                    <img alt="" src="./style/img/album/${album.image}" width="180px" height="180px" />
                 </a>
-                <span class="product-name">This is It</span>
-                <span class="price-box">188$</span>
-            </div>
-		</div>
- 	</div>
-	
-        <%@include file="footer.jspf" %>
+                <span class="album-name">${album.titre}</span><span class="album-artist">${album.artiste}</span>
+                <span class="price-box">$${album.prix}</span>
+            </div>                           
+        </c:forEach>
+        </center>
+    </div>
+</div>
+
+<%@include file="footer.jspf" %>
 
 </div>
 

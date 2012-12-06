@@ -45,7 +45,7 @@ public class AccessDB {
                 album.setTitre(donnees.getString(2));
                 album.setPrix(donnees.getDouble(3));
                 album.setImage(donnees.getString(4));
-                album.setArtiste(donnees.getString(4));
+                album.setArtiste(donnees.getString(5));
                 arrayAlbum.add(album);
                 System.out.println("testDB");
             }
@@ -60,9 +60,9 @@ public class AccessDB {
         {
             throw new ListAlbumException("Erreur Listing Album SQL <br />" + e.getMessage());
         }
-        catch (NamingException e) 
+        catch (Exception e) 
         {
-            throw new ListAlbumException("Erreur Listing Album SQL <br />" + e.getMessage());
+            throw new ListAlbumException("Erreur Listing Album SQL 2 <br />" + e.getMessage());
         }
         
         return arrayAlbum;

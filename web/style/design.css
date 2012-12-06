@@ -130,25 +130,31 @@ body {
 
 /* STYLE PAR PAGES */
 /* Index */
-.grid_element {
-    display: inline-block;
-    vertical-align: top;
-    margin-right: 6px;
-    margin-bottom: 5px;
-    width: 150px;
-    height: 175px;
+.grid_element {    
     position : relative;
+    display: inline-block;
+    width: 180px;
+    height: 210px;    
+    font-family: 'Trebuchet MS', Verdana, Arial, Helvetica, san-serif;
+    text-align: left;
+    text-transform: uppercase;
 }
-.grid_element .product-name {
-    padding-left: 2px;
-    font-family: verdana;
-    font-size: .8em;
-    text-transform: uppercase;     
+.grid_element .album-name {
+    float: left;
+    width: 122px;
+    padding-left: 2px;    
+    font-size: .85em;     
 }
-.grid_element .price-box {
-    padding-right: 2px;
-    position: relative;
-    float: right;
+.grid_element .album-artist {
+    float: left;
+    width: 122px;
+    font-weight: bold;  
+}
+.grid_element .price-box { 
+    position: absolute; 
+    float: right;    
+    right: 0;
+    margin-top: 8px;
     font-size: 1.4em;
 }
 
