@@ -37,10 +37,7 @@
                         return false;
                 }
             }
-            
-            
-          
-
+        
             function validatePrenom()
             {           
                 var prenom = document.forms["register"]["prenom"].value;
@@ -91,6 +88,7 @@
                        document.getElementById("numero").style.borderColor='RED'; 
                        
                        return false;
+                       
                     }
                     else
                     {
@@ -263,8 +261,8 @@
     
     <div id="contenu">
         
-        <form class="register" name="register" method="post" action="inscription" onsubmit="return valider();"><!--action="register"-->                 
-            <label for="Prenom"><fmt:message key="firstName"/></label> <input type="text" name="prenom" id="prenom" onkeyup="validatePrenom();  " /> 
+        <form class="register" name="register" method="post" onsubmit="validateForm()"><!--action="register"-->                 
+            <label for="Prenom"><fmt:message key="firstName"/></label> <input type="text" name="prenom" id="prenom" onkeyup="validatePrenom();" /> 
                 <span id="span_prenom"> </span><br/>
             <label for="Nom"><fmt:message key="lastName"/></label> <input type="text" name="nom" id="nom" onkeyup="validateNom();  "/> 
                 <span id="span_nom"> </span><br/>
@@ -274,7 +272,7 @@
                 <span id="span_numero"> </span><br/>
             <label for="Localite"><fmt:message key="houseBox"/></label> <input type="text" name="boite" id="boite" onkeyup="validateBoite();  "/> 
                 <span id="span_boite"> </span><br/>
-            <label for="Localite"><fmt:message key="locality"/></label> <input type="text" name="localite" id="localite" onkeyup="validateLocalite();"/> 
+            <label for="Localite"><fmt:message key="locality"/></label> <input type="text" name="localite" id="localite" /> 
                 <span id="span_localite"> </span><br/>
                 <label for="Code postal"><fmt:message key="postalCode"/></label> <input type="text" name="codepostal" id="codepostal" onkeyup="validateCodePostal();  "/> 
                 <span id="span_codepostal"> </span><br/>
