@@ -6,6 +6,7 @@ package packageController;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -52,8 +53,24 @@ public class ServletInscription extends HttpServlet {
         String numero = request.getParameter("numero");
         String boite = request.getParameter("boite");
         String localite = request.getParameter("localite");
-        String 
+        String codepostal = request.getParameter("codepostal");
+        String mail = request.getParameter("mail");
+        String pw = request.getParameter("pw");
+        String pwConf = request.getParameter("pwconfirm");
         
+        try
+        {
+            business.ajoutUtilisateur(nom, prenom, rue, numero, boite, localite, codepostal, mail, pw,pwConf);
+            RequestDispatcher redirect = request.getRequestDispatcher("inscriptionReussie.jsp");
+            request.setAttribute("reponse", "Félicitation, votre compte a été correctement créé.");
+            redirect.forward(request, response);
+        }
+        catch(Exception ex)
+        {
+            RequestDispatcher redirect = request.getRequestDispatcher("erreurInscription.jsp");
+            request.setAttribute("reponse",ex);
+            redirect.forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

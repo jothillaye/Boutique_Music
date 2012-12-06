@@ -13,8 +13,10 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
+import packageException.AjoutUtilException;
 import packageException.ListAlbumException;
 import packageModel.Album;
+import packageModel.Utilisateur;
 
 /**
  * @author BAVAY Emilien - THILLAYE Joachim
@@ -66,5 +68,24 @@ public class AccessDB {
         }
         
         return arrayAlbum;
+    }
+    
+    public void ajoutUtilisateur(Utilisateur util) throws AjoutUtilException
+    {
+        try
+        {
+            Context cont = new InitialContext();
+            DataSource source = (DataSource)cont.lookup("jdbc/MusicStore");
+            connexion = source.getConnection();
+            
+            String requeteSQL = "INSERT INTO Utilisateur" + 
+                                "Nom,Prenom,Adr_Rue,Ard_Numero" ;
+        }
+        catch(Exception ex)
+        {
+            
+        }
+        
+                
     }
 }
