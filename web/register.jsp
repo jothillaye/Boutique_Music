@@ -19,22 +19,17 @@
         <c:set var="pagename" scope="request" value="register.jsp" />
         <title>MusicStore - <fmt:message key="registerTitle"/></title>
         
-        <script type="text/javascript">
-            
-            
-
+        <script type="text/javascript">    
             
             function valider()
             {
                 if(validateLocalite()==true && validatePrenom()==true && validateNom()==true && validateNumero()==true && validateRue()==true && validateboite()==true && validateCodePostal()==false && validateMail()==false && validateBoite()==true && validatePw()==true && validateSamePw()==true )
                 {
-                        
-                        return true;
+                    return true;
                 }
                 else
                 {
-                        
-                        return false;
+                    return false;
                 }
             }
         
@@ -243,11 +238,6 @@
                         return true;
                     }     
             }
-            
-
-            
-            
-
         </script>        
 </head>
 
