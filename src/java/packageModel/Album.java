@@ -9,7 +9,7 @@ package packageModel;
  */
 public class Album {
     private int id;
-    private String titre, image, artiste;
+    private String titre, image, artiste, label, labelImg;
     private double prix;
     
     public Album() {}
@@ -19,6 +19,8 @@ public class Album {
     public double getPrix() {return prix;}
     public String getImage() {return image;}
     public String getArtiste() {return artiste;}
+    public String getLabel() {return label;}
+    public String getLabelImg() {return labelImg;}
     
     // Setters
     public void setId(int id) {this.id = id;}
@@ -26,5 +28,7 @@ public class Album {
     public void setPrix(double prix) {this.prix = prix;}        
     public void setArtiste(String artiste) {this.artiste = artiste;}
     public void setImage(String image) {this.image = image;}
-
+    public void setLabel(String label) {this.label = label;}
+    public void setLabelImg(String labelImg) {this.labelImg = labelImg;}
+    
 }

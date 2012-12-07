@@ -60,8 +60,12 @@ public class Business {
     
     public ArrayList<Album> getLastAlbums() throws ListAlbumException
     {
-         System.out.println("testBu");
         return ac.getLastAlbums();
+    }
+
+    public Album getAlbum(int idAlbum) throws ListAlbumException
+    {
+        return ac.getAlbum(idAlbum);
     }
     
 }

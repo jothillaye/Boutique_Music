@@ -29,14 +29,14 @@
     
     <div id="contenu">
         <div id="detailPage">
-            <div id="titre">Le titre et la pochette</div>
+            <div id="titre">${album.artiste} - ${album.titre}</div>
             
             <div id="illustration">
-                <img alt="" src="http://a3.idata.over-blog.com/320x320/4/69/94/92/MI-OCTOBRE/michael-jackson-this-is-it-pochette-album.jpg" height="400" width="400" />
+                <img alt="" src="./style/img/album/${album.image}" height="400" width="400" />
             </div>
             
             <div id="inputQte">
-                <center><img alt="" src="./style/img/label/universal.png" width="100" /></center>
+                <center><span>${album.label}</span><br /><img alt="" src="./style/img/label/universal.png" width="100" /></center>
                 <div id="desc">
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
                     Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 

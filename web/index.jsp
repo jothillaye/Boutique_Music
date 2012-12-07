@@ -35,7 +35,7 @@
         <jsp:include page="/albums"></jsp:include>
         <c:forEach var="album" items="${requestScope.albums}">
             <div class="grid_element">
-                <a href="detail.jsp?album=${album.id}">
+                <a href="getAlbum?idAlbum=${album.id}">
                     <img alt="" src="./style/img/album/${album.image}" width="180px" height="180px" />
                 </a>
                 <span class="album-name">${album.titre}</span><span class="album-artist">${album.artiste}</span>
