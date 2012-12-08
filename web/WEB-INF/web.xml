@@ -38,7 +38,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ServletConnexion</servlet-name>
-        <url-pattern>/ServletConnexion</url-pattern>
+        <url-pattern>/connexion</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

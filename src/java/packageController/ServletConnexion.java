@@ -43,16 +43,22 @@ public class ServletConnexion extends HttpServlet {
         try
         {
             user = business.connexion(login, pass);
+            if(user.getMail().isEmpty())
+            {
+                throw new ConnexionException("errorPseudo");
+            }
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
+            
+            RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+            rd.forward(request, response);
         }
-        catch (ConnexionException e)
+        catch (Exception e)
         {
             RequestDispatcher rd = request.getRequestDispatcher("erreur.jsp");
             request.setAttribute("message", e);
             rd.forward(request, response);
-        }
-        
+        }        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

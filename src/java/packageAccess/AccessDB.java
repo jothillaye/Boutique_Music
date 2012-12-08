@@ -27,6 +27,7 @@ public class AccessDB {
     public Utilisateur connexion(String login, String pass) throws ConnexionException 
     {
         Utilisateur user = new Utilisateur();
+        user.setMail("");
         
         try
         {
@@ -44,11 +45,10 @@ public class AccessDB {
                 if (donnees.getString(1).compareTo(pass) != 0)
                     throw new ConnexionException("incorrectPass");
                 else
-                     user.setMail(login);  
+                    user.setMail(login);  
             }    
             
-            connexion.close();            
-            return user;
+            connexion.close();
         }
         catch (SQLException e)
         {
@@ -58,6 +58,8 @@ public class AccessDB {
         {
             throw new ConnexionException("sqlException");
         }
+                    
+        return user;
     }
     
     public ArrayList<Album> getLastAlbums() throws ListAlbumException
