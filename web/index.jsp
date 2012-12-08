@@ -42,7 +42,7 @@
                 <span class="price-box">$${album.prix}</span>
                 </div>
                 </c:forEach>
-            
+            </br>
         -<jsp:include page="/albums"></jsp:include>
         <c:forEach var="album" items="${requestScope.albums}">
             <div class="grid_element">
