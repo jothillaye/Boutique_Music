@@ -16,7 +16,7 @@
         <link rel="stylesheet" type="text/css" href="style/design.css" media="all" />
         <fmt:setBundle basename="packageLangue.lang" scope="session"/>
         <c:set var="pagename" scope="request" value="detail.jsp" />
-	<title>MusicStore - <fmt:message key="erreurTitle"/></title>	
+	<title>MusicStore - <fmt:message key="erreurTitre"/></title>	
 </head>
 
 <body>

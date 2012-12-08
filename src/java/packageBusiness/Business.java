@@ -25,34 +25,64 @@ public class Business {
     {
         if(nom.isEmpty() || prenom.isEmpty() || rue.isEmpty() || numero.isEmpty() || boite.isEmpty() || localite.isEmpty() || codePostal.isEmpty() || email.isEmpty() && motDePasse.isEmpty() && mdpConf.isEmpty() && numTel.isEmpty())
        {
-           throw new InscriptionException("Les champes n'étaient pas complets.");
+           throw new InscriptionException("errorField");
        }
         
-        if(motDePasse.compareTo(mdpConf)!= 0 )
-        {
-            throw new InscriptionException("Les mots de passes ne correspondent pas.");
-        }
+
         
         if(Pattern.matches("[^a-zA-Z]",prenom))
         {
-            throw new InscriptionException("Le prénom ne respectait pas le format demandé.");
+            throw new InscriptionException("errorFirstName");
         }
         
         if(Pattern.matches("[^a-zA-Z]",nom))
         {
-            throw new InscriptionException("Le nom ne respectait pas le format demandé.");
+            throw new InscriptionException("ErrorName");
         }
         
-        if(Pattern.matches("[^0-9]$", numero)==false)
+        if(Pattern.matches("[^a-zA-Z0-9]{2,50}",rue))
         {
-            throw new InscriptionException("ErrorNumero");
-        }
+            throw new InscriptionException("ErrorStreet");
+        } 
         
-        
-        if (Pattern.matches("^[_a-z0-9-]+(\\.[_a-z0-9-]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)+$", email)==false)
+        if(Pattern.matches("[^0-9]$", numero))
         {
-            throw new InscriptionException("ErrorNumero");
+            throw new InscriptionException("errorNumero");
         }
+        
+        if(Pattern.matches("[^a-zA-Z0-9]{0,15}",boite))
+        {
+            throw new InscriptionException("errorBox");
+        }
+        
+        if(Pattern.matches("[^a-zA-Z0-9]{2,50}",localite))
+        {
+            throw new InscriptionException("errorLocality");
+        }
+        
+        if(Pattern.matches("[^a-zA-Z0-9]{4,4}",codePostal))
+        {            
+            throw new InscriptionException("errorPostalCode");
+        }
+        
+        if(Pattern.matches("[^0-9/+//]{8,50}",numTel))
+        {
+            throw new InscriptionException("errorPhone");
+        }
+        
+        
+        if (Pattern.matches("[^_a-z0-9-]+(\\.[_a-z0-9-]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)+$", email)==false)
+        {
+            throw new InscriptionException("ErrorMail");
+        }
+
+        
+        if(motDePasse.compareTo(mdpConf)!= 0 )
+        {
+            throw new InscriptionException("errorPwNotMatch");
+        }
+        
+        
 
         // Continuer les vérifications
         try

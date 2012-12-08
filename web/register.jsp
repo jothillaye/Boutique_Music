@@ -124,7 +124,7 @@
             function validateBoite()
             {
                 var boite = document.forms["register"]["boite"].value;
-                var myTest = new RegExp("^[a-zA-Z0-9]{1,15}","g"); // 2 à 25 caractères
+                var myTest = new RegExp("^[a-zA-Z0-9]{0,15}","g"); // 2 à 25 caractères
                    if (myTest.test(boite)==false || boite == "" || boite==null)
                     {
                        span_boite.innerHTML="<fmt:message key="invalidBox"/>";
