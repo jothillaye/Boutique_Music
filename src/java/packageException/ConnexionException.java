@@ -8,7 +8,7 @@ package packageException;
  *
  * @author Joachim
  */
-public class ConnexionException {
+public class ConnexionException extends Exception {
     
     private String mess;
     
