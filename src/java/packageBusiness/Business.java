@@ -23,7 +23,7 @@ public class Business {
     
     public void ajoutUtilisateur(String nom,String prenom,String rue,String numero,String boite,String localite,String codePostal, String email,String motDePasse,String mdpConf,String numTel) throws InscriptionException
     {
-        if(nom.isEmpty() || prenom.isEmpty() || rue.isEmpty() || numero.isEmpty() || boite.isEmpty() || localite.isEmpty() || codePostal.isEmpty() || email.isEmpty() && motDePasse.isEmpty() && mdpConf.isEmpty())
+        if(nom.isEmpty() || prenom.isEmpty() || rue.isEmpty() || numero.isEmpty() || boite.isEmpty() || localite.isEmpty() || codePostal.isEmpty() || email.isEmpty() && motDePasse.isEmpty() && mdpConf.isEmpty() && numTel.isEmpty())
        {
            throw new InscriptionException("Les champes n'étaient pas complets.");
        }
@@ -33,14 +33,25 @@ public class Business {
             throw new InscriptionException("Les mots de passes ne correspondent pas.");
         }
         
-        if(Pattern.matches("[^a-zA-Z -]",prenom))
+        if(Pattern.matches("[^a-zA-Z]",prenom))
         {
             throw new InscriptionException("Le prénom ne respectait pas le format demandé.");
         }
         
-        if(Pattern.matches("[^a-zA-Z -]",nom))
+        if(Pattern.matches("[^a-zA-Z]",nom))
         {
             throw new InscriptionException("Le nom ne respectait pas le format demandé.");
+        }
+        
+        if(Pattern.matches("[^0-9]$", numero)==false)
+        {
+            throw new InscriptionException("ErrorNumero");
+        }
+        
+        
+        if (Pattern.matches("^[_a-z0-9-]+(\\.[_a-z0-9-]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)+$", email)==false)
+        {
+            throw new InscriptionException("ErrorNumero");
         }
 
         // Continuer les vérifications

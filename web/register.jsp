@@ -41,7 +41,7 @@
             function validatePrenom()
             {           
                 var prenom = document.forms["register"]["prenom"].value;
-                var myPrenomTest = new RegExp("^[a-zA-Z]{1}[a-zA-Z-]{1,15}$","g"); // 2 à 16 caractères
+                var myPrenomTest = new RegExp("^[a-zA-Z]{1}[a-zA-Z-]{1,50}$","g"); // 2 à 16 caractères
                 if (myPrenomTest.test(prenom)==false || prenom=="" || prenom==null)
                 {
                     span_prenom.innerHTML="<fmt:message key="invalidFirstName"/>";
@@ -61,7 +61,7 @@
             function validateNom()
             {
                 var nom = document.forms["register"]["nom"].value;
-                var myTest = new RegExp("^[a-zA-Z]{2,25}$","g"); // 2 à 25 caractères
+                var myTest = new RegExp("^[a-zA-Z]{1,50}$","g"); // 2 à 25 caractères
                    if (myTest.test(nom)==false || nom == "" || nom==null)
                     {
                        span_nom.innerHTML="<fmt:message key="invalidName"/>";
@@ -299,7 +299,7 @@
                 <span id="span_codepostal"> </span><br/>
             <label for="Mail"><fmt:message key="mail"/></label> <input type="text" name="mail" id="mail" onkeyup="validateMail();  "/> 
                 <span id="span_mail"> </span><br/>
-                <label for="Tel"><fmt:message key="phone"/><label> <input type="text" name="tel" id="tel" onkeyup="validateTel();"/>
+                <label for="Tel"><fmt:message key="phone"/></label> <input type="text" name="tel" id="tel" onkeyup="validateTel();"/>
                 <span id="span_tel"> </span><br/>        
             <label for="Mot de passe"><fmt:message key="password"/></label> <input type="password" name="pw" id="pw" onkeyup="validatePw();  "/> 
                 <span id="span_pw"> </span><br/>
