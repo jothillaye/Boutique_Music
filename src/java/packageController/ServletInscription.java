@@ -57,7 +57,7 @@ public class ServletInscription extends HttpServlet {
         String mail = request.getParameter("mail");
         String pw = request.getParameter("pw");
         String pwConf = request.getParameter("pwconfirm");
-        String numTel = request.getParameter("Tel");
+        String numTel = request.getParameter("tel");
         
         try
         {

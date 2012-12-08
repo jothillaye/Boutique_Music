@@ -244,6 +244,27 @@
                     }     
             }
             
+            function validateTel()
+            {
+                var tel = document.forms["register"]["tel"].value;
+                var myTest = new RegExp("^[0-9/+//]{8,50}","g"); // 2 à 25 caractères
+                   if (myTest.test(tel)==false || tel == "" || tel==null)
+                    {
+                       
+                       span_tel.innerHTML="<fmt:message key="invalidPhone"/>";
+                       document.getElementById("tel").style.borderColor='RED'; 
+                       
+                       return false;
+                    }
+                    else
+                    {
+                        span_tel.innerHTML="";
+                        document.getElementById("tel").style.borderColor='Green';
+                        
+                        return true;
+                    }     
+            }
+            
 
             
             
@@ -278,7 +299,7 @@
                 <span id="span_codepostal"> </span><br/>
             <label for="Mail"><fmt:message key="mail"/></label> <input type="text" name="mail" id="mail" onkeyup="validateMail();  "/> 
                 <span id="span_mail"> </span><br/>
-            <label for="Tel"><fmt:message key="phone"/><label> <input type="text" name="tel" id="tel"/>
+                <label for="Tel"><fmt:message key="phone"/><label> <input type="text" name="tel" id="tel" onkeyup="validateTel();"/>
                 <span id="span_tel"> </span><br/>        
             <label for="Mot de passe"><fmt:message key="password"/></label> <input type="password" name="pw" id="pw" onkeyup="validatePw();  "/> 
                 <span id="span_pw"> </span><br/>
