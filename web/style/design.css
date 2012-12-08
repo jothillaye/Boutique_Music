@@ -283,7 +283,30 @@ form.register span {
 }
 
 
+#promo{
+   
+    position : relative;
+    display: inline-block;
+    margin-bottom: 10px;
+    margin-right: 5px;
+    color: #B9121B;
+    font-family: 'Trebuchet MS', Verdana, Arial, Helvetica, san-serif;
+    text-align: left;
+    text-transform: uppercase;
+}
 
+
+#nouvAjout{
+   
+    position : relative;
+    display: inline-block;
+    margin-bottom: 10px;
+    margin-right: 5px;
+    color: #333333;
+    font-family: 'Trebuchet MS', Verdana, Arial, Helvetica, san-serif;
+    text-align: left;
+    text-transform: uppercase;
+}
 
 /* --- STYLE DE BASE POUR LE TEXTE ET LES PRINCIPAUX ELEMENTS --- */
 /* Titres */

@@ -32,6 +32,10 @@
 <div id="contenu">
     <div id="grid">
         <center>
+            <div id="promo">
+            <fmt:message key="promo"/>
+            </div>
+        </br>
             <jsp:include page="/albumPromo"></jsp:include>
             <c:forEach var="album" items="${requestScope.albumsPromo}">
                 <div class="grid_element">
@@ -43,7 +47,13 @@
                 </div>
                 </c:forEach>
             </br>
-        -<jsp:include page="/albums"></jsp:include>
+            <div id="nouvAjout">
+            <fmt:message key="nouvAjout"/>
+            </div>
+        </br>
+        
+        <jsp:include page="/albums"></jsp:include>
+        
         <c:forEach var="album" items="${requestScope.albums}">
             <div class="grid_element">
                 <a href="getAlbum?idAlbum=${album.id}">

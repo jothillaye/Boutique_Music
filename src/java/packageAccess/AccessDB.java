@@ -228,6 +228,8 @@ public class AccessDB {
             PreparedStatement prepStat = connexion.prepareStatement(requeteSQL);
             ResultSet donnees = prepStat.executeQuery();
             
+            
+            
             while (donnees.next())
             {
                 
