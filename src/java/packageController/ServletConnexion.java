@@ -55,7 +55,7 @@ public class ServletConnexion extends HttpServlet {
         catch (ConnexionException e)
         {
             RequestDispatcher rd = request.getRequestDispatcher("erreur.jsp");
-            request.setAttribute("message", e);
+            request.setAttribute("reponse", e);
             rd.forward(request, response);
         }        
     }

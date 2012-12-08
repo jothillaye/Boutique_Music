@@ -44,7 +44,7 @@ public class GetLastAlbumsServlet extends HttpServlet {
         catch (ListAlbumException e)
         {
             RequestDispatcher rd = request.getRequestDispatcher("erreur.jsp");
-            request.setAttribute("message", e);
+            request.setAttribute("reponse", e);
             rd.forward(request, response);
         }      
     }
