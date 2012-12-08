@@ -47,7 +47,7 @@ public class Business {
         
 
         
-        if(Pattern.matches("[^a-zA-Z]",prenom))
+        if(Pattern.matches("[a-zA-Z]",prenom)==false)
         {
             throw new InscriptionException("errorFirstName");
         }
@@ -88,12 +88,12 @@ public class Business {
         }
         
         
-        if (Pattern.matches("[^_a-z0-9-]+(\\.[_a-z0-9-]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)+$", email)==false)
+        if (Pattern.matches("[^_a-z0-9-]+(\\.[_a-z0-9-]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)+$", email))
         {
             throw new InscriptionException("errorMail");
         }
         
-        if(Pattern.matches("/^([a-zA-Z0-9_\\.\\-]{6,20})+$/",motDePasse)==false)
+        if(Pattern.matches("/^([a-zA-Z0-9_\\.\\-]{6,20})+$/",motDePasse))
         {
             throw new InscriptionException("errorPw");
         }
