@@ -234,8 +234,6 @@ public class AccessDB {
                 album.setImage(donnees.getString(4));
                 album.setArtiste(donnees.getString(5));
                 arrayAlbum.add(album);
-                
-                arrayAlbum.add(album);
             }
             
             if (arrayAlbum == null) // Envoi erreur si aucune album
