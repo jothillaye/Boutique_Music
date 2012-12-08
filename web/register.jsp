@@ -274,7 +274,7 @@
                 <span id="span_boite"> </span><br/>
             <label for="Localite"><fmt:message key="locality"/></label> <input type="text" name="localite" id="localite"  onkeyup="validateLocalite();"/> 
                 <span id="span_localite"> </span><br/>
-                <label for="Code postal"><fmt:message key="postalCode"/></label> <input type="text" name="codepostal" id="codepostal" onkeyup="validateCodePostal();  "/> 
+           <label for="Code postal"><fmt:message key="postalCode"/></label> <input type="text" name="codepostal" id="codepostal" onkeyup="validateCodePostal();  "/> 
                 <span id="span_codepostal"> </span><br/>
             <label for="Mail"><fmt:message key="mail"/></label> <input type="text" name="mail" id="mail" onkeyup="validateMail();  "/> 
                 <span id="span_mail"> </span><br/>

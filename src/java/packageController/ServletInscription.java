@@ -57,10 +57,11 @@ public class ServletInscription extends HttpServlet {
         String mail = request.getParameter("mail");
         String pw = request.getParameter("pw");
         String pwConf = request.getParameter("pwconfirm");
+        String numTel = request.getParameter("Tel");
         
         try
         {
-            business.ajoutUtilisateur(nom, prenom, rue, numero, boite, localite, codepostal, mail, pw,pwConf);
+            business.ajoutUtilisateur(nom, prenom, rue, numero, boite, localite, codepostal, mail, pw,pwConf,numTel);
             RequestDispatcher redirect = request.getRequestDispatcher("inscriptionReussie.jsp");
             request.setAttribute("reponse", "Félicitation, votre compte a été correctement créé.");
             redirect.forward(request, response);

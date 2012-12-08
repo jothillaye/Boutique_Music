@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
-import packageException.AjoutUtilException;
+import packageException.InscriptionException;
 import packageException.ListAlbumException;
 import packageModel.Album;
 import packageModel.Utilisateur;
@@ -118,7 +118,7 @@ public class AccessDB {
         return album;
     }
     
-    public void ajoutUtilisateur(Utilisateur util) throws AjoutUtilException
+    public void ajoutUtilisateur(Utilisateur util) throws InscriptionException
     {
         try
         {
@@ -148,7 +148,7 @@ public class AccessDB {
         }
         catch(Exception ex)
         {
-            throw new AjoutUtilException(ex.toString());
+            throw new InscriptionException(ex.toString());
         }               
     }
 }
