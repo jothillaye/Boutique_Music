@@ -19,17 +19,22 @@
         <c:set var="pagename" scope="request" value="register.jsp" />
         <title>MusicStore - <fmt:message key="registerTitle"/></title>
         
-        <script type="text/javascript">    
+        <script type="text/javascript">
+            
+            
+
             
             function valider()
             {
                 if(validateLocalite()==true && validatePrenom()==true && validateNom()==true && validateNumero()==true && validateRue()==true && validateboite()==true && validateCodePostal()==false && validateMail()==false && validateBoite()==true && validatePw()==true && validateSamePw()==true )
                 {
-                    return true;
+                        
+                        return true;
                 }
                 else
                 {
-                    return false;
+                        
+                        return false;
                 }
             }
         
@@ -238,6 +243,11 @@
                         return true;
                     }     
             }
+            
+
+            
+            
+
         </script>        
 </head>
 
@@ -251,7 +261,7 @@
     
     <div id="contenu">
         
-        <form class="register" name="register" method="post" onsubmit="validateForm()"><!--action="register"-->                 
+        <form class="register" name="register" method="post" onsubmit="validateForm()" action="ServletInscription"><!--action="register"-->                 
             <label for="Prenom"><fmt:message key="firstName"/></label> <input type="text" name="prenom" id="prenom" onkeyup="validatePrenom();" /> 
                 <span id="span_prenom"> </span><br/>
             <label for="Nom"><fmt:message key="lastName"/></label> <input type="text" name="nom" id="nom" onkeyup="validateNom();  "/> 
