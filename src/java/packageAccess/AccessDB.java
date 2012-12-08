@@ -59,12 +59,12 @@ public class AccessDB {
         }
         catch (SQLException e)
         {
-            throw new ConnexionException(e.getMessage());
-        }
-        catch (Exception e) 
+            throw new ConnexionException("sqlConnexionError");
+        }    
+        catch (NamingException e)
         {
             throw new ConnexionException("sqlException");
-        }                    
+        }    
         return user;
     }
     
