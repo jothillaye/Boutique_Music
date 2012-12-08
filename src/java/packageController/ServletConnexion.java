@@ -38,7 +38,7 @@ public class ServletConnexion extends HttpServlet {
         String pass = request.getParameter("password");
         
         Business business = new Business();
-        Utilisateur user = new Utilisateur();
+        Utilisateur user;
         
         try
         {
@@ -51,7 +51,7 @@ public class ServletConnexion extends HttpServlet {
             session.setAttribute("user", user);
             
             RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-            request.setAttribute("reponse", "connectonSucced");
+            request.setAttribute("reponse", "connectionOK");
             rd.forward(request, response);
         }
         catch (ConnexionException e)

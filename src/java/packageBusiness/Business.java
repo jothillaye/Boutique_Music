@@ -27,14 +27,18 @@ public class Business {
     {
         try 
         {
+            if(login == null || login == "" || pass == null || pass == "")
+            {
+                throw new ConnexionException("emptyLoginPass");
+            }            
             MessageDigest mdEnc = MessageDigest.getInstance("MD5");
             mdEnc.update(pass.getBytes(),0,pass.length());
             String md5Pass = new BigInteger(1,mdEnc.digest()).toString(16);
             return ac.connexion(login, md5Pass);
         }
-        catch(Exception e)
+        catch(NoSuchAlgorithmException e)
         {
-            throw new ConnexionException("md5Error pass:"+pass+" message:"+e.getMessage());
+            throw new ConnexionException("md5Error");
         }
     }    
     
