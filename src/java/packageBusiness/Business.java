@@ -37,12 +37,12 @@ public class Business {
         
         if(Pattern.matches("[^a-zA-Z]",nom))
         {
-            throw new InscriptionException("ErrorName");
+            throw new InscriptionException("errorName");
         }
         
         if(Pattern.matches("[^a-zA-Z0-9]{2,50}",rue))
         {
-            throw new InscriptionException("ErrorStreet");
+            throw new InscriptionException("errorStreet");
         } 
         
         if(Pattern.matches("[^0-9]$", numero))

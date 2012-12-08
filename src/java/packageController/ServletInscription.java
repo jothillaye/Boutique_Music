@@ -68,7 +68,7 @@ public class ServletInscription extends HttpServlet {
         }
         catch(Exception ex)
         {
-            RequestDispatcher redirect = request.getRequestDispatcher("erreurInscription.jsp");
+            RequestDispatcher redirect = request.getRequestDispatcher("erreur.jsp");
             request.setAttribute("reponse",ex);
             redirect.forward(request, response);
         }
