@@ -47,11 +47,12 @@ public class Business {
             int num = Integer.parseInt(numero);
             int cp= Integer.parseInt(codePostal);
             Utilisateur newUtilisateur = new Utilisateur(nom,prenom,rue,num,boite,localite,cp,email,motDePasse);
+            ac.ajoutUtilisateur(newUtilisateur);
         
         }
         catch(Exception ex)
         {
-            
+            throw new InscriptionException(ex.toString());
         }
                 
        

@@ -12,6 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Réussite</h1>
+        <h1>Réussite ${réponse}</h1>
     </body>
 </html>

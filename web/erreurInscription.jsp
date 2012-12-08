@@ -12,6 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Erreur</h1>
+        <h1>Erreur ${reponse}</h1>
     </body>
 </html>

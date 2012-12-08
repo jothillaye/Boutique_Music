@@ -125,9 +125,9 @@ public class AccessDB {
             DataSource source = (DataSource)cont.lookup("jdbc/MusicStore");
             connexion = source.getConnection();
             
-            String requeteSQL = "INSERT INTO Utilisateur" + 
-                                "Nom,Prenom,Adr_Rue,Ard_Numero,Adr_Boite,Adr_CodePostal,Adr_Localite,Mail,MotDePasse"
-                                + "VALUES(?,?,?,?,?,?,?,?,?)";
+            String requeteSQL = "INSERT INTO UTILISATEUR" + 
+                                "(NOM, PRENOM, ADR_RUE, ADR_NUMERO, ADR_BOITE, ADR_CODEPOSTAL, ADR_LOCALITE,MAIL,MOTDEPASSE,NUMTEL)"
+                                + "VALUES(?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement prepStat = connexion.prepareStatement(requeteSQL);
             prepStat.setString(1, util.getNom());
             prepStat.setString(2,util.getPrenom());
@@ -138,6 +138,7 @@ public class AccessDB {
             prepStat.setString(7, util.getLocalite());
             prepStat.setString(8,util.getMail() );
             prepStat.setString(9, util.getPassword());
+            prepStat.setString(10, "071/713862");
             
             prepStat.executeUpdate();
             
@@ -146,7 +147,7 @@ public class AccessDB {
         }
         catch(Exception ex)
         {
-            
+            throw new AjoutUtilException(ex.toString());
         }               
     }
 }
