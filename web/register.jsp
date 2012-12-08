@@ -245,7 +245,7 @@
             function validateTel()
             {
                 var tel = document.forms["register"]["tel"].value;
-                var myTest = new RegExp("^[0-9/+//]{8,50}","g"); // 2 à 25 caractères
+                var myTest = new RegExp("^[.0-9/+//]{8,50}$","g"); // 2 à 25 caractères
                    if (myTest.test(tel)==false || tel == "" || tel==null)
                     {
                        

@@ -4,10 +4,12 @@
  */
 package packageModel;
 
+import java.io.Serializable;
+
 /**
  * @author BAVAY Emilien - THILLAYE Joachim
  */
-public class Album {
+public class Album implements Serializable{
     private int id;
     private String titre, image, artiste, label, labelImg;
     private double prix;

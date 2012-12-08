@@ -179,7 +179,7 @@ public class AccessDB {
             prepStat.setString(7, util.getLocalite());
             prepStat.setString(8,util.getMail() );
             prepStat.setString(9, util.getPassword());
-            prepStat.setString(10, "071/713862");
+            prepStat.setString(10, util.getNumTel());
             
             prepStat.executeUpdate();
             
@@ -199,4 +199,58 @@ public class AccessDB {
             throw new InscriptionException("errorSQL");
         }
     }
+    
+    public Album getAlbumPromo(int idAlbum) throws ListAlbumException
+    {
+        Album album = new Album();
+        
+        try
+        {
+            Context ctx = new InitialContext();
+            DataSource source = (DataSource) ctx.lookup("jdbc/MusicStore");
+            connexion = source.getConnection();
+
+            String requeteSQL = "select ARTISTE.NOM as 'ARTISTE', ALBUM.TITRE as 'ALBUM', LABEL.NOM as 'LABEL', PROMOTION.PRCREMISE from ARTISTE, ALBUM, ARTISTE_ALBUM, LABEL, PROMOTION,PROMOTION_ARTISTE" +
+                                "where"+
+                                "PROMOTION.DATEDEB<= CURRENT_DATE" +
+                                "and PROMOTION.DATEFIN>= CURRENT_DATE"+ 
+                                "and PROMOTION_ARTISTE.IDARTISTE = ARTISTE.IDARTISTE"+
+                                "and PROMOTION_ARTISTE.IDPROMOTION = PROMOTION.IDPROMOTION"+
+                                "and ARTISTE_ALBUM.IDARTISTE = ARTISTE.IDARTISTE "+
+                                "and ARTISTE_ALBUM.IDALBUM = ALBUM.IDALBUM"+
+                                "and ALBUM.IDLABEL = LABEL.IDLABEL;";
+            
+            PreparedStatement prepStat = connexion.prepareStatement(requeteSQL);
+            prepStat.setMaxRows(10);
+            ResultSet donnees = prepStat.executeQuery();
+            
+            while (donnees.next())
+            {
+                album.setId(donnees.getInt(1));
+                album.setTitre(donnees.getString(2));
+                album.setPrix(donnees.getDouble(3)*donnees.getDouble(8));
+                album.setImage(donnees.getString(4));
+                album.setArtiste(donnees.getString(5));
+                album.setLabel(donnees.getString(6));
+                album.setLabelImg(donnees.getString(7));
+            }
+            
+            if (album == null) // Envoi erreur si aucune album
+            {    
+                throw new ListAlbumException("Pas d'albums en promotion");
+            }            
+            connexion.close();
+        }
+        catch (SQLException e)
+        {
+            throw new ListAlbumException("getAlbumException");
+        }
+        catch (Exception e) 
+        {
+            throw new ListAlbumException("sqlException");
+        }
+        
+        return album;
+    }
+    
 }

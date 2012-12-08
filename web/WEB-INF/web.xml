@@ -20,6 +20,10 @@
         <servlet-name>ServletConnexion</servlet-name>
         <servlet-class>packageController.ServletConnexion</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletPromotions</servlet-name>
+        <servlet-class>packageController.ServletPromotions</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletLangue</servlet-name>
         <url-pattern>/ServletLangue</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>ServletConnexion</servlet-name>
         <url-pattern>/connexion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletPromotions</servlet-name>
+        <url-pattern>/ServletPromotions</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
