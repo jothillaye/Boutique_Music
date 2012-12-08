@@ -231,7 +231,7 @@ public class AccessDB {
                 Album album = new Album();
                 album.setId(donnees.getInt(1));
                 album.setTitre(donnees.getString(2));
-                album.setPrix(donnees.getDouble(3)*donnees.getDouble(6));
+                album.setPrix(donnees.getDouble(3)*(1-(donnees.getDouble(6)/100)));
                 album.setImage(donnees.getString(4));
                 album.setArtiste(donnees.getString(5));
                 arrayAlbum.add(album);
