@@ -200,9 +200,9 @@ public class AccessDB {
         }
     }
     
-    public Album getAlbumPromo(int idAlbum) throws ListAlbumException
+    public ArrayList<Album> getAlbumPromo() throws ListAlbumException
     {
-        Album album = new Album();
+        ArrayList<Album> arrayAlbum = new ArrayList<Album>();
         
         try
         {
@@ -210,15 +210,16 @@ public class AccessDB {
             DataSource source = (DataSource) ctx.lookup("jdbc/MusicStore");
             connexion = source.getConnection();
 
-            String requeteSQL = "select ARTISTE.NOM as 'ARTISTE', ALBUM.TITRE as 'ALBUM', LABEL.NOM as 'LABEL', PROMOTION.PRCREMISE from ARTISTE, ALBUM, ARTISTE_ALBUM, LABEL, PROMOTION,PROMOTION_ARTISTE" +
+            String requeteSQL = "select Album.idAlbum, Album.titre, Album.prix, Album.image, Artiste.nom, PROMOTION.PRCREMISE from ARTISTE, ALBUM, ARTISTE_ALBUM, LABEL, PROMOTION,PROMOTION_ARTISTE where PROMOTION.DATEFIN >= CURRENT_DATE and PROMOTION_ARTISTE.IDARTISTE = ARTISTE.IDARTISTE and PROMOTION_ARTISTE.IDPROMOTION = PROMOTION.IDPROMOTION and ARTISTE_ALBUM.IDARTISTE = ARTISTE.IDARTISTE and ARTISTE_ALBUM.IDALBUM = ALBUM.IDALBUM and ALBUM.IDLABEL = LABEL.IDLABEL";
+                    /*"select ALBUM.IDALBUM, ALBUM.TITRE ,ALBUM.PRIX, ALBUM.IMAGE, ARTISTE.NOM, PROMOTION.PRCREMISE from ARTISTE, ALBUM, ARTISTE_ALBUM, LABEL, PROMOTION ,PROMOTION_ARTISTE"+
                                 "where"+
-                                "PROMOTION.DATEDEB<= CURRENT_DATE" +
-                                "and PROMOTION.DATEFIN>= CURRENT_DATE"+ 
-                                "and PROMOTION_ARTISTE.IDARTISTE = ARTISTE.IDARTISTE"+
-                                "and PROMOTION_ARTISTE.IDPROMOTION = PROMOTION.IDPROMOTION"+
-                                "and ARTISTE_ALBUM.IDARTISTE = ARTISTE.IDARTISTE "+
-                                "and ARTISTE_ALBUM.IDALBUM = ALBUM.IDALBUM"+
-                                "and ALBUM.IDLABEL = LABEL.IDLABEL;";
+                                 "PROMOTION.DATEDEB <= CURRENT_DATE"+
+                                 "and PROMOTION.DATEFIN >= CURRENT_DATE"+
+                                 "and PROMOTION_ARTISTE.IDARTISTE = ARTISTE.IDARTISTE"+
+                                 "and PROMOTION_ARTISTE.IDPROMOTION = PROMOTION.IDPROMOTION"+
+                                 "and ARTISTE_ALBUM.IDARTISTE = ARTISTE.IDARTISTE "+
+                                 "and ARTISTE_ALBUM.IDALBUM = ALBUM.IDALBUM"+
+                                 "and ALBUM.IDLABEL = LABEL.IDLABEL;";*/
             
             PreparedStatement prepStat = connexion.prepareStatement(requeteSQL);
             prepStat.setMaxRows(10);
@@ -226,16 +227,19 @@ public class AccessDB {
             
             while (donnees.next())
             {
+                
+                Album album = new Album();
                 album.setId(donnees.getInt(1));
                 album.setTitre(donnees.getString(2));
-                album.setPrix(donnees.getDouble(3)*donnees.getDouble(8));
+                album.setPrix(donnees.getDouble(3)*donnees.getDouble(6));
                 album.setImage(donnees.getString(4));
                 album.setArtiste(donnees.getString(5));
-                album.setLabel(donnees.getString(6));
-                album.setLabelImg(donnees.getString(7));
+                arrayAlbum.add(album);
+                
+                arrayAlbum.add(album);
             }
             
-            if (album == null) // Envoi erreur si aucune album
+            if (arrayAlbum == null) // Envoi erreur si aucune album
             {    
                 throw new ListAlbumException("Pas d'albums en promotion");
             }            
@@ -243,14 +247,14 @@ public class AccessDB {
         }
         catch (SQLException e)
         {
-            throw new ListAlbumException("getAlbumException");
+            throw new ListAlbumException(e.toString());
         }
         catch (Exception e) 
         {
             throw new ListAlbumException("sqlException");
         }
         
-        return album;
+        return arrayAlbum;
     }
     
 }

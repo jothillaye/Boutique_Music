@@ -132,4 +132,9 @@ public class Business {
         return ac.getAlbum(idAlbum);
     }
     
+    public ArrayList<Album> getAlbumPromo() throws ListAlbumException
+    {
+        return ac.getAlbumPromo();
+    }
+    
 }
