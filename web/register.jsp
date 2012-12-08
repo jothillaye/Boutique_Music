@@ -26,14 +26,12 @@
             
             function valider()
             {
-                if(validateLocalite()==true && validatePrenom()==true && validateNom()==true && validateNumero()==true && validateRue()==true && validateboite()==true && validateCodePostal()==false && validateMail()==false && validateBoite()==true && validatePw()==true && validateSamePw()==true )
-                {
-                        
+                if(validateLocalite()==true && validatePrenom()==true && validateNom()==true && validateNumero()==true && validateRue()==true && validateboite()==true && validateCodePostal()==false && validateMail()==false && validateBoite()==true && validatePw()==true && validateSamePw()==true && validateTel()==true )
+                {                        
                         return true;
                 }
                 else
-                {
-                        
+                {                        
                         return false;
                 }
             }
@@ -125,7 +123,7 @@
             {
                 var boite = document.forms["register"]["boite"].value;
                 var myTest = new RegExp("^[a-zA-Z0-9]{0,15}","g"); // 2 à 25 caractères
-                   if (myTest.test(boite)==false || boite == "" || boite==null)
+                   if (myTest.test(boite)==false  || boite==null)
                     {
                        span_boite.innerHTML="<fmt:message key="invalidBox"/>";
                        document.getElementById("boite").style.borderColor='RED'; 
@@ -282,7 +280,7 @@
     
     <div id="contenu">
         
-        <form class="register" name="register" method="post" onsubmit="validateForm()" action="inscription"><!--action="register"-->                 
+        <form class="register" name="register" method="post" onsubmit="valider();" action="inscription"><!--action="register"-->                 
             <label for="Prenom"><fmt:message key="firstName"/></label> <input type="text" name="prenom" id="prenom" onkeyup="validatePrenom();" /> 
                 <span id="span_prenom"> </span><br/>
             <label for="Nom"><fmt:message key="lastName"/></label> <input type="text" name="nom" id="nom" onkeyup="validateNom();  "/> 
