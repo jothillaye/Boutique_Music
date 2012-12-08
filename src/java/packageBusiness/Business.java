@@ -56,12 +56,12 @@ public class Business {
             throw new InscriptionException("errorName");
         }
         
-        if(Pattern.matches("[a-zA-Z1-9 -]{2,50}+",rue)==false)
+        if(Pattern.matches("[a-zA-Z0-9 -]{2,50}+",rue)==false)
         {
             throw new InscriptionException("errorStreet");
         } 
         
-        if(Pattern.matches("[0-9]$+", numero)==false)
+        if(Pattern.matches("[0-9]+", numero)==false)
         {
             throw new InscriptionException("errorNumero");
         }
@@ -115,6 +115,10 @@ public class Business {
             Utilisateur newUtilisateur = new Utilisateur(nom,prenom,rue,num,boite,localite,cp,email,md5,numTel);
             ac.ajoutUtilisateur(newUtilisateur);
         
+        }
+        catch(NumberFormatException ex)
+        {
+            throw new InscriptionException("errorNumero");
         }
         catch(Exception ex)
         {

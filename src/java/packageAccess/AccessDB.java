@@ -8,9 +8,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import javax.naming.Context;
 import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import javax.sql.DataSource;
 import packageException.ConnexionException;
 import packageException.InscriptionException;
@@ -184,9 +186,17 @@ public class AccessDB {
             connexion.close();
             
         }
-        catch(Exception ex)
+        catch(NamingException ex)
         {
-            throw new InscriptionException(ex.toString());
-        }               
+            throw new InscriptionException("errorNaming");
+        }
+        catch(SQLIntegrityConstraintViolationException ex)
+        {
+            throw new InscriptionException("errorMailUsed");
+        }
+        catch(SQLException ex)
+        {
+            throw new InscriptionException("errorSQL");
+        }
     }
 }

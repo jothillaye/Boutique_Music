@@ -27,7 +27,7 @@
     <%@include file="header.jspf" %>
     
     <div id="contenu">
-         <p><fmt:message key="erreurTitre"/> <fmt:message key="${reponse}"/></p>
+         <p><fmt:message key="erreurTitre"/> :  <fmt:message key="${reponse}"/></p>
     </div>    	
 	
     <%@include file="footer.jspf" %>
