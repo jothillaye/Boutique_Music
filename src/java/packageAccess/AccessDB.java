@@ -126,7 +126,23 @@ public class AccessDB {
             connexion = source.getConnection();
             
             String requeteSQL = "INSERT INTO Utilisateur" + 
-                                "Nom,Prenom,Adr_Rue,Ard_Numero" ;
+                                "Nom,Prenom,Adr_Rue,Ard_Numero,Adr_Boite,Adr_CodePostal,Adr_Localite,Mail,MotDePasse"
+                                + "VALUES(?,?,?,?,?,?,?,?,?)";
+            PreparedStatement prepStat = connexion.prepareStatement(requeteSQL);
+            prepStat.setString(1, util.getNom());
+            prepStat.setString(2,util.getPrenom());
+            prepStat.setString(3,util.getRue());
+            prepStat.setInt(4,util.getNumero());
+            prepStat.setString(5, util.getBoite());
+            prepStat.setInt(6,util.getCodepostal() );  
+            prepStat.setString(7, util.getLocalite());
+            prepStat.setString(8,util.getMail() );
+            prepStat.setString(9, util.getPassword());
+            
+            prepStat.executeUpdate();
+            
+            connexion.close();
+            
         }
         catch(Exception ex)
         {
