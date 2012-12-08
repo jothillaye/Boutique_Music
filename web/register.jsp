@@ -261,7 +261,7 @@
     
     <div id="contenu">
         
-        <form class="register" name="register" method="post" onsubmit="validateForm()" action="ServletInscription"><!--action="register"-->                 
+        <form class="register" name="register" method="post" onsubmit="validateForm()" action="inscription"><!--action="register"-->                 
             <label for="Prenom"><fmt:message key="firstName"/></label> <input type="text" name="prenom" id="prenom" onkeyup="validatePrenom();" /> 
                 <span id="span_prenom"> </span><br/>
             <label for="Nom"><fmt:message key="lastName"/></label> <input type="text" name="nom" id="nom" onkeyup="validateNom();  "/> 
