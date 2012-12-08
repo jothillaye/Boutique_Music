@@ -39,60 +39,59 @@ public class Business {
     
     public void ajoutUtilisateur(String nom,String prenom,String rue,String numero,String boite,String localite,String codePostal, String email,String motDePasse,String mdpConf,String numTel) throws InscriptionException
     {
-        if(nom.isEmpty() || prenom.isEmpty() || rue.isEmpty() || numero.isEmpty() || boite.isEmpty() || localite.isEmpty() || codePostal.isEmpty() || email.isEmpty() && motDePasse.isEmpty() && mdpConf.isEmpty() && numTel.isEmpty())
+        if(nom.isEmpty() || prenom.isEmpty() || rue.isEmpty() || numero.isEmpty() || localite.isEmpty() || codePostal.isEmpty() || email.isEmpty() || motDePasse.isEmpty() || mdpConf.isEmpty() || numTel.isEmpty())
        {
            throw new InscriptionException("errorField");
        }
         
 
         
-        if(Pattern.matches("[a-zA-Z]",prenom)==false)
+        if(Pattern.matches("[a-zA-Z -]+",prenom)==false)
         {
             throw new InscriptionException("errorFirstName");
         }
         
-        if(Pattern.matches("[^a-zA-Z]",nom))
+        if(Pattern.matches("[a-zA-Z -]{2,50}+",nom)==false)
         {
             throw new InscriptionException("errorName");
         }
         
-        if(Pattern.matches("[^a-zA-Z0-9]{2,50}",rue))
+        if(Pattern.matches("[a-zA-Z1-9 -]{2,50}+",rue)==false)
         {
             throw new InscriptionException("errorStreet");
         } 
         
-        if(Pattern.matches("[^0-9]$", numero))
+        if(Pattern.matches("[0-9]$+", numero)==false)
         {
             throw new InscriptionException("errorNumero");
         }
         
-        if(Pattern.matches("[^a-zA-Z0-9]{0,15}",boite))
+        if(Pattern.matches("[a-zA-Z0-9]{0,15}+",boite)==false)
         {
             throw new InscriptionException("errorBox");
         }
         
-        if(Pattern.matches("[^a-zA-Z0-9]{2,50}",localite))
+        if(Pattern.matches("[a-zA-Z -]{2,50}+",localite)==false)
         {
             throw new InscriptionException("errorLocality");
         }
         
-        if(Pattern.matches("[^a-zA-Z0-9]{4,4}",codePostal))
+        if(Pattern.matches("[0-9]{4,4}",codePostal)==false)
         {            
             throw new InscriptionException("errorPostalCode");
         }
         
-        if(Pattern.matches("[^0-9/+//]{8,50}",numTel))
-        {
-            throw new InscriptionException("errorPhone");
-        }
-        
-        
-        if (Pattern.matches("[^_a-z0-9-]+(\\.[_a-z0-9-]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)+$", email))
+        if (Pattern.matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$+", email)==false)
         {
             throw new InscriptionException("errorMail");
         }
         
-        if(Pattern.matches("/^([a-zA-Z0-9_\\.\\-]{6,20})+$/",motDePasse))
+        if(Pattern.matches("[/.0-9/+//]{8,50}+",numTel)==false)
+        {
+            throw new InscriptionException("errorPhone");
+        }
+        
+        if(Pattern.matches("([a-zA-Z0-9_\\.\\-]{6,20})$+",motDePasse)==false)
         {
             throw new InscriptionException("errorPw");
         }
