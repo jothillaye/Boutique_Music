@@ -222,7 +222,6 @@ public class AccessDB {
                                  "and ALBUM.IDLABEL = LABEL.IDLABEL;";*/
             
             PreparedStatement prepStat = connexion.prepareStatement(requeteSQL);
-            prepStat.setMaxRows(10);
             ResultSet donnees = prepStat.executeQuery();
             
             while (donnees.next())
