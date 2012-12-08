@@ -51,6 +51,8 @@ public class ServletConnexion extends HttpServlet {
             session.setAttribute("user", user);
             
             RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+            request.setAttribute("reponse", "connectonSucced");
+            rd.forward(request, response);
         }
         catch (ConnexionException e)
         {

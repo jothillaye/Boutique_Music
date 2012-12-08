@@ -6,6 +6,7 @@ package packageBusiness;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 import packageAccess.AccessDB;
@@ -33,8 +34,8 @@ public class Business {
         }
         catch(Exception e)
         {
-            throw new ConnexionException("md5Error");
-        }        
+            throw new ConnexionException("md5Error pass:"+pass+" message:"+e.getMessage());
+        }
     }    
     
     public void ajoutUtilisateur(String nom,String prenom,String rue,String numero,String boite,String localite,String codePostal, String email,String motDePasse,String mdpConf,String numTel) throws InscriptionException
