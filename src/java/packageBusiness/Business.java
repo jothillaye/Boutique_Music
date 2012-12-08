@@ -73,7 +73,12 @@ public class Business {
         
         if (Pattern.matches("[^_a-z0-9-]+(\\.[_a-z0-9-]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)+$", email)==false)
         {
-            throw new InscriptionException("ErrorMail");
+            throw new InscriptionException("errorMail");
+        }
+        
+        if(Pattern.matches("/^([a-zA-Z0-9_\\.\\-]{6,20})+$/",motDePasse)==false)
+        {
+            throw new InscriptionException("errorPw");
         }
 
         
