@@ -22,7 +22,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ServletInscription</servlet-name>
-        <url-pattern>/ServletInscription</url-pattern>
+        <url-pattern>/inscription</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>GetLastAlbumsServlet</servlet-name>
