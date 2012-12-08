@@ -226,7 +226,7 @@
             function validateLocalite()
             {
                 var loc = document.forms["register"]["localite"].value;
-                var myTest = new RegExp("^[a-zA-Z0-9]{4,4}","g"); // 2 à 25 caractères
+                var myTest = new RegExp("^[a-zA-Z0-9]{2,50}","g"); // 2 à 25 caractères
                    if (myTest.test(loc)==false || loc == "" || loc==null)
                     {
                        
@@ -238,7 +238,7 @@
                     else
                     {
                         span_localite.innerHTML="";
-                        document.getElementById("localire").style.borderColor='Green';
+                        document.getElementById("localite").style.borderColor='Green';
                         
                         return true;
                     }     
@@ -272,12 +272,14 @@
                 <span id="span_numero"> </span><br/>
             <label for="Localite"><fmt:message key="houseBox"/></label> <input type="text" name="boite" id="boite" onkeyup="validateBoite();  "/> 
                 <span id="span_boite"> </span><br/>
-            <label for="Localite"><fmt:message key="locality"/></label> <input type="text" name="localite" id="localite" /> 
+            <label for="Localite"><fmt:message key="locality"/></label> <input type="text" name="localite" id="localite"  onkeyup="validateLocalite();"/> 
                 <span id="span_localite"> </span><br/>
                 <label for="Code postal"><fmt:message key="postalCode"/></label> <input type="text" name="codepostal" id="codepostal" onkeyup="validateCodePostal();  "/> 
                 <span id="span_codepostal"> </span><br/>
             <label for="Mail"><fmt:message key="mail"/></label> <input type="text" name="mail" id="mail" onkeyup="validateMail();  "/> 
                 <span id="span_mail"> </span><br/>
+            <label for="Tel"><fmt:message key="phone"/><label> <input type="text" name="tel" id="tel"/>
+                <span id="span_tel"> </span><br/>        
             <label for="Mot de passe"><fmt:message key="password"/></label> <input type="password" name="pw" id="pw" onkeyup="validatePw();  "/> 
                 <span id="span_pw"> </span><br/>
                 <label for="Confirmation"><fmt:message key="passConfirm"/></label> <input type="password" name="pwconfirm" id="pwconfirm" onkeyup="validateSamePw(); "/> 

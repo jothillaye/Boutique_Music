@@ -18,9 +18,10 @@ public class Utilisateur {
     private String boite;
     private int numero;
     private int codepostal;
+    private String numTel;
     
     
-    public Utilisateur(String nom,String prenom,String rue,int numero,String boite,String localite,int codePostal, String email,String motDePasse)
+    public Utilisateur(String nom,String prenom,String rue,int numero,String boite,String localite,int codePostal, String email,String motDePasse,String numTel)
     {
         this.setBoite(boite);
         this.setCodepostal(codePostal);
@@ -31,6 +32,7 @@ public class Utilisateur {
         this.setPassword(motDePasse);
         this.setPrenom(prenom);
         this.setRue(rue);
+        this.setNumTel(numTel);
     }
 
     /**
@@ -157,5 +159,19 @@ public class Utilisateur {
      */
     public void setCodepostal(int codepostal) {
         this.codepostal = codepostal;
+    }
+
+    /**
+     * @return the numTel
+     */
+    public String getNumTel() {
+        return numTel;
+    }
+
+    /**
+     * @param numTel the numTel to set
+     */
+    public void setNumTel(String numTel) {
+        this.numTel = numTel;
     }
 }
