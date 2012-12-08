@@ -36,14 +36,14 @@
             <c:forEach var="album" items="${requestScope.albumsPromo}">
                 <div class="grid_element">
                     <a href="getAlbum?idAlbum=${album.id}">
-                        <img alt="" src="./style/img/album/${album.id}"/>
+                        <img alt="" src="./style/img/album/${album.image}" width="180px" height="180px"/>
                     </a> 
                     <span class="album-name">${album.titre}</span><span class="album-artist">${album.artiste}</span>
                 <span class="price-box">$${album.prix}</span>
                 </div>
                 </c:forEach>
             
-        <!--<jsp:include page="/albums"></jsp:include>
+        -<jsp:include page="/albums"></jsp:include>
         <c:forEach var="album" items="${requestScope.albums}">
             <div class="grid_element">
                 <a href="getAlbum?idAlbum=${album.id}">
@@ -52,7 +52,7 @@
                 <span class="album-name">${album.titre}</span><span class="album-artist">${album.artiste}</span>
                 <span class="price-box">$${album.prix}</span>
             </div>                           
-        </c:forEach>-->
+        </c:forEach>
         </center>
     </div>
 </div>
