@@ -4,6 +4,8 @@
  */
 package packageBusiness;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 import packageAccess.AccessDB;
@@ -46,7 +48,10 @@ public class Business {
         {
             int num = Integer.parseInt(numero);
             int cp= Integer.parseInt(codePostal);
-            Utilisateur newUtilisateur = new Utilisateur(nom,prenom,rue,num,boite,localite,cp,email,motDePasse);
+            MessageDigest mdEnc = MessageDigest.getInstance("MD5");
+            mdEnc.update(motDePasse.getBytes(),0,motDePasse.length());
+            String md5 = new BigInteger(1,mdEnc.digest()).toString(16);
+            Utilisateur newUtilisateur = new Utilisateur(nom,prenom,rue,num,boite,localite,cp,email,md5);
             ac.ajoutUtilisateur(newUtilisateur);
         
         }
