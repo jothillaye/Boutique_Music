@@ -37,7 +37,7 @@ public class AccessDB {
             DataSource source = (DataSource)ctx.lookup("jdbc/MusicStore");
             connexion = source.getConnection();        
             
-            String requeteSQL = "Select password from Utilisateur where mail = ?";
+            String requeteSQL = "Select motdepasse from Utilisateur where mail = '?'";
             PreparedStatement prepStat = connexion.prepareStatement(requeteSQL);
             prepStat.setString(1, login);
             ResultSet donnees = prepStat.executeQuery();
@@ -45,7 +45,7 @@ public class AccessDB {
             while (donnees.next())
             {
                 if (donnees.getString(1).compareTo(pass) != 0)
-                    throw new ConnexionException("incorrectPass");
+                    throw new ConnexionException("wrongPass");
                 else
                     user.setMail(login);  
             }    

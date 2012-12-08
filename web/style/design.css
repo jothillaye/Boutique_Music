@@ -94,6 +94,12 @@ body {
     border: 1px solid gainsboro;
 }
 
+#loginError, #passError {
+    position: absolute;
+    font-size: .6em;
+    color: #FF6533;
+}
+
 
 
 /* Contenu */

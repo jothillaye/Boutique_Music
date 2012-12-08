@@ -33,18 +33,16 @@ public class Business {
         }
         catch(Exception e)
         {
-            throw new ConnexionException(e.toString());
+            throw new ConnexionException("md5Error");
         }        
     }    
     
     public void ajoutUtilisateur(String nom,String prenom,String rue,String numero,String boite,String localite,String codePostal, String email,String motDePasse,String mdpConf,String numTel) throws InscriptionException
     {
         if(nom.isEmpty() || prenom.isEmpty() || rue.isEmpty() || numero.isEmpty() || localite.isEmpty() || codePostal.isEmpty() || email.isEmpty() || motDePasse.isEmpty() || mdpConf.isEmpty() || numTel.isEmpty())
-       {
-           throw new InscriptionException("errorField");
-       }
-        
-
+        {
+            throw new InscriptionException("errorField");
+        }
         
         if(Pattern.matches("[a-zA-Z -]+",prenom)==false)
         {
@@ -102,8 +100,6 @@ public class Business {
             throw new InscriptionException("errorPwNotMatch");
         }
         
-        
-
         // Continuer les vérifications
         try
         {
@@ -113,8 +109,7 @@ public class Business {
             mdEnc.update(motDePasse.getBytes(),0,motDePasse.length());
             String md5 = new BigInteger(1,mdEnc.digest()).toString(16);
             Utilisateur newUtilisateur = new Utilisateur(nom,prenom,rue,num,boite,localite,cp,email,md5,numTel);
-            ac.ajoutUtilisateur(newUtilisateur);
-        
+            ac.ajoutUtilisateur(newUtilisateur);        
         }
         catch(NumberFormatException ex)
         {
@@ -123,11 +118,8 @@ public class Business {
         catch(Exception ex)
         {
             throw new InscriptionException(ex.toString());
-        }
-                
-       
+        } 
     } 
-
     
     public ArrayList<Album> getLastAlbums() throws ListAlbumException
     {

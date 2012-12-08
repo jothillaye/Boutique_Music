@@ -8,21 +8,33 @@
     
     function checkLogin()
     {
-        var email = document.forms["register"]["login"].value;
-        if(email == null || email == "") 
-        {
-            loginError.innerHTML="<fmt:message key="errorLogin"/>";
-            document.forms["register"]["login"].style.borderColor='RED';
-            return false;
-        }
+        var email = document.forms["loginForm"]["login"].value;        
+        var password = document.forms["loginForm"]["password"].value;
         
-        var password = document.forms["register"]["password"].value;
-        if(password == null || password == "") 
+        if(email == null || email == "" || password == null || password == "")
         {
-            passError.innerHTML="<fmt:message key="errorPass"/>";
-            document.forms["register"]["password"].style.borderColor='RED';
+            if(email == null || email == "")
+            {
+                loginError.innerHTML="<fmt:message key="errorLogin"/>";
+                document.forms["loginForm"]["login"].style.borderColor='RED';
+            }    
+            else
+            {
+                loginError.innerHTML="";
+                document.forms["loginForm"]["login"].style.borderColor='gainsboro';        
+            }   
+            if(password == null || password == "") 
+            {
+                passError.innerHTML="<fmt:message key="errorPass"/>";
+                document.forms["loginForm"]["password"].style.borderColor='RED';
+            }
+            else
+            {
+                passError.innerHTML="";
+                document.forms["loginForm"]["password"].style.borderColor='gainsboro';        
+            }    
             return false;
-        }       
+        } 
     }
 </script>
 
@@ -44,17 +56,21 @@
     <ul>
         <li class="gauche"><a href="cart.jsp"><fmt:message key="viewCart"/></a></li>
         <li class="gauche"><a href="#" onclick="displayLogin();"><fmt:message key="logIn"/></a></li>
-        <span id="loginBox" >
-            <li class="gauche">
+        <span id="loginBox" >            
                 <form action="connexion" method="post" onsubmit="return checkLogin()" name="loginForm">
-                    <input type="text" name="login" id="login" value="email" onclick="this.value=''" size="10">
-                        <span id="loginError"> </span>
-                    <input type="password" name="password" id="password" value="password" onclick="this.value=''" size="10">
-                        <span id="passError"> </span>
-                    <input type="submit" value="<fmt:message key="connexionButton"/>">
+                    <li class="gauche">
+                        <input type="text" name="login" id="login" value="email" onclick="this.value=''" size="10">
+                        <br /><span id="loginError"> </span>
+                    </li>
+                    <li class="gauche">
+                        <input type="password" name="password" id="password" value="password" onclick="this.value=''" size="10">
+                        <br /><span id="passError"> </span>
+                    </li>
+                    <li class="gauche">
+                        <input type="submit" value="<fmt:message key="connexionButton"/>">
+                    </li>
                 </form>    
-            </li>                    
-            
+            </li>     
         </span>
         <li class="droite"><a href="account.jps"><fmt:message key="myAccount"/></a></li>
         <li class="droite"><a href="info.jsp"><fmt:message key="info"/></a></li>

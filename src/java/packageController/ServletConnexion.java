@@ -45,15 +45,14 @@ public class ServletConnexion extends HttpServlet {
             user = business.connexion(login, pass);
             if(user.getMail().isEmpty())
             {
-                throw new ConnexionException("errorPseudo");
+                throw new ConnexionException("wrongMail");
             }
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
             
             RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-            rd.forward(request, response);
         }
-        catch (Exception e)
+        catch (ConnexionException e)
         {
             RequestDispatcher rd = request.getRequestDispatcher("erreur.jsp");
             request.setAttribute("message", e);
