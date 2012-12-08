@@ -5,11 +5,15 @@
 package packageController;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import packageBusiness.Business;
+import packageException.ConnexionException;
+import packageModel.Utilisateur;
 
 /**
  *
@@ -30,6 +34,24 @@ public class ServletConnexion extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        String login = request.getParameter("login");
+        String pass = request.getParameter("password");
+        
+        Business business = new Business();
+        Utilisateur user = new Utilisateur();
+        
+        try
+        {
+            user = business.connexion(login, pass);
+            HttpSession session = request.getSession();
+            session.setAttribute("user", user);
+        }
+        catch (ConnexionException e)
+        {
+            RequestDispatcher rd = request.getRequestDispatcher("erreur.jsp");
+            request.setAttribute("message", e);
+            rd.forward(request, response);
+        }
         
     }
 

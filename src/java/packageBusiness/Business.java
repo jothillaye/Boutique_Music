@@ -9,6 +9,7 @@ import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 import packageAccess.AccessDB;
+import packageException.ConnexionException;
 import packageException.InscriptionException;
 import packageException.ListAlbumException;
 import packageModel.Album;
@@ -20,6 +21,22 @@ import packageModel.Utilisateur;
  */
 public class Business {
     AccessDB ac = new AccessDB();    
+    
+    public Utilisateur connexion(String login, String pass) throws ConnexionException
+    {
+        try 
+        {
+            MessageDigest mdEnc = MessageDigest.getInstance("MD5");
+            mdEnc.update(pass.getBytes(),0,pass.length());
+            String md5Pass = new BigInteger(1,mdEnc.digest()).toString(16);
+            return ac.connexion(login, md5Pass);
+        }
+        catch(Exception e)
+        {
+            throw new ConnexionException(e.toString());
+        }
+        
+    }    
     
     public void ajoutUtilisateur(String nom,String prenom,String rue,String numero,String boite,String localite,String codePostal, String email,String motDePasse,String mdpConf,String numTel) throws InscriptionException
     {

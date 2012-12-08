@@ -35,6 +35,8 @@ public class Utilisateur {
         this.setNumTel(numTel);
     }
 
+    public Utilisateur(){}
+    
     /**
      * @return the nom
      */

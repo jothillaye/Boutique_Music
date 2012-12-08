@@ -31,20 +31,7 @@ public class ServletInscription extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        /*PrintWriter out = response.getWriter();
-        try {
-            
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ServletInscription</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ServletInscription at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        } finally {            
-            out.close();
-        }*/
+        
         Business business = new Business();
         
         String nom = request.getParameter("nom");

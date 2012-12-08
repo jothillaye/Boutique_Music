@@ -4,7 +4,6 @@
  */
 package packageAccess;
 
-import java.security.MessageDigest;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,6 +12,7 @@ import java.util.ArrayList;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
+import packageException.ConnexionException;
 import packageException.InscriptionException;
 import packageException.ListAlbumException;
 import packageModel.Album;
@@ -23,6 +23,42 @@ import packageModel.Utilisateur;
  */
 public class AccessDB {
     private Connection connexion;
+    
+    public Utilisateur connexion(String login, String pass) throws ConnexionException 
+    {
+        Utilisateur user = new Utilisateur();
+        
+        try
+        {
+            Context ctx = new InitialContext();
+            DataSource source = (DataSource)ctx.lookup("jdbc/MusicStore");
+            connexion = source.getConnection();        
+            
+            String requeteSQL = "Select password from Utilisateur where mail = ?";
+            PreparedStatement prepStat = connexion.prepareStatement(requeteSQL);
+            prepStat.setString(1, login);
+            ResultSet donnees = prepStat.executeQuery();
+            
+            while (donnees.next())
+            {
+                if (donnees.getString(1).compareTo(pass) != 0)
+                    throw new ConnexionException("incorrectPass");
+                else
+                     user.setMail(login);  
+            }    
+            
+            connexion.close();            
+            return user;
+        }
+        catch (SQLException e)
+        {
+            throw new ConnexionException("connexionException");
+        }
+        catch (Exception e) 
+        {
+            throw new ConnexionException("sqlException");
+        }
+    }
     
     public ArrayList<Album> getLastAlbums() throws ListAlbumException
     {
