@@ -5,6 +5,25 @@
     {
         document.getElementById("loginBox").style.display='block';
     }    
+    
+    function checkLogin()
+    {
+        var email = document.forms["register"]["login"].value;
+        if(email == null || email == "") 
+        {
+            loginError.innerHTML="<fmt:message key="errorLogin"/>";
+            document.forms["register"]["login"].style.borderColor='RED';
+            return false;
+        }
+        
+        var password = document.forms["register"]["password"].value;
+        if(password == null || password == "") 
+        {
+            passError.innerHTML="<fmt:message key="errorPass"/>";
+            document.forms["register"]["password"].style.borderColor='RED';
+            return false;
+        }       
+    }
 </script>
 
 <!-- #entete -->	
@@ -26,7 +45,16 @@
         <li class="gauche"><a href="cart.jsp"><fmt:message key="viewCart"/></a></li>
         <li class="gauche"><a href="#" onclick="displayLogin();"><fmt:message key="logIn"/></a></li>
         <span id="loginBox" >
-            <li class="gauche"><input type="text" size="10"><input type="password" size="10"><input type="submit"></li>
+            <li class="gauche">
+                <form action="connexion" method="post" onsubmit="return checkLogin()" name="loginForm">
+                    <input type="text" name="login" id="login" value="email" onclick="this.value=''" size="10">
+                        <span id="loginError"> </span>
+                    <input type="password" name="password" id="password" value="password" onclick="this.value=''" size="10">
+                        <span id="passError"> </span>
+                    <input type="submit" value="<fmt:message key="connexionButton"/>">
+                </form>    
+            </li>                    
+            
         </span>
         <li class="droite"><a href="account.jps"><fmt:message key="myAccount"/></a></li>
         <li class="droite"><a href="info.jsp"><fmt:message key="info"/></a></li>

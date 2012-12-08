@@ -16,6 +16,10 @@
         <servlet-name>GetAlbumServlet</servlet-name>
         <servlet-class>packageController.GetAlbumServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletConnexion</servlet-name>
+        <servlet-class>packageController.ServletConnexion</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletLangue</servlet-name>
         <url-pattern>/ServletLangue</url-pattern>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>GetAlbumServlet</servlet-name>
         <url-pattern>/getAlbum</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletConnexion</servlet-name>
+        <url-pattern>/ServletConnexion</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
