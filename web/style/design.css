@@ -85,9 +85,6 @@ body {
     background: white;
 }
 
-#loginBox {
-    display: none;
-}
 #loginBox input {
     background-color: white;
     border: 1px solid gainsboro;

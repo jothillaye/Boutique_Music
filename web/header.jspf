@@ -35,6 +35,7 @@
 
         function checkLoginMsg()
         {
+            document.getElementById("loginBox").style.display = 'none';
             var msg = document.getElementById("connexionError").innerHTML;
             if(msg.localeCompare("") != 0)
             {
