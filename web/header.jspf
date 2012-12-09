@@ -1,43 +1,55 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<script type="text/javascript">
-    function displayLogin()
-    {
-        document.getElementById("loginBox").style.display='block';
-    }    
-    
-    function checkLogin()
-    {
-        var email = document.forms["loginForm"]["login"].value;        
-        var password = document.forms["loginForm"]["password"].value;
-        
-        if(email == null || email == "" || password == null || password == "")
+<head>
+    <script type="text/javascript">    
+        function checkLogin()
         {
-            if(email == null || email == "")
-            {
-                loginError.innerHTML="<fmt:message key="errorLogin"/>";
-                document.forms["loginForm"]["login"].style.borderColor='RED';
-            }    
-            else
-            {
-                loginError.innerHTML="";
-                document.forms["loginForm"]["login"].style.borderColor='gainsboro';        
-            }   
-            if(password == null || password == "") 
-            {
-                passError.innerHTML="<fmt:message key="errorPass"/>";
-                document.forms["loginForm"]["password"].style.borderColor='RED';
-            }
-            else
-            {
-                passError.innerHTML="";
-                document.forms["loginForm"]["password"].style.borderColor='gainsboro';        
-            }    
-            return false;
-        } 
-    }
-</script>
+            var email = document.forms["loginForm"]["login"].value;        
+            var password = document.forms["loginForm"]["password"].value;
 
+            if(email == null || email == "" || password == null || password == "")
+            {
+                if(email == null || email == "")
+                {
+                    loginError.innerHTML="<fmt:message key="errorLogin"/>";
+                    document.forms["loginForm"]["login"].style.borderColor='RED';
+                }    
+                else
+                {
+                    loginError.innerHTML="";
+                    document.forms["loginForm"]["login"].style.borderColor='gainsboro';        
+                }   
+                if(password == null || password == "") 
+                {
+                    passError.innerHTML="<fmt:message key="errorPass"/>";
+                    document.forms["loginForm"]["password"].style.borderColor='RED';
+                }
+                else
+                {
+                    passError.innerHTML="";
+                    document.forms["loginForm"]["password"].style.borderColor='gainsboro';        
+                }    
+                return false;
+            } 
+        }
+
+        function checkLoginMsg()
+        {
+            var msg = document.getElementById("connexionError").innerHTML;
+            if(msg.localeCompare("") != 0)
+            {
+                displayLoginBox();
+            }
+        }
+        
+        function displayLoginBox()
+        {
+            document.getElementById("loginBox").style.display = 'block';
+        }
+    </script>
+</head>
+
+<body onload="checkLoginMsg()">
 <!-- #entete -->	
 <div id="entete">
     <div id="lang">
@@ -54,25 +66,37 @@
 <!-- #navigation -->
 <div id="navigation">
     <ul>
-        <li class="gauche"><a href="cart.jsp"><fmt:message key="viewCart"/></a></li>
-        <li class="gauche"><a href="#" onclick="displayLogin();"><fmt:message key="logIn"/></a></li>
-        <span id="loginBox" >            
-                <form action="connexion" method="post" onsubmit="return checkLogin()" name="loginForm">
-                    <li class="gauche">
-                        <input type="text" name="login" id="login" value="email" onclick="this.value=''" size="10">
-                        <br /><span id="loginError"> </span>
-                    </li>
-                    <li class="gauche">
-                        <input type="password" name="password" id="password" value="password" onclick="this.value=''" size="10">
-                        <br /><span id="passError"> </span>
-                    </li>
-                    <li class="gauche">
-                        <input type="submit" value="<fmt:message key="connexionButton"/>">
-                    </li>
-                </form>    
-            </li>     
-        </span>
+        <li class="gauche"><a href="cart.jsp"><fmt:message key="viewCart"/></a></li>        
+        <c:if test = "${ empty sessionScope.user.mail}">
+            <li class="gauche"><a href="#" onclick="displayLoginBox()"><fmt:message key="logIn"/></a></li>
+            <div id="loginBox" >
+            <form action="connexion" method="post" onsubmit="return checkLogin()" name="loginForm">                
+                <input type="hidden" name="url" value="${requestScope.pagename}" />
+                <li class="gauche">
+                    <input type="text" name="login" id="login" value="email" onclick="this.value=''" size="10"><br />
+                    <span id="loginError"> </span><br />
+                    <span id="connexionError"><c:if test="${not empty connexionMsg}"><fmt:message key="${connexionMsg}"/></c:if></span>
+                </li>
+                <li class="gauche">
+                    <input type="password" name="password" id="password" value="password" onclick="this.value=''" size="10">
+                    <br /><span id="passError"> </span>
+                </li>
+                <li class="gauche">
+                    <input type="submit" value="<fmt:message key="connexionButton"/>">
+                </li>                
+            </form>                
+            </div>  
+        </c:if>
+        <c:if test = "${not empty sessionScope.user.mail}">
+            <li class="droite">
+                <span id="connectedMsg">
+                    <fmt:message key="connectedMsg"/>${sessionScope.user.prenom} ! (<a href="deconnexion"><fmt:message key="disconnectButton"/></a>)
+                </span>
+            </li>
+        </c:if>
         <li class="droite"><a href="account.jps"><fmt:message key="myAccount"/></a></li>
         <li class="droite"><a href="info.jsp"><fmt:message key="info"/></a></li>
     </ul>
 </div>
+    
+</body>

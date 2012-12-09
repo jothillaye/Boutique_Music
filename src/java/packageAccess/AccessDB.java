@@ -37,7 +37,7 @@ public class AccessDB {
             DataSource source = (DataSource)ctx.lookup("jdbc/MusicStore");
             connexion = source.getConnection();        
             
-            String requeteSQL = "SELECT motdepasse FROM utilisateur WHERE mail = ?";
+            String requeteSQL = "SELECT motdepasse, prenom FROM utilisateur WHERE mail = ?";
             PreparedStatement prepStat = connexion.prepareStatement(requeteSQL);
             prepStat.setString(1, login);
             ResultSet donnees = prepStat.executeQuery();
@@ -52,6 +52,7 @@ public class AccessDB {
                 else
                 {
                     user.setMail(login);  
+                    user.setPrenom(donnees.getString(2));
                 }
             }    
             
@@ -88,7 +89,7 @@ public class AccessDB {
             while (donnees.next())
             {
                 Album album = new Album();
-                album.setId(donnees.getInt(1));
+                album.setIdAlbum(donnees.getInt(1));
                 album.setTitre(donnees.getString(2));
                 album.setPrix(donnees.getDouble(3));
                 album.setImage(donnees.getString(4));
@@ -135,7 +136,7 @@ public class AccessDB {
             
             while (donnees.next())
             {
-                album.setId(donnees.getInt(1));
+                album.setIdAlbum(donnees.getInt(1));
                 album.setTitre(donnees.getString(2));
                 album.setPrix(donnees.getDouble(3));
                 album.setImage(donnees.getString(4));
@@ -234,7 +235,7 @@ public class AccessDB {
             {
                 
                 Album album = new Album();
-                album.setId(donnees.getInt(1));
+                album.setIdAlbum(donnees.getInt(1));
                 album.setTitre(donnees.getString(2));
                 album.setPrix((donnees.getDouble(3)*(1-(donnees.getDouble(6)/100))));
                 album.setImage(donnees.getString(4));

@@ -16,7 +16,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
     <link rel="stylesheet" type="text/css" href="style/design.css" media="all" />
     <fmt:setBundle basename="packageLangue.lang" scope="session" />
-    <c:set var="pagename" scope="request" value="detail.jsp" />
+    <c:set var="pagename" scope="request" value="getAlbum?idAlbum=${album.idAlbum}" />
 	<title>MusicStore - <fmt:message key="detailTitle" /></title>	
 </head>
 

@@ -11,15 +11,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import packageBusiness.Business;
-import packageException.ConnexionException;
-import packageModel.Utilisateur;
 
 /**
  *
  * @author Joachim
  */
-public class ServletConnexion extends HttpServlet {
+public class ServletDeconnexion extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -34,33 +31,13 @@ public class ServletConnexion extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String login = request.getParameter("login");
-        String pass = request.getParameter("password");
-        String url = request.getParameter("url");
+       
+        HttpSession session = request.getSession();
+        session.removeAttribute("user");
+        session.invalidate(); // Fin de session
         
-        Business business = new Business();
-        Utilisateur user;
-        
-        try
-        {
-            user = business.connexion(login, pass);
-            if(user.getMail() == "")
-            {
-                throw new ConnexionException("wrongMail");
-            }
-            HttpSession session = request.getSession();
-            session.setAttribute("user", user);
-            
-            RequestDispatcher rd = request.getRequestDispatcher(url);
-            request.setAttribute("connexionMsg", "connexionOK");
-            rd.forward(request, response);
-        }
-        catch (ConnexionException e)
-        {
-            RequestDispatcher rd = request.getRequestDispatcher(url);
-            request.setAttribute("connexionMsg", e);
-            rd.forward(request, response);
-        }        
+        RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+        rd.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

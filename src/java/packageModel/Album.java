@@ -10,13 +10,13 @@ import java.io.Serializable;
  * @author BAVAY Emilien - THILLAYE Joachim
  */
 public class Album implements Serializable{
-    private int id;
+    private int idAlbum;
     private String titre, image, artiste, label, labelImg;
     private double prix;
     
     public Album() {}
     // Getters
-    public int getId() {return id;}
+    public int getIdAlbum() {return idAlbum;}
     public String getTitre() {return titre;}
     public double getPrix() {return prix;}
     public String getImage() {return image;}
@@ -25,7 +25,7 @@ public class Album implements Serializable{
     public String getLabelImg() {return labelImg;}
     
     // Setters
-    public void setId(int id) {this.id = id;}
+    public void setIdAlbum(int idAlbum) {this.idAlbum = idAlbum;}
     public void setTitre(String titre) {this.titre = titre;}
     public void setPrix(double prix) {this.prix = prix;}        
     public void setArtiste(String artiste) {this.artiste = artiste;}

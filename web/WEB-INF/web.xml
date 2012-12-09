@@ -28,6 +28,10 @@
         <servlet-name>GetAlbumPromoServlet</servlet-name>
         <servlet-class>packageController.GetAlbumPromoServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletDeconnexion</servlet-name>
+        <servlet-class>packageController.ServletDeconnexion</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletLangue</servlet-name>
         <url-pattern>/ServletLangue</url-pattern>
@@ -55,6 +59,10 @@
     <servlet-mapping>
         <servlet-name>GetAlbumPromoServlet</servlet-name>
         <url-pattern>/albumPromo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletDeconnexion</servlet-name>
+        <url-pattern>/deconnexion</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

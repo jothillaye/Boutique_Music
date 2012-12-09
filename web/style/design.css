@@ -88,19 +88,29 @@ body {
 #loginBox {
     display: none;
 }
-
 #loginBox input {
     background-color: white;
     border: 1px solid gainsboro;
 }
-
 #loginError, #passError {
     position: absolute;
     font-size: .6em;
     color: #FF6533;
 }
-
-
+#connexionError {
+    position: absolute;
+    color: #FF6533;
+    font-size: .7em;
+    font-weight: bold;
+}
+#connectedMsg {
+    font-size: 13px;
+    color: #FF6533;    
+}
+#connectedMsg a {
+    padding: 0;
+    margin: 0;
+}
 
 /* Contenu */
 #contenu {
