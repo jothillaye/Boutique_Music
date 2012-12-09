@@ -99,6 +99,7 @@ body {
 }
 #connexionError {
     position: absolute;
+    margin-top: -8px;
     color: #FF6533;
     font-size: .7em;
     font-weight: bold;
