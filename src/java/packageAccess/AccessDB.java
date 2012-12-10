@@ -118,9 +118,9 @@ public class AccessDB {
         }
         catch (SQLException e)
         {
-            throw new ListAlbumException("listAlbumException"+e.getMessage());
+            throw new ListAlbumException("listAlbumException");
         }
-        catch (Exception e) 
+        catch (NamingException e) 
         {
             throw new ListAlbumException("sqlException");
         }
@@ -169,7 +169,7 @@ public class AccessDB {
         {
             throw new ListAlbumException("getAlbumException");
         }
-        catch (Exception e) 
+        catch (NamingException e) 
         {
             throw new ListAlbumException("sqlException");
         }
@@ -204,19 +204,20 @@ public class AccessDB {
             
             connexion.close();
             
-        }
-        catch(NamingException ex)
-        {
-            throw new InscriptionException("errorNaming");
-        }
+        }        
         catch(SQLIntegrityConstraintViolationException ex)
         {
             throw new InscriptionException("errorMailUsed");
         }
         catch(SQLException ex)
         {
-            throw new InscriptionException("errorSQL");
+            throw new InscriptionException("addUserException");
         }
+        catch(NamingException ex)
+        {
+            throw new InscriptionException("sqlException");
+        }
+        
     }
     
     public ArrayList<Album> getAlbumPromo() throws ListAlbumException
@@ -259,15 +260,15 @@ public class AccessDB {
             
             if (arrayAlbum == null) // Envoi erreur si aucune album
             {    
-                throw new ListAlbumException("Pas d'albums en promotion");
+                throw new ListAlbumException("noPromo");
             }            
             connexion.close();
         }
         catch (SQLException e)
         {
-            throw new ListAlbumException(e.toString());
+            throw new ListAlbumException("getPromoException");
         }
-        catch (Exception e) 
+        catch (NamingException e) 
         {
             throw new ListAlbumException("sqlException");
         }
