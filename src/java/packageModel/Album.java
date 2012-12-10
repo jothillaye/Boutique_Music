@@ -5,6 +5,7 @@
 package packageModel;
 
 import java.io.Serializable;
+import javax.swing.text.StyledEditorKit;
 
 /**
  * @author BAVAY Emilien - THILLAYE Joachim
@@ -13,6 +14,7 @@ public class Album implements Serializable{
     private int idAlbum;
     private String titre, image, artiste, label, labelImg;
     private double prix;
+    private Boolean promo;
     
     public Album() {}
     // Getters
@@ -23,6 +25,7 @@ public class Album implements Serializable{
     public String getArtiste() {return artiste;}
     public String getLabel() {return label;}
     public String getLabelImg() {return labelImg;}
+    public Boolean getPromo() {return promo;}
     
     // Setters
     public void setIdAlbum(int idAlbum) {this.idAlbum = idAlbum;}
@@ -32,5 +35,6 @@ public class Album implements Serializable{
     public void setImage(String image) {this.image = image;}
     public void setLabel(String label) {this.label = label;}
     public void setLabelImg(String labelImg) {this.labelImg = labelImg;}
+    public void setPromo(Boolean promo) {this.promo = promo;}
     
 }

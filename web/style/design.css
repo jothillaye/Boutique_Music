@@ -181,6 +181,7 @@ body {
     position: absolute; 
     float: right;    
     right: 0;
+    bottom: -3px;
     margin-top: 8px;
     font-size: 1.4em;
 }

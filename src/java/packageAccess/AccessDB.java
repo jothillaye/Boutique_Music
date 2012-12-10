@@ -79,9 +79,14 @@ public class AccessDB {
             DataSource source = (DataSource) ctx.lookup("jdbc/MusicStore");
             connexion = source.getConnection();
 
-            String requeteSQL = "SELECT Album.idAlbum, Album.titre, Album.prix, Album.image, Artiste.nom "
-                    + "FROM Album, Artiste_Album, Artiste "
-                    + "WHERE Artiste_Album.idAlbum = Album.idAlbum AND Artiste_Album.idArtiste = Artiste.idArtiste";
+            String requeteSQL = "SELECT Album.idAlbum, Album.titre, Album.prix, Album.image, Artiste.nom, "
+                                + " CASE WHEN Promotion_Artiste.idArtiste = Artiste.idArtiste THEN true"
+                                + "      ELSE false"
+                                + " END"
+                                + " FROM Album, Artiste_Album, Artiste, Promotion, Promotion_Artiste"
+                                + " WHERE Artiste_Album.idAlbum = Album.idAlbum AND Artiste_Album.idArtiste = Artiste.idArtiste"
+                                + "     AND Artiste_Promotion.idPromotion = Promotion.idPromotion"
+                                + "";
             PreparedStatement prepStat = connexion.prepareStatement(requeteSQL);
             prepStat.setMaxRows(10);
             ResultSet donnees = prepStat.executeQuery();
@@ -94,6 +99,7 @@ public class AccessDB {
                 album.setPrix(donnees.getDouble(3));
                 album.setImage(donnees.getString(4));
                 album.setArtiste(donnees.getString(5));
+                album.setPromo(donnees.getBoolean(6));
                 arrayAlbum.add(album);
             }
             
@@ -105,7 +111,7 @@ public class AccessDB {
         }
         catch (SQLException e)
         {
-            throw new ListAlbumException("listAlbumException");
+            throw new ListAlbumException("listAlbumException"+e.getMessage());
         }
         catch (Exception e) 
         {

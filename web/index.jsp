@@ -60,7 +60,7 @@
                     <img alt="" src="./style/img/album/${album.image}" width="180px" height="180px" />
                 </a>
                 <span class="album-name">${album.titre}</span><span class="album-artist">${album.artiste}</span>
-                <span class="price-box">$${album.prix}</span>
+                <span class="price-box">$${album.prix}-${album.promo}</span>
             </div>                           
         </c:forEach>
         </center>
