@@ -85,7 +85,7 @@ public class AccessDB {
                                 + " END"
                                 + " FROM Album, Artiste_Album, Artiste, Promotion, Promotion_Artiste"
                                 + " WHERE Artiste_Album.idAlbum = Album.idAlbum AND Artiste_Album.idArtiste = Artiste.idArtiste"
-                                + "     AND Artiste_Promotion.idPromotion = Promotion.idPromotion"
+                                + "     AND Promotion_Artiste.idPromotion = Promotion.idPromotion"
                                 + "";
             PreparedStatement prepStat = connexion.prepareStatement(requeteSQL);
             prepStat.setMaxRows(10);
