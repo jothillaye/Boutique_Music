@@ -70,24 +70,31 @@
         <li class="gauche"><a href="cart.jsp"><fmt:message key="viewCart"/></a></li>        
         <c:if test = "${ empty sessionScope.user.mail}">
             <li class="gauche"><a href="#" onclick="displayLoginBox()"><fmt:message key="logIn"/></a></li>
+            
             <div id="loginBox" >
-            <form action="connexion" method="post" onsubmit="return checkLogin()" name="loginForm">                
-                <input type="hidden" name="url" value="${requestScope.pagename}" />
-                <li class="gauche">
-                    <input type="text" name="login" id="login" value="email" onclick="this.value=''" size="10"><br />
-                    <span id="loginError"> </span><br />
-                    <span id="connexionError"><c:if test="${not empty connexionMsg}"><fmt:message key="${connexionMsg}"/></c:if></span>
-                </li>
-                <li class="gauche">
-                    <input type="password" name="password" id="password" value="password" onclick="this.value=''" size="10">
-                    <br /><span id="passError"> </span>
-                </li>
-                <li class="gauche">
-                    <input type="submit" value="<fmt:message key="connexionButton"/>">
-                </li>                
-            </form>                
+                <form action="connexion" method="post" onsubmit="return checkLogin()" name="loginForm">                
+                    <input type="hidden" name="url" value="${requestScope.pagename}" />
+                    <li class="gauche">
+                        <c:if test="${empty emailMsg}">
+                            <input type="text" name="login" id="login" value="email" onclick="this.value=''" size="10"><br />
+                        </c:if>
+                        <c:if test="${not empty emailMsg}">
+                            <input type="text" name="login" id="login" value="${emailMsg}" size="10"><br />
+                        </c:if>
+                        <span id="loginError"> </span><br />
+                        <span id="connexionError"><c:if test="${not empty connexionMsg}"><fmt:message key="${connexionMsg}"/></c:if></span>
+                    </li>
+                    <li class="gauche">
+                        <input type="password" name="password" id="password" value="password" onclick="this.value=''" size="10">
+                        <br /><span id="passError"> </span>
+                    </li>
+                    <li class="gauche">
+                        <input type="submit" value="<fmt:message key="connexionButton"/>">
+                    </li>                
+                </form>                
             </div>  
         </c:if>
+                    
         <c:if test = "${not empty sessionScope.user.mail}">
             <li class="droite">
                 <span id="connectedMsg">

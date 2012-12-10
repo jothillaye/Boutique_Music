@@ -58,7 +58,8 @@ public class ServletConnexion extends HttpServlet {
         catch (ConnexionException e)
         {
             RequestDispatcher rd = request.getRequestDispatcher(url);
-            request.setAttribute("connexionMsg", e);
+            request.setAttribute("connexionMsg", e);            
+            request.setAttribute("emailMsg", login);
             rd.forward(request, response);
         }        
     }
