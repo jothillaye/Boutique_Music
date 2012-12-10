@@ -32,35 +32,32 @@
 <div id="contenu">
     <div id="grid">
         <center>
-            <div id="promo">
+        <div id="promo">
             <fmt:message key="promo"/>
-            </div>
-        </br>
-            <jsp:include page="/albumPromo"></jsp:include>
-            <c:forEach var="album" items="${requestScope.albumsPromo}">
-                <div class="grid_element">
-                    <a href="getAlbum?idAlbum=${album.idAlbum}">
-                        <img alt="" src="./style/img/album/${album.image}" width="180px" height="180px"/>
-                    </a> 
-                    <span class="album-name">${album.titre}</span><span class="album-artist">${album.artiste}</span>
-                <span class="price-box">$${album.prix}</span>
-                </div>
-                </c:forEach>
-            </br>
-            <div id="nouvAjout">
-            <fmt:message key="nouvAjout"/>
-            </div>
-        </br>
+        </div><br />
+        <jsp:include page="/albumPromo"></jsp:include>
+        <c:forEach var="album" items="${requestScope.albumsPromo}">
+            <h2>${album.artiste}</h2>
+        </c:forEach><br />
+        <div id="nouvAjout">
+            <p><fmt:message key="nouvAjout"/></p>
+        </div><br />
         
         <jsp:include page="/albums"></jsp:include>
         
         <c:forEach var="album" items="${requestScope.albums}">
             <div class="grid_element">
+                <c:if test="${album.promo}">
+                    <img alt="" src="./style/img/LogoPromo.png" class="promoLogo" />
+                </c:if>
                 <a href="getAlbum?idAlbum=${album.idAlbum}">
                     <img alt="" src="./style/img/album/${album.image}" width="180px" height="180px" />
                 </a>
-                <span class="album-name">${album.titre}-${album.promo}</span><span class="album-artist">${album.artiste}</span>
-                <span class="price-box">$${album.prix}-${album.promo}</span>
+                <span class="album-name">${album.titre}</span><span class="album-artist">${album.artiste}</span>
+                <c:if test="${album.promo}">
+                    <span class="pricePromo-box">$${album.prix}</span>
+                    <span class="price-box">$${album.prixPromo}</span>
+                </c:if>
             </div>                           
         </c:forEach>
         </center>

@@ -79,25 +79,34 @@ public class AccessDB {
             DataSource source = (DataSource) ctx.lookup("jdbc/MusicStore");
             connexion = source.getConnection();
             
-            String requeteSQL = "SELECT Album.idAlbum, Album.titre, Album.prix, Album.image, Artiste.nom"
-                    + " FROM Album, Artiste_Album, Artiste, Promotion, Promotion_Artiste"
-                    + " WHERE Artiste_Album.idAlbum = Album.idAlbum AND Artiste_Album.idArtiste = Artiste.idArtiste";
+            String requeteSQL = "SELECT Album.idAlbum, Album.titre, Album.image, Artiste.nom, Album.Prix, " +
+                                "    CASE WHEN Promotion_Artiste.idArtiste = Artiste.idArtiste THEN (Album.Prix - (Album.Prix * Promotion.prcremise * 0.01)) " +
+                                "            ELSE Album.Prix " +
+                                "    END, " +
+                                "    CASE WHEN Promotion_Artiste.idArtiste = Artiste.idArtiste THEN true " +
+                                "        ELSE false " +
+                                "    END " +
+                                "FROM Album, Artiste_Album, Artiste, Promotion, Promotion_Artiste " +
+                                "WHERE Artiste_Album.idAlbum = Album.idAlbum AND Artiste_Album.idArtiste = Artiste.idArtiste " +
+                                "    AND Promotion_Artiste.idPromotion = Promotion.idPromotion AND Promotion.datedeb <= current_date AND Promotion.datefin >= current_date";
             
-            
-
             PreparedStatement prepStat = connexion.prepareStatement(requeteSQL);
-            prepStat.setMaxRows(10);
+            prepStat.setMaxRows(8);
             ResultSet donnees = prepStat.executeQuery();
             
             while (donnees.next())
             {
+                Boolean promo = donnees.getBoolean(7);
+                
                 Album album = new Album();
                 album.setIdAlbum(donnees.getInt(1));
                 album.setTitre(donnees.getString(2));
-                album.setPrix(donnees.getDouble(3));
-                album.setImage(donnees.getString(4));
-                album.setArtiste(donnees.getString(5));
-                //album.setPromo(donnees.getBoolean(6));
+                album.setImage(donnees.getString(3));
+                album.setArtiste(donnees.getString(4));  
+                album.setPrix(donnees.getDouble(5));
+                if(promo)
+                    album.setPrixPromo(donnees.getDouble(6));
+                album.setPromo(promo);
                 arrayAlbum.add(album);
             }
             
@@ -131,11 +140,12 @@ public class AccessDB {
 
             String requeteSQL = "SELECT Album.idAlbum, Album.titre, Album.prix, Album.image, Artiste.nom, Label.Nom, Label.Image "
                     + "FROM Album, Artiste_Album, Artiste, Label "
-                    + "WHERE Album.idAlbum = " + idAlbum
-                        + " AND Artiste_Album.idAlbum = Album.idAlbum AND Artiste_Album.idArtiste = Artiste.idArtiste "
+                    + "WHERE Album.idAlbum = ?"
+                        + " AND Artiste_Album.idAlbum = Album.idAlbum "
+                        + " AND Artiste_Album.idArtiste = Artiste.idArtiste "
                         + " AND Album.idLabel = Label.idLabel ";
             PreparedStatement prepStat = connexion.prepareStatement(requeteSQL);
-            prepStat.setMaxRows(10);
+            prepStat.setInt(1, idAlbum);
             ResultSet donnees = prepStat.executeQuery();
             
             while (donnees.next())
@@ -219,16 +229,16 @@ public class AccessDB {
             DataSource source = (DataSource) ctx.lookup("jdbc/MusicStore");
             connexion = source.getConnection();
 
-            String requeteSQL = "select Album.idAlbum, Album.titre, Album.prix, Album.image, Artiste.nom, PROMOTION.PRCREMISE from ARTISTE, ALBUM, ARTISTE_ALBUM, LABEL, PROMOTION,PROMOTION_ARTISTE where PROMOTION.DATEFIN >= CURRENT_DATE and PROMOTION_ARTISTE.IDARTISTE = ARTISTE.IDARTISTE and PROMOTION_ARTISTE.IDPROMOTION = PROMOTION.IDPROMOTION and ARTISTE_ALBUM.IDARTISTE = ARTISTE.IDARTISTE and ARTISTE_ALBUM.IDALBUM = ALBUM.IDALBUM and ALBUM.IDLABEL = LABEL.IDLABEL";
-                    /*"select ALBUM.IDALBUM, ALBUM.TITRE ,ALBUM.PRIX, ALBUM.IMAGE, ARTISTE.NOM, PROMOTION.PRCREMISE from ARTISTE, ALBUM, ARTISTE_ALBUM, LABEL, PROMOTION ,PROMOTION_ARTISTE"+
-                                "where"+
-                                 "PROMOTION.DATEDEB <= CURRENT_DATE"+
-                                 "and PROMOTION.DATEFIN >= CURRENT_DATE"+
-                                 "and PROMOTION_ARTISTE.IDARTISTE = ARTISTE.IDARTISTE"+
-                                 "and PROMOTION_ARTISTE.IDPROMOTION = PROMOTION.IDPROMOTION"+
-                                 "and ARTISTE_ALBUM.IDARTISTE = ARTISTE.IDARTISTE "+
-                                 "and ARTISTE_ALBUM.IDALBUM = ALBUM.IDALBUM"+
-                                 "and ALBUM.IDLABEL = LABEL.IDLABEL;";*/
+            //String requeteSQL = "select Album.idAlbum, Album.titre, Album.prix, Album.image, Artiste.nom, PROMOTION.PRCREMISE from ARTISTE, ALBUM, ARTISTE_ALBUM, LABEL, PROMOTION,PROMOTION_ARTISTE where PROMOTION.DATEFIN >= CURRENT_DATE and PROMOTION_ARTISTE.IDARTISTE = ARTISTE.IDARTISTE and PROMOTION_ARTISTE.IDPROMOTION = PROMOTION.IDPROMOTION and ARTISTE_ALBUM.IDARTISTE = ARTISTE.IDARTISTE and ARTISTE_ALBUM.IDALBUM = ALBUM.IDALBUM and ALBUM.IDLABEL = LABEL.IDLABEL";
+            String requeteSQL = "SELECT Album.idAlbum, Album.titre, Album.prix, Album.image, Artiste.nom, Promotion.prcremise"
+                    + " FROM Artiste, Album, Artiste_Album, Label, Promotion, Promotion_Artiste"
+                    + " WHERE Promotion.datedeb <= current_date"
+                    + " AND Promotion.datefin >= current_date"
+                    + " AND Promotion_Artiste.idArtiste = Artiste.idArtiste"
+                    + " AND Promotion_Artiste.idPromotion = Promotion.idPromotion"
+                    + " AND Artiste_Album.idArtiste = Artiste.idArtiste"
+                    + " AND Artiste_Album.idAlbum = Album.idAlbum"
+                    + " AND Album.idLabel = label.idLabel";
             
             PreparedStatement prepStat = connexion.prepareStatement(requeteSQL);
             ResultSet donnees = prepStat.executeQuery();
