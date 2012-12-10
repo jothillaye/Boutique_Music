@@ -58,6 +58,9 @@
                     <span class="pricePromo-box">$${album.prix}</span>
                     <span class="price-box">$${album.prixPromo}</span>
                 </c:if>
+                <c:if test="${!album.promo}">
+                    <span class="price-box">$${album.prix}</span>
+                </c:if>
             </div>                           
         </c:forEach>
         </center>
