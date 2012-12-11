@@ -20,13 +20,25 @@ public class Album implements Serializable{
     // Getters
     public int getIdAlbum() {return idAlbum;}
     public String getTitre() {return titre;}
-    public String getPrix() 
+    
+    
+    public double getPrix()
+    {
+        return prix;
+    }
+    
+    public double getPrixPromo()
+    {
+        return prixPromo;
+    }
+    
+    public String getPrixFormat() 
     {        
         DecimalFormat myFormatter = new DecimalFormat("#.##");
         String output = myFormatter.format(prix);
         return output;
     }
-    public String getPrixPromo() 
+    public String getPrixPromoFormat() 
     {        
         DecimalFormat myFormatter = new DecimalFormat("#.##");
         String output = myFormatter.format(prixPromo);

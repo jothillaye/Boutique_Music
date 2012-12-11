@@ -50,24 +50,24 @@ public class ServletAjoutPanier extends HttpServlet {
         try
         {
                       
-            if(qte>10 || qte>1)
+            if(qte>10 || qte<1)
             {
-                throw new AjoutException("");
+                throw new AjoutException("errorQte");
             }
             Business busi = new Business();
             Album alb =  busi.getAlbum(idAlbum);
-            if(alb!=null)
-            {
-                throw new AjoutException("");
-            }
-            else
-            {
+           // if(alb==null)
+            //{
+                //throw new AjoutException("errorUnknowAlbum");
+            //}
+            //else
+            //{
                 if(util.getHasmMapPanier().containsKey(idAlbum))
                 {
                     AlbumCart abCart = (AlbumCart)util.getHasmMapPanier().get(idAlbum);
                     if(abCart.getQte() + qte > 10)
                     {
-                        throw new AjoutException("");
+                        throw new AjoutException("errorQte");
                     }
                     else
                     {
@@ -83,18 +83,20 @@ public class ServletAjoutPanier extends HttpServlet {
                 sess.setAttribute("user",util);
                 RequestDispatcher rd = request.getRequestDispatcher("cart.jsp");
                 rd.forward(request, response);
-            }                   
+           // }                   
 
         } 
         catch (ListAlbumException ex) 
         {
             //Logger.getLogger(ServletAjoutPanier.class.getName()).log(Level.SEVERE, null, ex);
                 RequestDispatcher rd = request.getRequestDispatcher("erreur.jsp");
+                request.setAttribute("reponse",ex);
                 rd.forward(request, response);
         }
         catch(AjoutException ex)
         {
                 RequestDispatcher rd = request.getRequestDispatcher("erreur.jsp");
+                request.setAttribute("reponse",ex);
                 rd.forward(request, response);
             
         }

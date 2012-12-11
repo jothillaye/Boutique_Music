@@ -26,8 +26,8 @@ public class AlbumCart extends Album{
             this.setImage(alb.getImage());
             this.setLabel(this.getLabel());
             this.setLabelImg(this.getLabelImg());
-            this.setPrix(Double.parseDouble(alb.getPrix()));
-            this.setPrixPromo(Double.parseDouble(this.getPrixPromo()));
+            this.setPrix(alb.getPrix());
+            this.setPrixPromo(this.getPrixPromo());
             this.setPromo(this.getPromo());
             this.setTitre(this.getTitre());
             this.setQte(qte);
@@ -56,11 +56,11 @@ public class AlbumCart extends Album{
        double tot ;
        if(this.getPromo())
        {
-         tot = qte * Double.parseDouble(this.getPrixPromo());
+         tot = qte * this.getPrixPromo();
        }
        else
        {
-         tot = qte * Double.parseDouble(this.getPrix());
+         tot = qte * this.getPrix();
        }                        
         return df.format(tot);
     }

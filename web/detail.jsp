@@ -45,7 +45,7 @@
                 <div id="option">
                     Options
                 </div>
-                <p><span class="titleBox"><fmt:message key="priceAlbum"/> :</span>${album.getPromo() ? album.getPrixPromo() : album.getPrix()} $</p>            
+                <p><span class="titleBox"><fmt:message key="priceAlbum"/> :</span>${album.getPromo() ? album.getPrixPromoFormat() : album.getPrixFormat()} $</p>            
                 <form name="addToCart" method="post" action="ServletAjoutPanier?ID=${album.getIdAlbum()}">
                     <p>
                     <span class="titleBox"><fmt:message key="quantityAlbum"/></span>            
