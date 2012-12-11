@@ -10,14 +10,19 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
+import packageException.CommandeException;
 import packageException.ConnexionException;
 import packageException.InscriptionException;
 import packageException.ListAlbumException;
 import packageModel.Album;
+import packageModel.AlbumCart;
 import packageModel.Utilisateur;
 
 /**
@@ -288,6 +293,17 @@ public class AccessDB {
         }
         
         return arrayAlbum;
+    }
+    
+    
+    public void ConfirmerCommande(HashMap commande)throws CommandeException
+    {
+        for (Iterator iter = commande.entrySet().iterator(); iter.hasNext();) //Vérification des quantités dans la hashmap
+        {
+                Map.Entry data = (Map.Entry)iter.next();
+                AlbumCart album = (AlbumCart)data.getValue();
+
+        }
     }
     
 }

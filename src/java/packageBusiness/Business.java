@@ -9,12 +9,16 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.regex.Pattern;
 import packageAccess.AccessDB;
+import packageException.CommandeException;
 import packageException.ConnexionException;
 import packageException.InscriptionException;
 import packageException.ListAlbumException;
 import packageModel.Album;
+import packageModel.AlbumCart;
 import packageModel.Utilisateur;
 
 /**
@@ -142,10 +146,19 @@ public class Business {
         return ac.getAlbumPromo();
     }
     
-    public void ConfrimerCommande(HashMap commande)
+    public void ConfrimerCommande(HashMap commande)throws CommandeException
     {
-        
-          
+        for (Iterator iter = commande.entrySet().iterator(); iter.hasNext();) //Vérification des quantités dans la hashmap
+        {
+                Map.Entry data = (Map.Entry)iter.next();
+                AlbumCart album = (AlbumCart)data.getValue();
+                if(album.getQte()<1)
+                {
+                    throw new CommandeException("errorQteCommande");
+                }
+        }
+        ac.ConfirmerCommande(commande);
+                
     }
     
 }
