@@ -43,7 +43,17 @@ public class ServletConfrimerCommande extends HttpServlet {
         Utilisateur util = (Utilisateur)sess.getAttribute("user");
         try
         {
+            if(util.getIdUtilisateur()==0)
+            {
+                throw new CommandeException("errorConnectionCommande");
+            }
+            else
+            {
             bus.ConfrimerCommande(util);
+            RequestDispatcher redirect = request.getRequestDispatcher("confirmationCommande.jsp");
+            request.setAttribute("reponse","granSuccès !!"); // bon à modifier :p
+            redirect.forward(request, response);
+            }
         }
         catch(CommandeException ex)
         {
