@@ -13,11 +13,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import packageBusiness.Business;
 import packageException.AjoutException;
 import packageException.ListAlbumException;
 import packageModel.Album;
 import packageModel.AlbumCart;
+import packageModel.Utilisateur;
 
 /**
  *
@@ -38,10 +40,16 @@ public class ServletAjoutPanier extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        
+        
         int idAlbum = Integer.parseInt(request.getParameter("ID"));
         int qte = Integer.parseInt(request.getParameter("qte"));
+        HttpSession sess = request.getSession();
+        Utilisateur util = (Utilisateur)sess.getAttribute("user");
+        
         try
         {
+                      
             if(qte>10 || qte>1)
             {
                 throw new AjoutException("");
@@ -54,10 +62,29 @@ public class ServletAjoutPanier extends HttpServlet {
             }
             else
             {
-                AlbumCart abCart = new AlbumCart(idAlbum,qte);
-                RequestDispatcher rd = request.getRequestDispatcher("erreur.jsp");
+                if(util.getHasmMapPanier().containsKey(idAlbum))
+                {
+                    AlbumCart abCart = (AlbumCart)util.getHasmMapPanier().get(idAlbum);
+                    if(abCart.getQte() + qte > 10)
+                    {
+                        throw new AjoutException("");
+                    }
+                    else
+                    {
+                        abCart.setQte(qte + abCart.getQte());
+                    }
+                }
+                else
+                {
+                    AlbumCart abCart = new AlbumCart(alb,qte);
+                    util.getHasmMapPanier().put(abCart.getIdAlbum(), abCart);
+                }
+                
+                sess.setAttribute("user",util);
+                RequestDispatcher rd = request.getRequestDispatcher("cart.jsp");
                 rd.forward(request, response);
-            }
+            }                   
+
         } 
         catch (ListAlbumException ex) 
         {

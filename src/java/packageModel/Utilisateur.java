@@ -5,6 +5,7 @@
 package packageModel;
 
 import java.io.Serializable;
+import java.util.HashMap;
 
 /**
  *
@@ -21,6 +22,7 @@ public class Utilisateur implements Serializable{
     private int numero;
     private int codepostal;
     private String numTel;
+    private HashMap<Integer, AlbumCart> hasmMapPanier = new HashMap();
     
     
     public Utilisateur(String nom,String prenom,String rue,int numero,String boite,String localite,int codePostal, String email,String motDePasse,String numTel)
@@ -177,5 +179,19 @@ public class Utilisateur implements Serializable{
      */
     public void setNumTel(String numTel) {
         this.numTel = numTel;
+    }
+
+    /**
+     * @return the hasmMapPanier
+     */
+    public HashMap<Integer, AlbumCart> getHasmMapPanier() {
+        return hasmMapPanier;
+    }
+
+    /**
+     * @param hasmMapPanier the hasmMapPanier to set
+     */
+    public void setHasmMapPanier(HashMap<Integer, AlbumCart> hasmMapPanier) {
+        this.hasmMapPanier = hasmMapPanier;
     }
 }

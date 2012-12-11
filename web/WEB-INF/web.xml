@@ -33,7 +33,7 @@
         <servlet-class>packageController.ServletDeconnexion</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ServletAjouttPanier</servlet-name>
+        <servlet-name>ServletAjoutPanier</servlet-name>
         <servlet-class>packageController.ServletAjoutPanier</servlet-class>
     </servlet>
     <servlet-mapping>
@@ -69,8 +69,8 @@
         <url-pattern>/deconnexion</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ServletAjouttPanier</servlet-name>
-        <url-pattern>/ServletAjouttPanier</url-pattern>
+        <servlet-name>ServletAjoutPanier</servlet-name>
+        <url-pattern>/ServletAjoutPanier</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

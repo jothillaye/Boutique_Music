@@ -10,30 +10,30 @@ import java.text.DecimalFormat;
  *
  * @author Emilien
  */
-public class AlbumCart {
+public class AlbumCart extends Album{
     
-        private int idAlbum;
         private int qte;
-        private double prix;
-
-        public AlbumCart(int idAlbum,int qte)
+        
+        public AlbumCart()
         {
-            this.idAlbum=idAlbum;
-            this.qte=qte;
+        
         }
-    /**
-     * @return the idAlbum
-     */
-    public int getIdAlbum() {
-        return idAlbum;
-    }
+        
+        public AlbumCart(Album alb,int qte)
+        {
+            this.setArtiste(alb.getArtiste());
+            this.setIdAlbum(alb.getIdAlbum());
+            this.setImage(alb.getImage());
+            this.setLabel(this.getLabel());
+            this.setLabelImg(this.getLabelImg());
+            this.setPrix(Double.parseDouble(alb.getPrix()));
+            this.setPrixPromo(Double.parseDouble(this.getPrixPromo()));
+            this.setPromo(this.getPromo());
+            this.setTitre(this.getTitre());
+            this.setQte(qte);
+        }            
+ 
 
-    /**
-     * @param idAlbum the idAlbum to set
-     */
-    public void setIdAlbum(int idAlbum) {
-        this.idAlbum = idAlbum;
-    }
 
     /**
      * @return the qte
@@ -49,25 +49,21 @@ public class AlbumCart {
         this.qte = qte;
     }
 
-    /**
-     * @return the prix
-     */
-    public double getPrix() {
-        return qte;
-    }
     
     public String getTot()
     {
        DecimalFormat df = new DecimalFormat("#######.##");
-        double tot = qte * prix;
+       double tot ;
+       if(this.getPromo())
+       {
+         tot = qte * Double.parseDouble(this.getPrixPromo());
+       }
+       else
+       {
+         tot = qte * Double.parseDouble(this.getPrix());
+       }                        
         return df.format(tot);
     }
 
-    /**
-     * @param prix the prix to set
-     */
-    public void setPrix(double prix) {
-        this.prix = prix;
-    }
     
 }
