@@ -6,7 +6,7 @@ package packageException;
 
 /**
  *
- * @author Joachim
+ * @author BAVAY Emilien - THILLAYE Joachim
  */
 public class ConnexionException extends Exception {
     

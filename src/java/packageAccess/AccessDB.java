@@ -105,7 +105,7 @@ public class AccessDB {
                             " WHERE " + promoSQL + " ))" +
                         " END";
             PreparedStatement prepStat = connexion.prepareStatement(requeteSQL);
-            prepStat.setMaxRows(8);
+            prepStat.setMaxRows(12);
             ResultSet donnees = prepStat.executeQuery();
             
             while (donnees.next())

@@ -32,19 +32,17 @@
 <div id="contenu">
     <div id="grid">
         <center>
-        <div id="promo">
-            <fmt:message key="promo"/>
-        </div><br />
         <jsp:include page="/albumPromo"></jsp:include>
-        <c:forEach var="album" items="${requestScope.albumsPromo}">
-            <h2>${album.artiste}</h2>
-        </c:forEach><br />
-        <div id="nouvAjout">
-            <p><fmt:message key="nouvAjout"/></p>
-        </div><br />
+        <c:if test="${not empty requestScope.albumsPromo}">
+            <p class="titleIndex"><fmt:message key="promo"/></p>
+            <p class="titleIndex"><b><u>${artiste}</u></b></p>
+            <c:forEach var="albumPromo" items="${requestScope.albumsPromo}">
+                <h4><a class="linkAlbumPromo" href="getAlbum?idAlbum=${albumPromo.idAlbum}">- ${albumPromo.titre}</a></h4>
+            </c:forEach><br />
+        </c:if>
         
-        <jsp:include page="/albums"></jsp:include>
-        
+        <p class="titleIndex"><fmt:message key="nouvAjout"/></p>
+        <jsp:include page="/albums"></jsp:include>        
         <c:forEach var="album" items="${requestScope.albums}">
             <div class="grid_element">
                 <c:if test="${album.promo}">

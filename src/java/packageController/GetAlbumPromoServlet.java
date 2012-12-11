@@ -41,6 +41,8 @@ public class GetAlbumPromoServlet extends HttpServlet {
         {
             arrayAlbum = bu.getAlbumPromo();
             request.setAttribute("albumsPromo", arrayAlbum);
+            if(arrayAlbum.isEmpty() == false)
+                request.setAttribute("artiste", arrayAlbum.get(0).getArtiste());
         }
         catch (ListAlbumException e)
         {

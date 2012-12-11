@@ -25,8 +25,7 @@
 <!-- #global -->
 <div id="global">
     
-    <%@include file="header.jspf" %>
-    
+    <%@include file="header.jspf" %>    
     
     <div id="contenu">
         <table id="tableCart">
@@ -62,10 +61,8 @@
             </tbody>
             
         </table>
-    </div>
-    
+    </div>   
     
     <%@include file="footer.jspf" %>
-    
     
 </div>
