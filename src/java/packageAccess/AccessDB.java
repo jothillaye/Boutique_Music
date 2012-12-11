@@ -298,11 +298,38 @@ public class AccessDB {
     
     public void ConfirmerCommande(HashMap commande)throws CommandeException
     {
-        for (Iterator iter = commande.entrySet().iterator(); iter.hasNext();) //Vérification des quantités dans la hashmap
+        try
         {
-                Map.Entry data = (Map.Entry)iter.next();
-                AlbumCart album = (AlbumCart)data.getValue();
+            for (Iterator iter = commande.entrySet().iterator(); iter.hasNext();) //Vérification des quantités dans la hashmap
+            {
+                    Map.Entry data = (Map.Entry)iter.next();
+                    AlbumCart album = (AlbumCart)data.getValue();
+                    if(album.getQte()<1)
+                    {
+                        throw new CommandeException("errorQteCommande");
+                    }
+            }
+            Context cont = new InitialContext();
+            DataSource source = (DataSource)cont.lookup("jdbc/MusicStore");
+            connexion = source.getConnection();
+            
+            String requeteSQL = "INSERT INTO UTILISATEUR" + 
+                                "(NOM, PRENOM, ADR_RUE, ADR_NUMERO, ADR_BOITE, ADR_CODEPOSTAL, ADR_LOCALITE,MAIL,MOTDEPASSE,NUMTEL)"
+                                + "VALUES(?,?,?,?,?,?,?,?,?,?)";           
+            for (Iterator iter = commande.entrySet().iterator(); iter.hasNext();) //Vérification des quantités dans la hashmap
+            {
+                    Map.Entry data = (Map.Entry)iter.next();
+                    AlbumCart album = (AlbumCart)data.getValue();
 
+            }
+        }
+        catch(SQLException ex)
+        {
+            throw new CommandeException("");
+        }
+        catch(NamingException ex)
+        {
+            throw new CommandeException("");
         }
     }
     

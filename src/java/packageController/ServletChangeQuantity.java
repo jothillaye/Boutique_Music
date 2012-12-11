@@ -50,7 +50,7 @@ public class ServletChangeQuantity extends HttpServlet {
                 for(Entry<Integer, AlbumCart> entry : util.getHasmMapPanier().entrySet()) 
                 {
                     Integer idAlbum = entry.getKey();
-                    int qte = Integer.parseInt(request.getParameter(idAlbum.toString()));                    
+                    int qte = Integer.parseInt(request.getParameter("quantity" + idAlbum.toString()));                    
                     entry.getValue().setQte(qte);
                 }
             }
