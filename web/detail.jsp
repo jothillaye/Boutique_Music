@@ -45,11 +45,11 @@
                 <div id="option">
                     Options
                 </div>
-                <p><span class="titleBox"><fmt:message key="priceAlbum"/> :</span> "Here the price form the db"</p>            
-                <form name="addToCart">
+                <p><span class="titleBox"><fmt:message key="priceAlbum"/> :</span>${album.getPromo() ? album.getPrixPromo() : album.getPrix()} $</p>            
+                <form name="addToCart" method="post" action="ServletAjoutPanier?ID=${album.getIdAlbum()}">
                     <p>
                     <span class="titleBox"><fmt:message key="quantityAlbum"/></span>            
-                    <select name="qte">
+                    <select name="qte" id="qte">
                         <option>1</option>
                         <option>2</option>
                         <option>3</option>
