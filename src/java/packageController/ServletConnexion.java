@@ -44,11 +44,14 @@ public class ServletConnexion extends HttpServlet {
         try
         {
             user = business.connexion(login, pass);
+            
             if(user.getMail() == "")
             {
                 throw new ConnexionException("wrongMail");
-            }
+            }        
             HttpSession session = request.getSession();
+            Utilisateur GuestUtil = (Utilisateur)session.getAttribute("user");
+            user.setHasmMapPanier(GuestUtil.getHasmMapPanier());
             session.setAttribute("user", user);
             
             RequestDispatcher rd = request.getRequestDispatcher(url);
