@@ -12,6 +12,7 @@ import java.util.HashMap;
  * @author Emilien
  */
 public class Utilisateur implements Serializable{
+    
     private String nom;
     private String prenom;
     private String rue;
@@ -21,6 +22,7 @@ public class Utilisateur implements Serializable{
     private String boite;
     private int numero;
     private int codepostal;
+    private int idUtilisateur;
     private String numTel;
     private HashMap<Integer, AlbumCart> hasmMapPanier = new HashMap();
     
@@ -193,5 +195,19 @@ public class Utilisateur implements Serializable{
      */
     public void setHasmMapPanier(HashMap<Integer, AlbumCart> hasmMapPanier) {
         this.hasmMapPanier = hasmMapPanier;
+    }
+
+    /**
+     * @return the idUtilisateur
+     */
+    public int getIdUtilisateur() {
+        return idUtilisateur;
+    }
+
+    /**
+     * @param idUtilisateur the idUtilisateur to set
+     */
+    public void setIdUtilisateur(int idUtilisateur) {
+        this.idUtilisateur = idUtilisateur;
     }
 }

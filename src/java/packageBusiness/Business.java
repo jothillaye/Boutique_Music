@@ -146,9 +146,9 @@ public class Business {
         return ac.getAlbumPromo();
     }
     
-    public void ConfrimerCommande(HashMap commande)throws CommandeException
+    public void ConfrimerCommande(Utilisateur util)throws CommandeException
     {
-        for (Iterator iter = commande.entrySet().iterator(); iter.hasNext();) //Vérification des quantités dans la hashmap
+        for (Iterator iter = util.getHasmMapPanier().entrySet().iterator(); iter.hasNext();) //Vérification des quantités dans la hashmap
         {
                 Map.Entry data = (Map.Entry)iter.next();
                 AlbumCart album = (AlbumCart)data.getValue();
@@ -157,7 +157,7 @@ public class Business {
                     throw new CommandeException("errorQteCommande");
                 }
         }
-        ac.ConfirmerCommande(commande);
+        ac.ConfirmerCommande(util);
                 
     }
     

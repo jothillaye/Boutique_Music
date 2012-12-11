@@ -42,7 +42,7 @@ public class AccessDB {
             DataSource source = (DataSource)ctx.lookup("jdbc/MusicStore");
             connexion = source.getConnection();        
             
-            String requeteSQL = "SELECT motdepasse, prenom FROM utilisateur WHERE mail = ?";
+            String requeteSQL = "SELECT motdepasse, prenom, IDUTILISATEUR FROM utilisateur WHERE mail = ?";
             PreparedStatement prepStat = connexion.prepareStatement(requeteSQL);
             prepStat.setString(1, login);
             ResultSet donnees = prepStat.executeQuery();
@@ -58,6 +58,7 @@ public class AccessDB {
                 {
                     user.setMail(login);  
                     user.setPrenom(donnees.getString(2));
+                    user.setIdUtilisateur(donnees.getInt(3));
                 }
             }    
             
@@ -296,11 +297,11 @@ public class AccessDB {
     }
     
     
-    public void ConfirmerCommande(HashMap commande)throws CommandeException
+    public void ConfirmerCommande(Utilisateur util)throws CommandeException
     {
         try
         {
-            for (Iterator iter = commande.entrySet().iterator(); iter.hasNext();) //Vérification des quantités dans la hashmap
+            for (Iterator iter = util.getHasmMapPanier().entrySet().iterator(); iter.hasNext();) //Vérification des quantités dans la hashmap
             {
                     Map.Entry data = (Map.Entry)iter.next();
                     AlbumCart album = (AlbumCart)data.getValue();
@@ -313,23 +314,52 @@ public class AccessDB {
             DataSource source = (DataSource)cont.lookup("jdbc/MusicStore");
             connexion = source.getConnection();
             
-            String requeteSQL = "INSERT INTO UTILISATEUR" + 
-                                "(NOM, PRENOM, ADR_RUE, ADR_NUMERO, ADR_BOITE, ADR_CODEPOSTAL, ADR_LOCALITE,MAIL,MOTDEPASSE,NUMTEL)"
-                                + "VALUES(?,?,?,?,?,?,?,?,?,?)";           
-            for (Iterator iter = commande.entrySet().iterator(); iter.hasNext();) //Vérification des quantités dans la hashmap
+            String requeteSQL = "INSERT INTO COMMANDE (IDUTILISATEUR,STATUT,DATE) VALUES(?,?,CURRENT DATE)";
+            
+            PreparedStatement prepStat = connexion.prepareStatement(requeteSQL);
+            prepStat.setInt(1,util.getIdUtilisateur() );
+            prepStat.setString(2, "0");
+            prepStat.executeUpdate();
+            
+            requeteSQL = "SELECT IDCommande, IDUtilisateur from Commande where IDUTILISATEUR=? AND IDCommande=(SELECT MAX(IDCommande) from Commande)";
+            prepStat = connexion.prepareStatement(requeteSQL);
+            prepStat.setInt(1, util.getIdUtilisateur());   
+            
+            ResultSet donnees = prepStat.executeQuery();
+            
+            donnees.next();
+            int idCommande = donnees.getInt(1);
+            
+            if(donnees.getInt(2)==util.getIdUtilisateur())
             {
-                    Map.Entry data = (Map.Entry)iter.next();
-                    AlbumCart album = (AlbumCart)data.getValue();
+                
+                for (Iterator iter = util.getHasmMapPanier().entrySet().iterator(); iter.hasNext();) //Vérification des quantités dans la hashmap
+                {
+                        Map.Entry data = (Map.Entry)iter.next();
+                        AlbumCart album = (AlbumCart)data.getValue();
+                        requeteSQL="INSERT INTO LIGNECOMMANDE (IDALBUM,IDCOMMANDE,QUANTITE,PRIX) VALUES (?,?,?,?)";
+                        prepStat = connexion.prepareStatement(requeteSQL);
+                        prepStat.setInt(1, album.getIdAlbum());
+                        prepStat.setInt(2, idCommande);
+                        prepStat.setInt(3, album.getQte());
+                        //if(album.getPromo())
+                       // prepStat.setDouble(4, album.getPrixPromo());
+                        //else
+                        prepStat.setDouble(4, album.getPrix());
+                        
+                        prepStat.executeUpdate();
+                        
 
+                }
             }
         }
         catch(SQLException ex)
         {
-            throw new CommandeException("");
+            throw new CommandeException(ex.toString());
         }
         catch(NamingException ex)
         {
-            throw new CommandeException("");
+            throw new CommandeException(ex.toString());
         }
     }
     
