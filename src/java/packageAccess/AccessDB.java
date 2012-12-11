@@ -79,17 +79,51 @@ public class AccessDB {
             DataSource source = (DataSource) ctx.lookup("jdbc/MusicStore");
             connexion = source.getConnection();
             
-            String requeteSQL = "SELECT Album.idAlbum, Album.titre, Album.image, Artiste.nom, Album.Prix, " +
-                                "    CASE WHEN Promotion_Artiste.idArtiste = Artiste.idArtiste THEN (Album.Prix - (Album.Prix * Promotion.prcremise * 0.01)) " +
-                                "            ELSE Album.Prix " +
-                                "    END, " +
-                                "    CASE WHEN Promotion_Artiste.idArtiste = Artiste.idArtiste THEN true " +
-                                "        ELSE false " +
-                                "    END " +
-                                "FROM Album, Artiste_Album, Artiste, Promotion, Promotion_Artiste " +
-                                "WHERE Artiste_Album.idAlbum = Album.idAlbum AND Artiste_Album.idArtiste = Artiste.idArtiste " +
-                                "    AND Promotion_Artiste.idPromotion = Promotion.idPromotion AND Promotion.datedeb <= current_date AND Promotion.datefin >= current_date";
+            String promoSQL = "(Artiste_Album.idAlbum = Album.idAlbum AND" +
+                " Artiste_Album.idArtiste = Artiste.idArtiste AND" +
+                " Promotion_Artiste.idArtiste = Artiste.idArtiste AND" +
+                " Promotion_Artiste.idPromotion = Promotion.idPromotion AND" +
+                " Promotion.datedeb <= current_date AND Promotion.datefin >= current_date)";
             
+            String requeteSQL = "SELECT DISTINCT Album.idAlbum, Album.titre, Album.image, Artiste.nom, Album.Prix,\n" +
+                "CASE WHEN + +
+                "    THEN (Album.Prix - (Album.Prix * Promotion.prcremise * 0.01))\n" +
+                "    ELSE Album.Prix\n" +
+                "END as PrixPromo, \n" +
+"CASE WHEN (Artiste_Album.idAlbum = Album.idAlbum AND \n" +
+"        Artiste_Album.idArtiste = Artiste.idArtiste AND\n" +
+"        Promotion_Artiste.idArtiste = Artiste.idArtiste AND \n" +
+"        Promotion_Artiste.idPromotion = Promotion.idPromotion AND \n" +
+"        Promotion.datedeb <= current_date AND Promotion.datefin >= current_date) \n" +
+"    THEN true\n" +
+"    ELSE false\n" +
+"END as Promo\n" +
+"FROM Album, Artiste_Album, Artiste, Promotion, Promotion_Artiste\n" +
+"WHERE \n" +
+"    CASE WHEN (Artiste_Album.idAlbum = Album.idAlbum AND \n" +
+"            Artiste_Album.idArtiste = Artiste.idArtiste AND\n" +
+"            Promotion_Artiste.idArtiste = Artiste.idArtiste AND \n" +
+"            Promotion_Artiste.idPromotion = Promotion.idPromotion AND\n" +
+"            Promotion.datedeb <= current_date AND Promotion.datefin >= current_date) \n" +
+"        THEN (Artiste_Album.idAlbum = Album.idAlbum AND \n" +
+"            Artiste_Album.idArtiste = Artiste.idArtiste AND\n" +
+"            Promotion_Artiste.idArtiste = Artiste.idArtiste AND \n" +
+"            Promotion_Artiste.idPromotion = Promotion.idPromotion AND \n" +
+"            Promotion.datedeb <= current_date AND Promotion.datefin >= current_date)\n" +
+"        ELSE (Artiste_Album.idAlbum = Album.idAlbum AND \n" +
+"            Artiste_Album.idArtiste = Artiste.idArtiste AND \n" +
+"            Artiste.idArtiste NOT IN (\n" +
+"                SELECT Promotion_Artiste.idArtiste\n" +
+"                FROM Album, Artiste_Album, Artiste, Promotion, Promotion_Artiste\n" +
+"                WHERE \n" +
+"                    Artiste_Album.idAlbum = Album.idAlbum AND \n" +
+"                    Artiste_Album.idArtiste = Artiste.idArtiste AND\n" +
+"                    Promotion_Artiste.idArtiste = Artiste.idArtiste AND \n" +
+"                    Promotion_Artiste.idPromotion = Promotion.idPromotion AND\n" +
+"                    Promotion.datedeb <= current_date AND Promotion.datefin >= current_date\n" +
+"            )\n" +
+"     )        \n" +
+"    END;
             PreparedStatement prepStat = connexion.prepareStatement(requeteSQL);
             prepStat.setMaxRows(8);
             ResultSet donnees = prepStat.executeQuery();
