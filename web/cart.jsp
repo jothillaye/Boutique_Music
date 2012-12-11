@@ -47,7 +47,8 @@
             </tfoot>
             <tbody>
                 <form name="cart" action="" method="post">
-                <EL
+                
+                
                 <c:forEach var="album" items="${sessionScope.user.hasmMapPanier}">
                     <tr>
                        <td><img alt="" src="./style/img/album/${album.value.getImage()}" width="50px" height="50px" /></td>

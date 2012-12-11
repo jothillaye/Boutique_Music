@@ -8,6 +8,7 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.regex.Pattern;
 import packageAccess.AccessDB;
 import packageException.ConnexionException;
@@ -139,6 +140,12 @@ public class Business {
     public ArrayList<Album> getAlbumPromo() throws ListAlbumException
     {
         return ac.getAlbumPromo();
+    }
+    
+    public void ConfrimerCommande(HashMap commande)
+    {
+        
+          
     }
     
 }

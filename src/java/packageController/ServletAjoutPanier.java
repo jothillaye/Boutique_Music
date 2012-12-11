@@ -49,14 +49,14 @@ public class ServletAjoutPanier extends HttpServlet {
         
         try
         {
-                      
-            if(qte>10 || qte<1)
+              
+            if(qte<1)
             {
                 throw new AjoutException("errorQte");
             }
             Business busi = new Business();
             Album alb =  busi.getAlbum(idAlbum);
-           // if(alb==null)
+            // if(alb==null)
             //{
                 //throw new AjoutException("errorUnknowAlbum");
             //}

@@ -36,10 +36,17 @@
         <servlet-name>ServletAjoutPanier</servlet-name>
         <servlet-class>packageController.ServletAjoutPanier</servlet-class>
     </servlet>
+
+    <servlet>
+        <servlet-name>ServletConfrimerCommande</servlet-name>
+        <servlet-class>packageController.ServletConfrimerCommande</servlet-class>
+    </servlet>
+
     <servlet>
         <servlet-name>ServletChangeQuantity</servlet-name>
         <servlet-class>packageController.ServletChangeQuantity</servlet-class>
     </servlet>
+
     <servlet-mapping>
         <servlet-name>ServletLangue</servlet-name>
         <url-pattern>/ServletLangue</url-pattern>
@@ -76,10 +83,17 @@
         <servlet-name>ServletAjoutPanier</servlet-name>
         <url-pattern>/ServletAjoutPanier</url-pattern>
     </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ServletConfrimerCommande</servlet-name>
+        <url-pattern>/ConfrimerCommande</url-pattern>
+    </servlet-mapping>
+
     <servlet-mapping>
         <servlet-name>ServletChangeQuantity</servlet-name>
         <url-pattern>/changeQuantity</url-pattern>
     </servlet-mapping>
+
     <session-config>
         <session-timeout>
             30
