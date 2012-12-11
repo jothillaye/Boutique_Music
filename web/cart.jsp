@@ -44,6 +44,7 @@
                     <td colspan="2"><a href="index.jsp"><fmt:message key="continueShopping"/></a></td>
                     <td colspan="4"><a href="cart.jsp"><fmt:message key="updateCart"/></a></td>
                 </tr>
+                <tr><a href="ConfrimerCommande"><fmt:message key="confirmationCommande"/></tr>
             </tfoot>
             <tbody>
                 <form name="cart" action="" method="post">

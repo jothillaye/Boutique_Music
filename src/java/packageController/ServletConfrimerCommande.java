@@ -6,6 +6,7 @@ package packageController;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -53,6 +54,9 @@ public class ServletConfrimerCommande extends HttpServlet {
             RequestDispatcher redirect = request.getRequestDispatcher("confirmationCommande.jsp");
             request.setAttribute("reponse","granSuccès !!"); // bon à modifier :p
             redirect.forward(request, response);
+            
+            util.setHasmMapPanier(new HashMap());
+            
             }
         }
         catch(CommandeException ex)
