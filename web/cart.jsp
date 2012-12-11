@@ -46,16 +46,7 @@
                 </tr>
             </tfoot>
             <tbody>
-                <form name="cart">
-                <!--<tr>
-                    <td><img alt="" src="./style/img/album/.jpg" width="50px" height="50px" /></td>
-                    <td class="alignLeft"><h5><a href="detail.jsp?album=1">Michael Jackson - This is it</a></h5></td>
-                    <td>188$</td>
-                    <td>                        <input type="number" name="quantity" id="quantity" min="1" max="100" step="1" value="1" >
-                    </td>
-                    <td>188$</td>
-                    <td><img alt="" src="./style/img/Delete.png" width="20px" /></td>
-                </tr>-->
+                <form name="cart" action="" method="post">
                 <EL
                 <c:forEach var="album" items="${sessionScope.user.hasmMapPanier}">
                     <tr>
@@ -66,8 +57,7 @@
                              <input type="number" name="quantity" id="quantity${album.value.getIdAlbum()}" min="1" max="100" step="1" value="${album.value.getQte()}" >
                         </td>
                         <td> $${album.value.getTot()}</td>
-                        <td><img alt="" src="./style/img/Delete.png" width="20px" /></td>
-                       
+                        <td><img alt="" src="./style/img/Delete.png" width="20px" /></td>                       
                    </tr>
                 </c:forEach>
 

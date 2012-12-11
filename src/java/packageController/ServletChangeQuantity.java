@@ -5,22 +5,23 @@
 package packageController;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map.Entry;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import packageBusiness.Business;
-import packageException.ListAlbumException;
-import packageModel.Album;
+import javax.servlet.http.HttpSession;
+import packageException.ChangeQuantityException;
+import packageModel.AlbumCart;
+import packageModel.Utilisateur;
 
 /**
  *
- * @author Emilien
+ * @author Joachim
  */
-public class GetAlbumPromoServlet extends HttpServlet {
+public class ServletChangeQuantity extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -35,21 +36,35 @@ public class GetAlbumPromoServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        Business bu = new Business();
-        ArrayList<Album> arrayAlbum;
-        try
-        {
-            arrayAlbum = bu.getAlbumPromo();
-            request.setAttribute("albumsPromo", arrayAlbum);
-            if(arrayAlbum.isEmpty() == false)
-                request.setAttribute("artiste", arrayAlbum.get(0).getArtiste());
+
+        HttpSession sess = request.getSession();
+        Utilisateur util = (Utilisateur)sess.getAttribute("user");
+        
+        try{
+            if(util.getHasmMapPanier().isEmpty())
+            {
+                throw new ChangeQuantityException("cartEmpty");                
+            }
+            else 
+            {                
+                for(Entry<Integer, AlbumCart> entry : util.getHasmMapPanier().entrySet()) 
+                {
+                    Integer idAlbum = entry.getKey();
+                    int qte = Integer.parseInt(request.getParameter(idAlbum.toString()));                    
+                    entry.getValue().setQte(qte);
+                }
+            }
         }
-        catch (ListAlbumException e)
+        catch(ChangeQuantityException e)
         {
             RequestDispatcher rd = request.getRequestDispatcher("erreur.jsp");
-            request.setAttribute("reponse", e);
+            request.setAttribute("reponse",e);
             rd.forward(request, response);
         }
+            
+        sess.setAttribute("user",util);
+        RequestDispatcher rd = request.getRequestDispatcher("cart.jsp");
+        rd.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

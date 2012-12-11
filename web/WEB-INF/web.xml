@@ -9,12 +9,12 @@
         <servlet-class>packageController.ServletInscription</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>GetLastAlbumsServlet</servlet-name>
-        <servlet-class>packageController.GetLastAlbumsServlet</servlet-class>
+        <servlet-name>ServletGetLastAlbums</servlet-name>
+        <servlet-class>packageController.ServletGetLastAlbums</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>GetAlbumServlet</servlet-name>
-        <servlet-class>packageController.GetAlbumServlet</servlet-class>
+        <servlet-name>ServletGetAlbum</servlet-name>
+        <servlet-class>packageController.ServletGetAlbum</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ServletConnexion</servlet-name>
@@ -25,8 +25,8 @@
         <servlet-class>packageController.ServletPromotions</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>GetAlbumPromoServlet</servlet-name>
-        <servlet-class>packageController.GetAlbumPromoServlet</servlet-class>
+        <servlet-name>ServletGetAlbumPromo</servlet-name>
+        <servlet-class>packageController.ServletGetAlbumPromo</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ServletDeconnexion</servlet-name>
@@ -35,6 +35,10 @@
     <servlet>
         <servlet-name>ServletAjoutPanier</servlet-name>
         <servlet-class>packageController.ServletAjoutPanier</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletChangeQuantity</servlet-name>
+        <servlet-class>packageController.ServletChangeQuantity</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ServletLangue</servlet-name>
@@ -45,11 +49,11 @@
         <url-pattern>/inscription</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>GetLastAlbumsServlet</servlet-name>
+        <servlet-name>ServletGetLastAlbums</servlet-name>
         <url-pattern>/albums</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>GetAlbumServlet</servlet-name>
+        <servlet-name>ServletGetAlbum</servlet-name>
         <url-pattern>/getAlbum</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
@@ -61,7 +65,7 @@
         <url-pattern>/ServletPromotions</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>GetAlbumPromoServlet</servlet-name>
+        <servlet-name>ServletGetAlbumPromo</servlet-name>
         <url-pattern>/albumPromo</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
@@ -71,6 +75,10 @@
     <servlet-mapping>
         <servlet-name>ServletAjoutPanier</servlet-name>
         <url-pattern>/ServletAjoutPanier</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletChangeQuantity</servlet-name>
+        <url-pattern>/changeQuantity</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

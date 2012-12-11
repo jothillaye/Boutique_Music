@@ -19,7 +19,7 @@ import packageModel.Album;
  *
  * @author Joachim
  */
-public class GetLastAlbumsServlet extends HttpServlet {
+public class ServletGetLastAlbums extends HttpServlet {
 
     /**
      * Processes requests for both HTTP

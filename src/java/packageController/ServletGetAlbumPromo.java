@@ -5,6 +5,8 @@
 package packageController;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -16,9 +18,9 @@ import packageModel.Album;
 
 /**
  *
- * @author Joachim
+ * @author Emilien
  */
-public class GetAlbumServlet extends HttpServlet {
+public class ServletGetAlbumPromo extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -33,22 +35,21 @@ public class GetAlbumServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        int idAlbum = Integer.parseInt(request.getParameter("idAlbum"));
         Business bu = new Business();
-        Album album;
+        ArrayList<Album> arrayAlbum;
         try
         {
-            album = bu.getAlbum(idAlbum);
-            request.setAttribute("album", album);
-            RequestDispatcher rd = request.getRequestDispatcher("detail.jsp");
-            rd.forward(request, response);
+            arrayAlbum = bu.getAlbumPromo();
+            request.setAttribute("albumsPromo", arrayAlbum);
+            if(arrayAlbum.isEmpty() == false)
+                request.setAttribute("artiste", arrayAlbum.get(0).getArtiste());
         }
         catch (ListAlbumException e)
         {
             RequestDispatcher rd = request.getRequestDispatcher("erreur.jsp");
             request.setAttribute("reponse", e);
             rd.forward(request, response);
-        }    
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
