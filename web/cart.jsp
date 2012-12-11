@@ -49,22 +49,11 @@
             <tbody>
                 <form name="cart">
                 <tr>
-                    <td><img alt="" src="./style/img/pochette/pochette5.jpg" width="50px" height="50px" /></td>
+                    <td><img alt="" src="./style/img/album/.jpg" width="50px" height="50px" /></td>
                     <td class="alignLeft"><h5><a href="detail.jsp?album=1">Michael Jackson - This is it</a></h5></td>
                     <td>188$</td>
                     <td>
-                        <select name="quantity">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>6</option>
-                            <option>7</option>
-                            <option>8</option>
-                            <option>9</option>
-                            <option>10</option>
-                        </select>
+                        <input type="number" name="quantity" id="quantity" min="1" max="100" step="1" value="1">
                     </td>
                     <td>188$</td>
                     <td><img alt="" src="./style/img/Delete.png" width="20px" /></td>
