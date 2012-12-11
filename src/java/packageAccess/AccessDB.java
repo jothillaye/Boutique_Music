@@ -98,7 +98,7 @@ public class AccessDB {
                 " WHERE " +
                     " CASE WHEN " + promoSQL +
                         " THEN " + promoSQL +
-                        " ELSE (Artiste_Album.idArtiste = Artiste.idArtiste AND " +
+                        " ELSE (Artiste_Album.idAlbum = Album.idAlbum AND Artiste_Album.idArtiste = Artiste.idArtiste AND " +
                         "  Artiste.idArtiste NOT IN " +
                             " (SELECT Promotion_Artiste.idArtiste " +
                             " FROM Album, Artiste_Album, Artiste, Promotion, Promotion_Artiste " +
