@@ -56,13 +56,14 @@
                     <td>188$</td>
                     <td><img alt="" src="./style/img/Delete.png" width="20px" /></td>
                 </tr>-->
+                <EL
                 <c:forEach var="album" items="${sessionScope.user.hasmMapPanier}">
                     <tr>
                        <td><img alt="" src="./style/img/album/${album.value.getImage()}" width="50px" height="50px" /></td>
                         <td class="alignLeft"><h5><a href="detail.jsp?album=${album.value.getIdAlbum()}">${album.value.getArtiste()} - ${album.value.getTitre()}</a></h5></td>
                         <td>$${album.value.getPromo() ? album.value.getPrixPromoFormat() : album.value.getPrixFormat()}</td>
                         <td>
-                             <input type="number" name="quantity" id="quantity" min="1" max="100" step="1" value="${album.value.getQte()}" >
+                             <input type="number" name="quantity" id="quantity${album.value.getIdAlbum()}" min="1" max="100" step="1" value="${album.value.getQte()}" >
                         </td>
                         <td> $${album.value.getTot()}</td>
                         <td><img alt="" src="./style/img/Delete.png" width="20px" /></td>
