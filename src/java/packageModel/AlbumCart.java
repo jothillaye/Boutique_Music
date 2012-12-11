@@ -21,15 +21,16 @@ public class AlbumCart extends Album{
         
         public AlbumCart(Album alb,int qte)
         {
+            
             this.setArtiste(alb.getArtiste());
             this.setIdAlbum(alb.getIdAlbum());
             this.setImage(alb.getImage());
-            this.setLabel(this.getLabel());
-            this.setLabelImg(this.getLabelImg());
+            this.setLabel(alb.getLabel());
+            this.setLabelImg(alb.getLabelImg());
             this.setPrix(alb.getPrix());
-            this.setPrixPromo(this.getPrixPromo());
-            this.setPromo(this.getPromo());
-            this.setTitre(this.getTitre());
+            this.setPrixPromo(alb.getPrixPromo());
+            this.setPromo(alb.getPromo());
+            this.setTitre(alb.getTitre());
             this.setQte(qte);
         }            
  
@@ -54,15 +55,16 @@ public class AlbumCart extends Album{
     {
        DecimalFormat df = new DecimalFormat("#######.##");
        double tot ;
-       if(this.getPromo())
+       /*if(this.getPromo())
        {
          tot = qte * this.getPrixPromo();
        }
        else
-       {
+       {*/
          tot = qte * this.getPrix();
-       }                        
-        return df.format(tot);
+       //}                        
+       return df.format(tot);
+       
     }
 
     
