@@ -85,31 +85,6 @@ body {
     background: white;
 }
 
-#loginBox input {
-    background-color: white;
-    border: 1px solid gainsboro;
-}
-#loginError, #passError {
-    position: absolute;
-    font-size: .6em;
-    color: #FF6533;
-}
-#connexionError {
-    position: absolute;
-    margin-top: -8px;
-    color: #FF6533;
-    font-size: .7em;
-    font-weight: bold;
-}
-#connectedMsg {
-    font-size: 13px;
-    color: #FF6533;    
-}
-#connectedMsg a {
-    padding: 0;
-    margin: 0;
-}
-
 /* Contenu */
 #contenu {
     padding: 10px 20px;
@@ -154,6 +129,33 @@ body {
 
 
 /* STYLE PAR PAGES */
+/* Header : module connexion */
+
+#loginBox input {
+    background-color: white;
+    border: 1px solid gainsboro;
+}
+#loginError, #passError {
+    position: absolute;
+    font-size: .6em;
+    color: #FF6533;
+}
+#connexionError {
+    position: absolute;
+    margin-top: -8px;
+    color: #FF6533;
+    font-size: .7em;
+    font-weight: bold;
+}
+#connectedMsg {
+    font-size: 13px;
+    color: #FF6533;    
+}
+#connectedMsg a {
+    padding: 0;
+    margin: 0;
+}
+
 /* Index */
 .grid_element {    
     position : relative;
@@ -209,8 +211,6 @@ body {
     font-family: 'Trebuchet MS', Verdana, Arial, Helvetica, san-serif;
     color: tomato;
 }
-
-
 
 /* Formulaire d'enregistrement */
 form.register{
@@ -314,6 +314,31 @@ form.register span {
 #tableCart tfoot td a {
     color: #f6f3ef;
     text-decoration: overline;
+    text-align: center;
+}
+#totalCart {    
+    border-top: 1px dotted #91887c;
+    font-size: 11px;
+    font-family: Verdana;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+#submitCart {    
+    margin: 0;
+    padding: 0;
+    border: 0px;    
+    background: none;    
+    color: #f6f3ef;
+    font-size: 11px;
+    font-family: Verdana;
+    text-decoration: overline;
+    text-transform: uppercase;
+}
+#submitCart:hover {
+    color: #6E5122;
+}
+#cartError {
+    color: #FF6533;
     text-align: center;
 }
 

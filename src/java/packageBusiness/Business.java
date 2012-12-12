@@ -146,7 +146,7 @@ public class Business {
         return ac.getAlbumPromo();
     }
     
-    public void ConfrimerCommande(Utilisateur util)throws CommandeException
+    public void ConfirmerCommande(Utilisateur util)throws CommandeException
     {
         for (Iterator iter = util.getHasmMapPanier().entrySet().iterator(); iter.hasNext();) //Vérification des quantités dans la hashmap
         {

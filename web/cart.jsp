@@ -29,7 +29,12 @@
     <%@include file="header.jspf" %>    
     
     <div id="contenu">
+        <c:if test="${not empty sessionScope.user.hasmMapPanier}">
+        <c:if test="${not empty message}">
+            <span id="cartError"><fmt:message key="${message}"/></span>
+        </c:if>
         <table id="tableCart">
+            <form name="cart" action="changeQuantity" method="post">            
             <thead>
                 <tr>
                     <td width="80"> </td>
@@ -43,32 +48,33 @@
             <tfoot>
                 <tr>
                     <td colspan="2"><a href="index.jsp"><fmt:message key="continueShopping"/></a></td>
-                    <td colspan="4"><a href="changeQuantity"><fmt:message key="updateCart"/></a></td>
+                    <td colspan="4"><input id="submitCart" type="submit" value='<fmt:message key="updateCart"/>' /></td>
                 </tr>
-                <tr><a href="ConfrimerCommande"><fmt:message key="confirmationCommande"/></tr>
             </tfoot>
-            <tbody>
-                <form name="cart" action="" method="post">
-                
-                
-                <c:forEach var="album" items="${sessionScope.user.hasmMapPanier}">
+            <tbody>    
+               <c:forEach var="album" items="${sessionScope.user.hasmMapPanier}">
                     <tr>
                        <td><img alt="" src="./style/img/album/${album.value.getImage()}" width="50px" height="50px" /></td>
                         <td class="alignLeft"><h5><a href="getAlbum?idAlbum=${album.value.getIdAlbum()}">${album.value.getArtiste()} - ${album.value.getTitre()}</a></h5></td>
                         <td>$${album.value.getPromo() ? album.value.getPrixPromoFormat() : album.value.getPrixFormat()}</td>
                         <td>
-                             <input type="number" name="quantity${album.value.getIdAlbum()}" id="quantity" min="1" max="100" step="1" value="${album.value.getQte()}" >
+                             <input type="number" name="quantity${album.value.getIdAlbum()}" id="quantity" min="0" max="100" step="1" value="${album.value.getQte()}" >
                         </td>
                         <td> $${album.value.getTot()}</td>
-                        <td><img alt="" src="./style/img/Delete.png" width="20px" /></td>                       
+                        <td><a href="removeAlbum?idAlbum=${album.value.getIdAlbum()}"><img alt="" src="./style/img/Delete.png" width="20px" /></a></td>                       
                    </tr>
-                </c:forEach>
-
-                </form>
-                total $${total}
+                </c:forEach>                
+                <tr>
+                    <td colspan="6" id="totalCart">TOTAL : $${total}</td>
+                </tr>
             </tbody>
-            
+            </form>
         </table>
+        <p><a href="ConfirmerCommande"><fmt:message key="confirmCommande"/></a></p>
+    </c:if>
+    <c:if test="${empty sessionScope.user.hasmMapPanier}">
+        <fmt:message key="cartEmpty"/>
+    </c:if>
     </div>   
     
     <%@include file="footer.jspf" %>

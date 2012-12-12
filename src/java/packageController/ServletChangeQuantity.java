@@ -50,21 +50,40 @@ public class ServletChangeQuantity extends HttpServlet {
                 for(Entry<Integer, AlbumCart> entry : util.getHasmMapPanier().entrySet()) 
                 {
                     Integer idAlbum = entry.getKey();
-                    int qte = 8; ///= Integer.parseInt(request.getParameter("quantity" + idAlbum.toString()));                    
-                    entry.getValue().setQte(qte);
+                    try{
+                        int qte = Integer.parseInt(request.getParameter("quantity" + idAlbum.toString()));     
+                        if(qte < 0) 
+                        {
+                            throw new ChangeQuantityException("qteInvalid");
+                        }
+                        
+                        if(qte == 0)
+                        {
+                            util.getHasmMapPanier().remove(idAlbum);
+                        }
+                        else
+                        {                        
+                            AlbumCart alb = entry.getValue();
+                            alb.setQte(qte);
+                            entry.setValue(alb);
+                        }
+                    }
+                    catch(NumberFormatException e)
+                    {
+                        throw new ChangeQuantityException("qteInvalid");  
+                    }
+                    
+                    RequestDispatcher rd = request.getRequestDispatcher("Cart");
+                    rd.forward(request, response);
                 }
             }
         }
         catch(ChangeQuantityException e)
         {
-            RequestDispatcher rd = request.getRequestDispatcher("erreur.jsp");
-            request.setAttribute("reponse",e);
+            RequestDispatcher rd = request.getRequestDispatcher("cart.jsp");
+            request.setAttribute("message",e);
             rd.forward(request, response);
         }
-            
-        sess.setAttribute("user",util);
-        RequestDispatcher rd = request.getRequestDispatcher("cart.jsp");
-        rd.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

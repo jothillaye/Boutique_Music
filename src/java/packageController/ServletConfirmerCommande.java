@@ -21,7 +21,7 @@ import packageModel.Utilisateur;
  *
  * @author Emilien
  */
-public class ServletConfrimerCommande extends HttpServlet {
+public class ServletConfirmerCommande extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -50,7 +50,7 @@ public class ServletConfrimerCommande extends HttpServlet {
             }
             else
             {
-            bus.ConfrimerCommande(util);
+            bus.ConfirmerCommande(util);
             RequestDispatcher redirect = request.getRequestDispatcher("confirmationCommande.jsp");
             request.setAttribute("reponse","granSuccès !!"); // bon à modifier :p
             redirect.forward(request, response);

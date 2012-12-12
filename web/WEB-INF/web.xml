@@ -40,8 +40,8 @@
         <servlet-class>packageController.ServletAjoutPanier</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ServletConfrimerCommande</servlet-name>
-        <servlet-class>packageController.ServletConfrimerCommande</servlet-class>
+        <servlet-name>ServletConfirmerCommande</servlet-name>
+        <servlet-class>packageController.ServletConfirmerCommande</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ServletChangeQuantity</servlet-name>
@@ -50,6 +50,10 @@
     <servlet>
         <servlet-name>ServletCart</servlet-name>
         <servlet-class>packageController.ServletCart</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletRemoveAlbum</servlet-name>
+        <servlet-class>packageController.ServletRemoveAlbum</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ServletLangue</servlet-name>
@@ -88,8 +92,8 @@
         <url-pattern>/ServletAjoutPanier</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ServletConfrimerCommande</servlet-name>
-        <url-pattern>/ConfrimerCommande</url-pattern>
+        <servlet-name>ServletConfirmerCommande</servlet-name>
+        <url-pattern>/ConfirmerCommande</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ServletChangeQuantity</servlet-name>
@@ -98,6 +102,10 @@
     <servlet-mapping>
         <servlet-name>ServletCart</servlet-name>
         <url-pattern>/Cart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletRemoveAlbum</servlet-name>
+        <url-pattern>/removeAlbum</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

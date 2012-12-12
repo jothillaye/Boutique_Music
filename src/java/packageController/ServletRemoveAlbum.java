@@ -6,24 +6,21 @@ package packageController;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.DecimalFormat;
-import java.util.Iterator;
-import java.util.Map;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import packageException.CommandeException;
-import packageModel.AlbumCart;
+import packageException.ChangeQuantityException;
+import packageException.RemoveAlbumException;
 import packageModel.Utilisateur;
 
 /**
  *
- * @author Emilien
+ * @author Joachim
  */
-public class ServletCart extends HttpServlet {
+public class ServletRemoveAlbum extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -38,44 +35,40 @@ public class ServletCart extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-       
-        try {
-            double tot = 0;
-            HttpSession sess = request.getSession();
-            Utilisateur util = (Utilisateur)sess.getAttribute("user");
-            
-            for (Iterator iter = util.getHasmMapPanier().entrySet().iterator(); iter.hasNext();) //Vérification des quantités dans la hashmap
-            {
-                    Map.Entry data = (Map.Entry)iter.next();
-                    AlbumCart album = (AlbumCart)data.getValue();
-                    if(album.getQte()<1)
-                    {
-                        throw new CommandeException("qteInvalid");
-                    }
-                    else
-                    {
-                        if(album.getPromo()) {
-                            tot+= album.getQte() * album.getPrixPromo();
-                        }
-                        else {
-                            tot+=album.getQte() * album.getPrix();
-                        }
-                    }
-            }
-            DecimalFormat myFormatter = new DecimalFormat("#.##");
-            String outputTot = myFormatter.format(tot);
-            
-            RequestDispatcher rd = request.getRequestDispatcher("cart.jsp");
-            request.setAttribute("total",outputTot);
-            rd.forward(request, response);
-        }
-        catch(CommandeException ex)
-        {
-            RequestDispatcher rd = request.getRequestDispatcher("erreur.jsp");
-            request.setAttribute("reponse",ex);
-            rd.forward(request, response);
-        }
         
+        HttpSession sess = request.getSession();
+        Utilisateur util = (Utilisateur)sess.getAttribute("user");  
+        
+        try
+        {
+            
+            try
+            {
+                int idAlbum = Integer.parseInt(request.getParameter("idAlbum"));
+                if(util.getHasmMapPanier().containsKey(idAlbum))
+                {
+                    util.getHasmMapPanier().remove(idAlbum);
+                }
+                else
+                {
+                    throw new RemoveAlbumException("albumNoExist");  
+                }
+                
+                RequestDispatcher rd = request.getRequestDispatcher("Cart");
+                rd.forward(request, response);                                       
+            }
+            catch(NumberFormatException e)
+            {
+                throw new RemoveAlbumException("albumNoExist");  
+            }
+        }
+        catch(RemoveAlbumException e)
+        {
+            RequestDispatcher rd = request.getRequestDispatcher("cart.jsp");
+            request.setAttribute("message",e);
+            rd.forward(request, response);        
+        }
+                
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
