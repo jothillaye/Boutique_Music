@@ -43,7 +43,7 @@
             <tfoot>
                 <tr>
                     <td colspan="2"><a href="index.jsp"><fmt:message key="continueShopping"/></a></td>
-                    <td colspan="4"><a href="cart.jsp"><fmt:message key="updateCart"/></a></td>
+                    <td colspan="4"><a href="changeQuantity"><fmt:message key="updateCart"/></a></td>
                 </tr>
                 <tr><a href="ConfrimerCommande"><fmt:message key="confirmationCommande"/></tr>
             </tfoot>
@@ -57,7 +57,7 @@
                         <td class="alignLeft"><h5><a href="getAlbum?idAlbum=${album.value.getIdAlbum()}">${album.value.getArtiste()} - ${album.value.getTitre()}</a></h5></td>
                         <td>$${album.value.getPromo() ? album.value.getPrixPromoFormat() : album.value.getPrixFormat()}</td>
                         <td>
-                             <input type="number" name="quantity" id="quantity${album.value.getIdAlbum()}" min="1" max="100" step="1" value="${album.value.getQte()}" >
+                             <input type="number" name="quantity${album.value.getIdAlbum()}" id="quantity" min="1" max="100" step="1" value="${album.value.getQte()}" >
                         </td>
                         <td> $${album.value.getTot()}</td>
                         <td><img alt="" src="./style/img/Delete.png" width="20px" /></td>                       
