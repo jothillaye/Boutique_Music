@@ -202,7 +202,7 @@ public class AccessDB {
                 prepStat.setInt(1, idAlbum);
                 donnees = prepStat.executeQuery();
 
-                while (donnees.next())
+                if(donnees.next())
                 {
                     album.setIdAlbum(donnees.getInt(1));
                     album.setTitre(donnees.getString(2));
@@ -213,11 +213,11 @@ public class AccessDB {
                     album.setLabelImg(donnees.getString(7));
                     album.setPromo(false);
                 }
-
-                if (album == null) // Envoi erreur si aucune album
-                {    
-                    throw new ListAlbumException("albumNotExist");
-                }            
+                else
+                {
+                    throw new ListAlbumException("albumNotExist"); // si aucun album trouvé, c'est que l'id n'existe pas
+                }
+        
                 connexion.close();
             }
             
@@ -391,6 +391,7 @@ public class AccessDB {
 
                 }
             }
+            connexion.close();
         }
         catch(SQLException ex)
         {

@@ -51,7 +51,9 @@ public class ServletChangeQuantity extends HttpServlet {
                 {
                     Integer idAlbum = entry.getKey();
                     int qte = Integer.parseInt(request.getParameter("quantity" + idAlbum.toString()));                    
-                    entry.getValue().setQte(qte);
+                    AlbumCart ab = entry.getValue();
+                    ab.setQte(qte);
+                    entry.setValue(ab);
                 }
             }
         }
