@@ -64,7 +64,7 @@ public class ServletRemoveAlbum extends HttpServlet {
         }
         catch(RemoveAlbumException e)
         {
-            RequestDispatcher rd = request.getRequestDispatcher("cart.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("Cart");
             request.setAttribute("message",e);
             rd.forward(request, response);        
         }

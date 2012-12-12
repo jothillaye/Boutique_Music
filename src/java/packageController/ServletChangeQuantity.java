@@ -80,7 +80,7 @@ public class ServletChangeQuantity extends HttpServlet {
         }
         catch(ChangeQuantityException e)
         {
-            RequestDispatcher rd = request.getRequestDispatcher("cart.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("Cart");
             request.setAttribute("message",e);
             rd.forward(request, response);
         }
