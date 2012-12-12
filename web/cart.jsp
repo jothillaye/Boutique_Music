@@ -18,6 +18,7 @@
         <fmt:setBundle basename="packageLangue.lang" scope="session"/>
         <c:set var="pagename" scope="request" value="cart.jsp" />
 	<title>MusicStore - <fmt:message key="cartTitle"/></title>
+        
 </head>
 
 <body>
@@ -53,7 +54,7 @@
                 <c:forEach var="album" items="${sessionScope.user.hasmMapPanier}">
                     <tr>
                        <td><img alt="" src="./style/img/album/${album.value.getImage()}" width="50px" height="50px" /></td>
-                        <td class="alignLeft"><h5><a href="detail.jsp?album=${album.value.getIdAlbum()}">${album.value.getArtiste()} - ${album.value.getTitre()}</a></h5></td>
+                        <td class="alignLeft"><h5><a href="getAlbum?idAlbum=${album.value.getIdAlbum()}">${album.value.getArtiste()} - ${album.value.getTitre()}</a></h5></td>
                         <td>$${album.value.getPromo() ? album.value.getPrixPromoFormat() : album.value.getPrixFormat()}</td>
                         <td>
                              <input type="number" name="quantity" id="quantity${album.value.getIdAlbum()}" min="1" max="100" step="1" value="${album.value.getQte()}" >
@@ -64,6 +65,7 @@
                 </c:forEach>
 
                 </form>
+                total $${total}
             </tbody>
             
         </table>

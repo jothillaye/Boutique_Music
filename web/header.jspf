@@ -67,7 +67,7 @@
 <!-- #navigation -->
 <div id="navigation">
     <ul>
-        <li class="gauche"><a href="cart.jsp"><fmt:message key="viewCart"/></a></li>        
+        <li class="gauche"><a href="Cart"><fmt:message key="viewCart"/></a></li>        
         <c:if test = "${ empty sessionScope.user.mail}">
             <li class="gauche"><a href="#" onclick="displayLoginBox()"><fmt:message key="logIn"/></a></li>
             

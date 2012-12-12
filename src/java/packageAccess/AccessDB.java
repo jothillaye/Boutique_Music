@@ -157,19 +157,25 @@ public class AccessDB {
             Context ctx = new InitialContext();
             DataSource source = (DataSource) ctx.lookup("jdbc/MusicStore");
             connexion = source.getConnection();
-
-            String requeteSQL = "SELECT Album.idAlbum, Album.titre, Album.prix, Album.image, Artiste.nom, Label.Nom, Label.Image "
-                    + "FROM Album, Artiste_Album, Artiste, Label "
-                    + "WHERE Album.idAlbum = ?"
-                        + " AND Artiste_Album.idAlbum = Album.idAlbum "
-                        + " AND Artiste_Album.idArtiste = Artiste.idArtiste "
-                        + " AND Album.idLabel = Label.idLabel ";
+            
+            String requeteSQL= "select Album.idAlbum, Album.titre, Album.prix, Album.image, Artiste.nom, Label.Nom, Label.Image, PROMOTION.PRCREMISE from ARTISTE, ALBUM, ARTISTE_ALBUM, LABEL, PROMOTION,PROMOTION_ARTISTE "
+            +" where "
+            +   " PROMOTION.DATEDEB<= CURRENT_DATE "
+            +   " and PROMOTION.DATEFIN>= CURRENT_DATE "
+            +   " and PROMOTION_ARTISTE.IDARTISTE = ARTISTE.IDARTISTE "
+            +   " and PROMOTION_ARTISTE.IDPROMOTION = PROMOTION.IDPROMOTION "
+            +   " and ARTISTE_ALBUM.IDARTISTE = ARTISTE.IDARTISTE "
+            +   " and ARTISTE_ALBUM.IDALBUM = ALBUM.IDALBUM "
+            +   " and ALBUM.IDLABEL = LABEL.IDLABEL "
+            +   " and ALBUM.IDALBUM = ? ";
+            
             PreparedStatement prepStat = connexion.prepareStatement(requeteSQL);
             prepStat.setInt(1, idAlbum);
             ResultSet donnees = prepStat.executeQuery();
             
-            while (donnees.next())
+            if(donnees.next())
             {
+                
                 album.setIdAlbum(donnees.getInt(1));
                 album.setTitre(donnees.getString(2));
                 album.setPrix(donnees.getDouble(3));
@@ -177,13 +183,46 @@ public class AccessDB {
                 album.setArtiste(donnees.getString(5));
                 album.setLabel(donnees.getString(6));
                 album.setLabelImg(donnees.getString(7));
+                album.setPromo(true);
+                album.setPrixPromo(album.getPrix()*(1-(donnees.getDouble(8)/100)));
+                
+                
+                
+            }
+            else
+            {
+
+                requeteSQL = "SELECT Album.idAlbum, Album.titre, Album.prix, Album.image, Artiste.nom, Label.Nom, Label.Image "
+                        + "FROM Album, Artiste_Album, Artiste, Label "
+                        + "WHERE Album.idAlbum = ?"
+                            + " AND Artiste_Album.idAlbum = Album.idAlbum "
+                            + " AND Artiste_Album.idArtiste = Artiste.idArtiste "
+                            + " AND Album.idLabel = Label.idLabel ";
+                prepStat = connexion.prepareStatement(requeteSQL);
+                prepStat.setInt(1, idAlbum);
+                donnees = prepStat.executeQuery();
+
+                while (donnees.next())
+                {
+                    album.setIdAlbum(donnees.getInt(1));
+                    album.setTitre(donnees.getString(2));
+                    album.setPrix(donnees.getDouble(3));
+                    album.setImage(donnees.getString(4));
+                    album.setArtiste(donnees.getString(5));
+                    album.setLabel(donnees.getString(6));
+                    album.setLabelImg(donnees.getString(7));
+                    album.setPromo(false);
+                }
+
+                if (album == null) // Envoi erreur si aucune album
+                {    
+                    throw new ListAlbumException("albumNotExist");
+                }            
+                connexion.close();
             }
             
-            if (album == null) // Envoi erreur si aucune album
-            {    
-                throw new ListAlbumException("albumNotExist");
-            }            
-            connexion.close();
+            return album;
+            
         }
         catch (SQLException e)
         {
@@ -194,7 +233,7 @@ public class AccessDB {
             throw new ListAlbumException("sqlException");
         }
         
-        return album;
+        
     }
     
     public void ajoutUtilisateur(Utilisateur util) throws InscriptionException
@@ -286,11 +325,11 @@ public class AccessDB {
         }
         catch (SQLException e)
         {
-            throw new ListAlbumException("getPromoException");
+            throw new ListAlbumException("sqlException");
         }
         catch (NamingException e) 
         {
-            throw new ListAlbumException("sqlException");
+            throw new ListAlbumException("errorNaming");
         }
         
         return arrayAlbum;
@@ -342,10 +381,10 @@ public class AccessDB {
                         prepStat.setInt(1, album.getIdAlbum());
                         prepStat.setInt(2, idCommande);
                         prepStat.setInt(3, album.getQte());
-                        //if(album.getPromo())
-                       // prepStat.setDouble(4, album.getPrixPromo());
-                        //else
-                        prepStat.setDouble(4, album.getPrix());
+                        if(album.getPromo())
+                            prepStat.setDouble(4, album.getPrixPromo());
+                        else
+                            prepStat.setDouble(4, album.getPrix());
                         
                         prepStat.executeUpdate();
                         
@@ -355,11 +394,11 @@ public class AccessDB {
         }
         catch(SQLException ex)
         {
-            throw new CommandeException(ex.toString());
+            throw new CommandeException("errorSQL");
         }
         catch(NamingException ex)
         {
-            throw new CommandeException(ex.toString());
+            throw new CommandeException("errorNaming");
         }
     }
     

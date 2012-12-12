@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
-    
     <listener>
         <listener-class>packageModel.UtilisateurListener</listener-class>
     </listener>
@@ -40,17 +39,18 @@
         <servlet-name>ServletAjoutPanier</servlet-name>
         <servlet-class>packageController.ServletAjoutPanier</servlet-class>
     </servlet>
-
     <servlet>
         <servlet-name>ServletConfrimerCommande</servlet-name>
         <servlet-class>packageController.ServletConfrimerCommande</servlet-class>
     </servlet>
-
     <servlet>
         <servlet-name>ServletChangeQuantity</servlet-name>
         <servlet-class>packageController.ServletChangeQuantity</servlet-class>
     </servlet>
-
+    <servlet>
+        <servlet-name>ServletCart</servlet-name>
+        <servlet-class>packageController.ServletCart</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletLangue</servlet-name>
         <url-pattern>/ServletLangue</url-pattern>
@@ -87,17 +87,18 @@
         <servlet-name>ServletAjoutPanier</servlet-name>
         <url-pattern>/ServletAjoutPanier</url-pattern>
     </servlet-mapping>
-
     <servlet-mapping>
         <servlet-name>ServletConfrimerCommande</servlet-name>
         <url-pattern>/ConfrimerCommande</url-pattern>
     </servlet-mapping>
-
     <servlet-mapping>
         <servlet-name>ServletChangeQuantity</servlet-name>
         <url-pattern>/changeQuantity</url-pattern>
     </servlet-mapping>
-
+    <servlet-mapping>
+        <servlet-name>ServletCart</servlet-name>
+        <url-pattern>/Cart</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

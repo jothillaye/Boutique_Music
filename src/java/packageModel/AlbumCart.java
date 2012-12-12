@@ -55,14 +55,14 @@ public class AlbumCart extends Album{
     {
        DecimalFormat df = new DecimalFormat("#######.##");
        double tot ;
-       /*if(this.getPromo())
+       if(this.getPromo())
        {
          tot = qte * this.getPrixPromo();
        }
        else
-       {*/
+       {
          tot = qte * this.getPrix();
-       //}                        
+       }                        
        return df.format(tot);
        
     }

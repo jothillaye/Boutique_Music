@@ -6,18 +6,15 @@ package packageController;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Iterator;
+import java.util.Map;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import packageBusiness.Business;
-import packageException.AjoutException;
-import packageException.ListAlbumException;
-import packageModel.Album;
+import packageException.CommandeException;
 import packageModel.AlbumCart;
 import packageModel.Utilisateur;
 
@@ -25,7 +22,7 @@ import packageModel.Utilisateur;
  *
  * @author Emilien
  */
-public class ServletAjoutPanier extends HttpServlet {
+public class ServletCart extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -40,70 +37,38 @@ public class ServletAjoutPanier extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-        
-        int idAlbum = Integer.parseInt(request.getParameter("ID"));
-        int qte = Integer.parseInt(request.getParameter("qte"));
-        HttpSession sess = request.getSession();
-        Utilisateur util = (Utilisateur)sess.getAttribute("user");
-        
-        try
-        {
-              
-            if(qte<1)
+       
+        try {
+            double tot = 0;
+            HttpSession sess = request.getSession();
+            Utilisateur util = (Utilisateur)sess.getAttribute("user");
+            
+            for (Iterator iter = util.getHasmMapPanier().entrySet().iterator(); iter.hasNext();) //Vérification des quantités dans la hashmap
             {
-                throw new AjoutException("errorQte");
-            }
-            Business busi = new Business();
-            Album alb =  busi.getAlbum(idAlbum);
-            // if(alb==null)
-            //{
-                //throw new AjoutException("errorUnknowAlbum");
-            //}
-            //else
-            //{
-                if(util.getHasmMapPanier().containsKey(idAlbum))
-                {
-                    AlbumCart abCart = (AlbumCart)util.getHasmMapPanier().get(idAlbum);
-                    if(abCart.getQte() + qte > 10)
+                    Map.Entry data = (Map.Entry)iter.next();
+                    AlbumCart album = (AlbumCart)data.getValue();
+                    if(album.getQte()<1)
                     {
-                        throw new AjoutException("errorQte");
+                        throw new CommandeException("errorQteCommande");
                     }
                     else
                     {
-                        abCart.setQte(qte + abCart.getQte());
+                        if(album.getPromo())
+                        tot+= album.getQte() * album.getPrixPromo();
+                        else
+                        tot+=album.getQte() * album.getPrix();
                     }
-                }
-                else
-                {
-                    AlbumCart abCart = new AlbumCart(alb,qte);
-                    util.getHasmMapPanier().put(abCart.getIdAlbum(), abCart);
-                }
+                    
                 
-                sess.setAttribute("user",util);
-                RequestDispatcher rd = request.getRequestDispatcher("Cart");
-                rd.forward(request, response);
-           // }                   
-
-        } 
-        catch (ListAlbumException ex) 
-        {
-            //Logger.getLogger(ServletAjoutPanier.class.getName()).log(Level.SEVERE, null, ex);
-                RequestDispatcher rd = request.getRequestDispatcher("erreur.jsp");
-                request.setAttribute("reponse",ex);
+            }
+            RequestDispatcher rd = request.getRequestDispatcher("cart.jsp");
+                request.setAttribute("total",tot);
                 rd.forward(request, response);
         }
-        catch(AjoutException ex)
+        catch(CommandeException ex)
         {
-                RequestDispatcher rd = request.getRequestDispatcher("erreur.jsp");
-                request.setAttribute("reponse",ex);
-                rd.forward(request, response);
             
         }
-
-
-
-        
         
     }
 
