@@ -18,6 +18,7 @@ body {
     line-height: 1.25; 
     
     background: url(./img/background2.jpg) top center no-repeat;
+    background-attachment: fixed;
 }
 #global {
     width: 850px;

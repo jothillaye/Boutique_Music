@@ -5,6 +5,7 @@
 package packageController;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
 import javax.servlet.RequestDispatcher;
@@ -40,6 +41,8 @@ public class ServletChangeQuantity extends HttpServlet {
         HttpSession sess = request.getSession();
         Utilisateur util = (Utilisateur)sess.getAttribute("user");
         
+        ArrayList<Integer> arrayRemove = new ArrayList<Integer>();
+        
         try{
             if(util.getHasmMapPanier().isEmpty())
             {
@@ -58,7 +61,7 @@ public class ServletChangeQuantity extends HttpServlet {
 
                     if(qte == 0)
                     {
-                        util.getHasmMapPanier().remove(idAlbum);
+                        arrayRemove.add(idAlbum);
                     }
                     else
                     {                        
@@ -66,6 +69,10 @@ public class ServletChangeQuantity extends HttpServlet {
                         alb.setQte(qte);
                         entry.setValue(alb);
                     }
+                }
+                for(int i=0; i < arrayRemove.size(); i++)
+                {
+                    util.getHasmMapPanier().remove(arrayRemove.get(i));
                 }
                 
                 RequestDispatcher rd = request.getRequestDispatcher("Cart");
