@@ -51,7 +51,7 @@ public class ServletChangeQuantity extends HttpServlet {
                 {
                     Integer idAlbum = entry.getKey();
                     try{
-                        int qte = Integer.parseInt(request.getParameter("quantity" + idAlbum.toString()));     
+                        Integer qte = Integer.parseInt(request.getParameter("quantity" + idAlbum.toString()));     
                         if(qte < 0) 
                         {
                             throw new ChangeQuantityException("qteInvalid");
