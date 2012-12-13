@@ -119,7 +119,9 @@ public class AccessDB {
                             " (SELECT Promotion_Artiste.idArtiste " +
                             " FROM Album, Artiste_Album, Artiste, Promotion, Promotion_Artiste " +
                             " WHERE " + promoSQL + " ))" +
-                        " END";
+                        " END " +
+                    " ORDER BY Album.idAlbum DESC";
+                    
             PreparedStatement prepStat = connexion.prepareStatement(requeteSQL);
             if(nbAlbum != 0) {
                 prepStat.setMaxRows(nbAlbum);
