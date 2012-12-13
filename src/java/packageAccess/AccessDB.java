@@ -10,7 +10,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import javax.naming.Context;
@@ -62,7 +61,7 @@ public class AccessDB {
                 }
             }    
             
-            connexion.close();
+            
         }
         catch (SQLException e)
         {
@@ -72,6 +71,17 @@ public class AccessDB {
         {
             throw new ConnexionException("sqlException");
         }    
+        finally
+        {
+            try
+            {
+            connexion.close(); 
+            }
+            catch (SQLException e)
+            {
+            throw new ConnexionException("sqlConnexionError");
+            }  
+        }
         return user;
     }
     
@@ -134,7 +144,7 @@ public class AccessDB {
             {    
                 throw new ListAlbumException("emptyListAlbum");
             }            
-            connexion.close();
+            
         }
         catch (SQLException e)
         {
@@ -144,11 +154,23 @@ public class AccessDB {
         {
             throw new ListAlbumException("sqlException");
         }
+        finally
+        {
+            try
+            {
+            connexion.close(); 
+            }
+            catch (SQLException e)
+            {
+                throw new ListAlbumException("sqlConnexionError");
+            }  
+        }
+        
         
         return arrayAlbum;
     }
 
-    public Album getAlbum(int idAlbum) throws ListAlbumException
+    public Album getAlbum(Integer idAlbum) throws ListAlbumException
     {
         Album album = new Album();
         
@@ -218,7 +240,7 @@ public class AccessDB {
                     throw new ListAlbumException("albumNotExist"); // si aucun album trouvé, c'est que l'id n'existe pas
                 }
         
-                connexion.close();
+                
             }
             
             return album;
@@ -231,6 +253,17 @@ public class AccessDB {
         catch (NamingException e) 
         {
             throw new ListAlbumException("sqlException");
+        }
+        finally
+        {
+            try
+            {
+            connexion.close(); 
+            }
+            catch (SQLException e)
+            {
+                throw new ListAlbumException("sqlConnexionError");
+            }  
         }
         
         
@@ -261,7 +294,7 @@ public class AccessDB {
             
             prepStat.executeUpdate();
             
-            connexion.close();
+            
             
         }        
         catch(SQLIntegrityConstraintViolationException ex)
@@ -275,6 +308,17 @@ public class AccessDB {
         catch(NamingException ex)
         {
             throw new InscriptionException("sqlException");
+        }
+        finally
+        {
+            try
+            {
+            connexion.close(); 
+            }
+            catch (SQLException e)
+            {
+                throw new InscriptionException("sqlConnexionError");
+            }  
         }
         
     }
@@ -321,7 +365,7 @@ public class AccessDB {
             {    
                 throw new ListAlbumException("noPromo");
             }            
-            connexion.close();
+            
         }
         catch (SQLException e)
         {
@@ -331,6 +375,17 @@ public class AccessDB {
         {
             throw new ListAlbumException("errorNaming");
         }
+        finally
+        {
+            try
+            {
+            connexion.close(); 
+            }
+            catch (SQLException e)
+            {
+                throw new ListAlbumException("sqlConnexionError");
+            }  
+        }        
         
         return arrayAlbum;
     }
@@ -367,7 +422,7 @@ public class AccessDB {
             ResultSet donnees = prepStat.executeQuery();
             
             donnees.next();
-            int idCommande = donnees.getInt(1);
+            Integer idCommande = donnees.getInt(1);
             
             if(donnees.getInt(2)==util.getIdUtilisateur())
             {
@@ -391,7 +446,7 @@ public class AccessDB {
 
                 }
             }
-            connexion.close();
+            
         }
         catch(SQLException ex)
         {
@@ -401,6 +456,17 @@ public class AccessDB {
         {
             throw new CommandeException("errorNaming");
         }
+        finally
+        {
+            try
+            {
+            connexion.close(); 
+            }
+            catch (SQLException e)
+            {
+                throw new CommandeException("sqlConnexionError");
+            }  
+        }       
     }
     
 }

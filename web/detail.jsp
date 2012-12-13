@@ -17,7 +17,7 @@
     <link rel="stylesheet" type="text/css" href="style/design.css" media="all" />
     <fmt:setBundle basename="packageLangue.lang" scope="session" />
     <c:set var="pagename" scope="request" value="getAlbum?idAlbum=${album.idAlbum}" />
-    <title>MusicStore - <fmt:message key="detailTitle" /></title>	
+<title>MusicStore - <fmt:message key="detailTitle" /></title>	
 </head>
 
 <body>
@@ -72,7 +72,6 @@
                     </p>    
                     <input type="submit" value=" <fmt:message key="addToCartButton"/>" />              
                 </form>
-                
             </div>
         </div>
     </div>    	

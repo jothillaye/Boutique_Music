@@ -113,8 +113,8 @@ public class Business {
         // Continuer les vérifications
         try
         {
-            int num = Integer.parseInt(numero);
-            int cp= Integer.parseInt(codePostal);
+            Integer num = Integer.parseInt(numero);
+            Integer cp= Integer.parseInt(codePostal);
             MessageDigest mdEnc = MessageDigest.getInstance("MD5");
             mdEnc.update(motDePasse.getBytes(),0,motDePasse.length());
             String md5 = new BigInteger(1,mdEnc.digest()).toString(16);
@@ -136,7 +136,7 @@ public class Business {
         return ac.getLastAlbums();
     }
 
-    public Album getAlbum(int idAlbum) throws ListAlbumException
+    public Album getAlbum(Integer idAlbum) throws ListAlbumException
     {
         return ac.getAlbum(idAlbum);
     }

@@ -20,14 +20,14 @@ public class Utilisateur implements Serializable{
     private String mail;
     private String password;
     private String boite;
-    private int numero;
-    private int codepostal;
-    private int idUtilisateur;
+    private Integer numero;
+    private Integer codepostal;
+    private Integer idUtilisateur;
     private String numTel;
     private HashMap<Integer, AlbumCart> hasmMapPanier = new HashMap();
     
     
-    public Utilisateur(String nom,String prenom,String rue,int numero,String boite,String localite,int codePostal, String email,String motDePasse,String numTel)
+    public Utilisateur(String nom,String prenom,String rue,Integer numero,String boite,String localite,Integer codePostal, String email,String motDePasse,String numTel)
     {
         this.setBoite(boite);
         this.setCodepostal(codePostal);
@@ -144,28 +144,28 @@ public class Utilisateur implements Serializable{
     /**
      * @return the numero
      */
-    public int getNumero() {
+    public Integer getNumero() {
         return numero;
     }
 
     /**
      * @param numero the numero to set
      */
-    public void setNumero(int numero) {
+    public void setNumero(Integer numero) {
         this.numero = numero;
     }
 
     /**
      * @return the codepostal
      */
-    public int getCodepostal() {
+    public Integer getCodepostal() {
         return codepostal;
     }
 
     /**
      * @param codepostal the codepostal to set
      */
-    public void setCodepostal(int codepostal) {
+    public void setCodepostal(Integer codepostal) {
         this.codepostal = codepostal;
     }
 
@@ -200,14 +200,14 @@ public class Utilisateur implements Serializable{
     /**
      * @return the idUtilisateur
      */
-    public int getIdUtilisateur() {
+    public Integer getIdUtilisateur() {
         return idUtilisateur;
     }
 
     /**
      * @param idUtilisateur the idUtilisateur to set
      */
-    public void setIdUtilisateur(int idUtilisateur) {
+    public void setIdUtilisateur(Integer idUtilisateur) {
         this.idUtilisateur = idUtilisateur;
     }
 }

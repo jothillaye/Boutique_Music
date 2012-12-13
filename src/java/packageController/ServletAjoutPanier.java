@@ -42,8 +42,8 @@ public class ServletAjoutPanier extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         
-        int idAlbum = Integer.parseInt(request.getParameter("ID"));
-        int qte = Integer.parseInt(request.getParameter("qte"));
+        Integer idAlbum = Integer.parseInt(request.getParameter("ID"));
+        Integer qte = Integer.parseInt(request.getParameter("qte"));
         HttpSession sess = request.getSession();
         Utilisateur util = (Utilisateur)sess.getAttribute("user");
         
@@ -65,7 +65,7 @@ public class ServletAjoutPanier extends HttpServlet {
                 if(util.getHasmMapPanier().containsKey(idAlbum))
                 {
                     AlbumCart abCart = (AlbumCart)util.getHasmMapPanier().get(idAlbum);
-                    if(abCart.getQte() + qte > 10)
+                    if(abCart.getQte() + qte > 100)
                     {
                         throw new AjoutException("errorQte");
                     }

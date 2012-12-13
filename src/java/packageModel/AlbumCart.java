@@ -12,14 +12,14 @@ import java.text.DecimalFormat;
  */
 public class AlbumCart extends Album{
     
-        private int qte;
+        private Integer qte;
         
         public AlbumCart()
         {
         
         }
         
-        public AlbumCart(Album alb,int qte)
+        public AlbumCart(Album alb,Integer qte)
         {
             
             this.setArtiste(alb.getArtiste());
@@ -39,14 +39,14 @@ public class AlbumCart extends Album{
     /**
      * @return the qte
      */
-    public int getQte() {
+    public Integer getQte() {
         return qte;
     }
 
     /**
      * @param qte the qte to set
      */
-    public void setQte(int qte) {
+    public void setQte(Integer qte) {
         this.qte = qte;
     }
 

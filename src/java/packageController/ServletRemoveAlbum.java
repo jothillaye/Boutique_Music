@@ -44,7 +44,7 @@ public class ServletRemoveAlbum extends HttpServlet {
             
             try
             {
-                int idAlbum = Integer.parseInt(request.getParameter("idAlbum"));
+                Integer idAlbum = Integer.parseInt(request.getParameter("idAlbum"));
                 if(util.getHasmMapPanier().containsKey(idAlbum))
                 {
                     util.getHasmMapPanier().remove(idAlbum);

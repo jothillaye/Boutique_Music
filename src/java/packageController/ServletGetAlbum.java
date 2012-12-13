@@ -33,7 +33,7 @@ public class ServletGetAlbum extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        int idAlbum = Integer.parseInt(request.getParameter("idAlbum"));
+        Integer idAlbum = Integer.parseInt(request.getParameter("idAlbum"));
         Business bu = new Business();
         Album album;
         try

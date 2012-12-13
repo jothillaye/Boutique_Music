@@ -285,7 +285,7 @@
                 <span id="span_prenom"> </span><br/>
             <label for="Nom"><fmt:message key="lastName"/></label> <input type="text" name="nom" id="nom" onkeyup="validateNom();  "/> 
                 <span id="span_nom"> </span><br/>
-                <label for="Rue"><fmt:message key="street"/></label> <input type="text" name="rue" id="rue"  onkeyup="validateRue();  "/> 
+                <label for="Rue"><fmt:message key="street"/></label> <input type="text" name="rue" id="rue"  onkeyup="validateRue();"/> 
                 <span id="span_rue"> </span><br/>
             <label for="Numero"><fmt:message key="houseNumber"/></label> <input type="text" name="numero" id="numero" onkeyup="validateNumero();  " /> 
                 <span id="span_numero"> </span><br/>
