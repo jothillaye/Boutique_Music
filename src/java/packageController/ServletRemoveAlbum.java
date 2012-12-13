@@ -40,35 +40,32 @@ public class ServletRemoveAlbum extends HttpServlet {
         Utilisateur util = (Utilisateur)sess.getAttribute("user");  
         
         try
-        {
-            
-            try
+        {            
+            int idAlbum = Integer.parseInt(request.getParameter("idAlbum"));
+            if(util.getHasmMapPanier().containsKey(idAlbum))
             {
-                Integer idAlbum = Integer.parseInt(request.getParameter("idAlbum"));
-                if(util.getHasmMapPanier().containsKey(idAlbum))
-                {
-                    util.getHasmMapPanier().remove(idAlbum);
-                }
-                else
-                {
-                    throw new RemoveAlbumException("albumNoExist");  
-                }
-                
-                RequestDispatcher rd = request.getRequestDispatcher("Cart");
-                rd.forward(request, response);                                       
+                util.getHasmMapPanier().remove(idAlbum);
             }
-            catch(NumberFormatException e)
+            else
             {
                 throw new RemoveAlbumException("albumNoExist");  
             }
+
+            RequestDispatcher rd = request.getRequestDispatcher("Cart");
+            rd.forward(request, response);  
         }
+        catch(NumberFormatException e)
+        {
+            RequestDispatcher rd = request.getRequestDispatcher("Cart");
+            request.setAttribute("message","getAlbumException");
+            rd.forward(request, response);        
+        }    
         catch(RemoveAlbumException e)
         {
             RequestDispatcher rd = request.getRequestDispatcher("Cart");
             request.setAttribute("message",e);
             rd.forward(request, response);        
-        }
-                
+        }                
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -85,7 +85,7 @@ public class AccessDB {
         return user;
     }
     
-    public ArrayList<Album> getLastAlbums() throws ListAlbumException
+    public ArrayList<Album> getLastAlbums(Integer nbAlbum) throws ListAlbumException
     {
         ArrayList<Album> arrayAlbum = new ArrayList<Album>();
         
@@ -121,7 +121,9 @@ public class AccessDB {
                             " WHERE " + promoSQL + " ))" +
                         " END";
             PreparedStatement prepStat = connexion.prepareStatement(requeteSQL);
-            prepStat.setMaxRows(12);
+            if(nbAlbum != 0) {
+                prepStat.setMaxRows(nbAlbum);
+            }
             ResultSet donnees = prepStat.executeQuery();
             
             while (donnees.next())
@@ -134,8 +136,9 @@ public class AccessDB {
                 album.setImage(donnees.getString(3));
                 album.setArtiste(donnees.getString(4));  
                 album.setPrix(donnees.getDouble(5));
-                if(promo)
+                if(promo) {
                     album.setPrixPromo(donnees.getDouble(6));
+                }
                 album.setPromo(promo);
                 arrayAlbum.add(album);
             }
@@ -183,7 +186,7 @@ public class AccessDB {
             String requeteSQL= "select Album.idAlbum, Album.titre, Album.prix, Album.image, Artiste.nom, Label.Nom, Label.Image, PROMOTION.PRCREMISE from ARTISTE, ALBUM, ARTISTE_ALBUM, LABEL, PROMOTION,PROMOTION_ARTISTE "
             +" where "
             +   " PROMOTION.DATEDEB<= CURRENT_DATE "
-            +   " and PROMOTION.DATEFIN>= CURRENT_DATE "
+            +   " and PROMOTION.DATEFIN >= CURRENT_DATE "
             +   " and PROMOTION_ARTISTE.IDARTISTE = ARTISTE.IDARTISTE "
             +   " and PROMOTION_ARTISTE.IDPROMOTION = PROMOTION.IDPROMOTION "
             +   " and ARTISTE_ALBUM.IDARTISTE = ARTISTE.IDARTISTE "

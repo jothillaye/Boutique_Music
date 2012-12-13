@@ -142,7 +142,7 @@
             function validateCodePostal()
             {
                 var codepostal = document.forms["register"]["codepostal"].value;
-                var myTest = new RegExp("^[a-zA-Z0-9]{4,4}","g"); // 2 à 25 caractères
+                var myTest = new RegExp("^[0-9]{4}$","g"); // 2 à 25 caractères
                    if (myTest.test(codepostal)==false || codepostal == "" || codepostal==null)
                     {
                        
@@ -262,11 +262,6 @@
                         return true;
                     }     
             }
-            
-
-            
-            
-
         </script>        
 </head>
 
@@ -275,11 +270,9 @@
 <!-- #global -->
 <div id="global">
     
-    <%@include file="header.jspf" %>
+    <%@include file="header.jspf" %>    
     
-    
-    <div id="contenu">
-        
+    <div id="contenu">         
         <form class="register" name="register" method="post" onsubmit="valider();" action="inscription"><!--action="register"-->                 
             <label for="Prenom"><fmt:message key="firstName"/></label> <input type="text" name="prenom" id="prenom" onkeyup="validatePrenom();" /> 
                 <span id="span_prenom"> </span><br/>

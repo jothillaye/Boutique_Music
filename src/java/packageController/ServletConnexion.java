@@ -48,15 +48,18 @@ public class ServletConnexion extends HttpServlet {
             if(user.getMail() == "")
             {
                 throw new ConnexionException("wrongMail");
-            }        
-            HttpSession session = request.getSession();
-            Utilisateur GuestUtil = (Utilisateur)session.getAttribute("user");
-            user.setHasmMapPanier(GuestUtil.getHasmMapPanier());
-            session.setAttribute("user", user);
-            
-            RequestDispatcher rd = request.getRequestDispatcher(url);
-            request.setAttribute("connexionMsg", "connexionOK");
-            rd.forward(request, response);
+            }
+            else
+            {
+                HttpSession session = request.getSession();
+                Utilisateur GuestUtil = (Utilisateur)session.getAttribute("user");
+                user.setHasmMapPanier(GuestUtil.getHasmMapPanier());
+                session.setAttribute("user", user);
+
+                RequestDispatcher rd = request.getRequestDispatcher(url);
+                request.setAttribute("connexionMsg", "connexionOK");
+                rd.forward(request, response);
+            }
         }
         catch (ConnexionException e)
         {

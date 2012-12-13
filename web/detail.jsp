@@ -24,7 +24,6 @@
 
 <!-- #global -->
 <div id="global">
-
     <%@include file="header.jspf" %>
     
     <div id="contenu">
@@ -45,30 +44,22 @@
                 <div id="option">
                     Options
                 </div>
-                <p><span class="titleBox"><fmt:message key="priceAlbum"/> :</span>
-                    <c:if test="${album.getPromo()}" >
-                        <!--<img alt="" src="./style/img/LogoPromo.png" id="promoLogoDetail" />-->
-                        ${album.getPrixPromoFormat()}
-                    </c:if>
-                    <c:if test="${not album.getPromo()}" >
-                        ${album.getPrixFormat()}
-                    </c:if>
-                </p>            
+                <p><span class="titleBox"><fmt:message key="priceAlbum"/> :</span>${album.getPromo() ? album.getPrixPromoFormat() : album.getPrixFormat()} $</p>            
                 <form name="addToCart" method="post" action="ServletAjoutPanier?ID=${album.getIdAlbum()}">
                     <p>
-                    <span class="titleBox"><fmt:message key="quantityAlbum"/></span>            
-                    <select name="qte" id="qte">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                        <option>6</option>
-                        <option>7</option>
-                        <option>8</option>
-                        <option>9</option>
-                        <option>10</option>
-                    </select>
+                        <span class="titleBox"><fmt:message key="quantityAlbum"/></span>            
+                        <select name="qte" id="qte">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </select>
                     </p>    
                     <input type="submit" value=" <fmt:message key="addToCartButton"/>" />              
                 </form>

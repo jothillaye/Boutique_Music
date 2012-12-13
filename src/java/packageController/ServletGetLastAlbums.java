@@ -38,7 +38,8 @@ public class ServletGetLastAlbums extends HttpServlet {
         ArrayList<Album> arrayAlbum;
         try
         {
-            arrayAlbum = bu.getLastAlbums();
+            Integer nbAlbum = Integer.parseInt(request.getParameter("nbAlbum"));
+            arrayAlbum = bu.getLastAlbums(nbAlbum);
             request.setAttribute("albums", arrayAlbum);
         }
         catch (ListAlbumException e)

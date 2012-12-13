@@ -75,6 +75,7 @@
                 <form action="connexion" method="post" onsubmit="return checkLogin()" name="loginForm">                
                     <input type="hidden" name="url" value="${requestScope.pagename}" />
                     <li class="gauche">
+                        
                         <c:if test="${empty emailMsg}">
                             <input type="text" name="login" id="login" value="email" onclick="this.value=''" size="10"><br />
                         </c:if>

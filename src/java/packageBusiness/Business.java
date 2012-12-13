@@ -84,7 +84,7 @@ public class Business {
             throw new InscriptionException("errorLocality");
         }
         
-        if(Pattern.matches("[0-9]{4,4}",codePostal)==false)
+        if(Pattern.matches("^[0-9]{4}$",codePostal)==false)
         {            
             throw new InscriptionException("errorPostalCode");
         }
@@ -131,9 +131,9 @@ public class Business {
         } 
     } 
     
-    public ArrayList<Album> getLastAlbums() throws ListAlbumException
+    public ArrayList<Album> getLastAlbums(Integer nbAlbum) throws ListAlbumException
     {
-        return ac.getLastAlbums();
+        return ac.getLastAlbums(nbAlbum);
     }
 
     public Album getAlbum(Integer idAlbum) throws ListAlbumException

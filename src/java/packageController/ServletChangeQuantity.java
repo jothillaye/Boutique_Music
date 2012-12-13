@@ -50,40 +50,41 @@ public class ServletChangeQuantity extends HttpServlet {
                 for(Entry<Integer, AlbumCart> entry : util.getHasmMapPanier().entrySet()) 
                 {
                     Integer idAlbum = entry.getKey();
-                    try{
-                        Integer qte = Integer.parseInt(request.getParameter("quantity" + idAlbum.toString()));     
-                        if(qte < 0) 
-                        {
-                            throw new ChangeQuantityException("qteInvalid");
-                        }
-                        
-                        if(qte == 0)
-                        {
-                            util.getHasmMapPanier().remove(idAlbum);
-                        }
-                        else
-                        {                        
-                            AlbumCart alb = entry.getValue();
-                            alb.setQte(qte);
-                            entry.setValue(alb);
-                        }
-                    }
-                    catch(NumberFormatException e)
+                    int qte = Integer.parseInt(request.getParameter("quantity" + idAlbum.toString()));     
+                    if(qte < 0 || qte > 100) 
                     {
-                        throw new ChangeQuantityException("qteInvalid");  
+                        throw new ChangeQuantityException("qteInvalid");
                     }
-                    
-                    RequestDispatcher rd = request.getRequestDispatcher("Cart");
-                    rd.forward(request, response);
+
+                    if(qte == 0)
+                    {
+                        util.getHasmMapPanier().remove(idAlbum);
+                    }
+                    else
+                    {                        
+                        AlbumCart alb = entry.getValue();
+                        alb.setQte(qte);
+                        entry.setValue(alb);
+                    }
                 }
+                
+                RequestDispatcher rd = request.getRequestDispatcher("Cart");
+                rd.forward(request, response);
             }
         }
+        catch(NumberFormatException e)
+        {
+            RequestDispatcher rd = request.getRequestDispatcher("Cart");
+            request.setAttribute("message",e);
+            rd.forward(request, response);   
+        }    
         catch(ChangeQuantityException e)
         {
             RequestDispatcher rd = request.getRequestDispatcher("Cart");
             request.setAttribute("message",e);
             rd.forward(request, response);
         }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
