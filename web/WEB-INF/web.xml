@@ -55,6 +55,10 @@
         <servlet-name>ServletRemoveAlbum</servlet-name>
         <servlet-class>packageController.ServletRemoveAlbum</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletGetCategories</servlet-name>
+        <servlet-class>packageController.ServletGetCategories</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletLangue</servlet-name>
         <url-pattern>/ServletLangue</url-pattern>
@@ -106,6 +110,10 @@
     <servlet-mapping>
         <servlet-name>ServletRemoveAlbum</servlet-name>
         <url-pattern>/removeAlbum</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletGetCategories</servlet-name>
+        <url-pattern>/GetCategories</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

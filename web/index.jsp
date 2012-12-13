@@ -32,6 +32,14 @@
 <div id="contenu">
     <div id="grid">
         <center>
+        
+        <jsp:include page="/GetCategories"></jsp:include>  
+        
+        <c:forEach var="categorie" items="${requestScope.arrayCategories}">
+           - ${categorie.getLibelle()} -
+        </c:forEach>
+                   
+            
         <jsp:include page="/albumPromo"></jsp:include>
         <c:if test="${not empty requestScope.albumsPromo}">
             <p class="titleIndex"><fmt:message key="promo"/></p>
