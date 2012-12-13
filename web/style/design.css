@@ -298,6 +298,10 @@ form.register span {
     color: #FFFFFF;
     background: url(./img/btnSubmit.png) top left no-repeat;
 }
+#promoLogoDetail{
+    position: absolute;
+    width:40px;    
+}
 
 /* Page Cart */
 #tableCart thead, tfoot{
