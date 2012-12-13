@@ -13,14 +13,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import packageBusiness.Business;
-import packageException.ListAlbumException;
-import packageModel.Album;
+import packageException.GenreException;
+import packageModel.Categorie;
 
 /**
  *
  * @author Emilien
  */
-public class ServletGetAlbumPromo extends HttpServlet {
+public class ServletGetCategories extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -35,21 +35,21 @@ public class ServletGetAlbumPromo extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        Business bu = new Business();
-        ArrayList<Album> arrayAlbum;
-        /*try
+        
+        Business bus = new Business();
+        
+        try
         {
-            arrayAlbum = bu.getAlbumPromo();
-            request.setAttribute("albumsPromo", arrayAlbum);
-            if(arrayAlbum.isEmpty() == false)
-                request.setAttribute("artiste", arrayAlbum.get(0).getArtiste());
+            ArrayList<Categorie> cat = bus.getCategories();
+            request.setAttribute("arrayCategories", cat);
         }
-        catch (ListAlbumException e)
+        catch(GenreException ex)
         {
             RequestDispatcher rd = request.getRequestDispatcher("erreur.jsp");
-            request.setAttribute("reponse", e);
+            request.setAttribute("reponse", ex);
             rd.forward(request, response);
-        }*/
+        }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -59,6 +59,10 @@
         <servlet-name>ServletGetCategories</servlet-name>
         <servlet-class>packageController.ServletGetCategories</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletGetAlbumsCategorie</servlet-name>
+        <servlet-class>packageController.ServletGetAlbumsCategorie</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletLangue</servlet-name>
         <url-pattern>/ServletLangue</url-pattern>
@@ -114,6 +118,10 @@
     <servlet-mapping>
         <servlet-name>ServletGetCategories</servlet-name>
         <url-pattern>/GetCategories</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletGetAlbumsCategorie</servlet-name>
+        <url-pattern>/GetAlbumsCategorie</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

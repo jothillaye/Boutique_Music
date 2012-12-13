@@ -15,10 +15,12 @@ import java.util.regex.Pattern;
 import packageAccess.AccessDB;
 import packageException.CommandeException;
 import packageException.ConnexionException;
+import packageException.GenreException;
 import packageException.InscriptionException;
 import packageException.ListAlbumException;
 import packageModel.Album;
 import packageModel.AlbumCart;
+import packageModel.Categorie;
 import packageModel.Utilisateur;
 
 /**
@@ -141,10 +143,10 @@ public class Business {
         return ac.getAlbum(idAlbum);
     }
     
-    public ArrayList<Album> getAlbumPromo() throws ListAlbumException
+   /* public ArrayList<Album> getAlbumPromo() throws ListAlbumException
     {
         return ac.getAlbumPromo();
-    }
+    }*/
     
     public void ConfirmerCommande(Utilisateur util)throws CommandeException
     {
@@ -159,6 +161,11 @@ public class Business {
         }
         ac.ConfirmerCommande(util);
                 
+    }
+    
+    public ArrayList<Categorie> getCategories() throws GenreException
+    {
+       return ac.getCategories();
     }
     
 }

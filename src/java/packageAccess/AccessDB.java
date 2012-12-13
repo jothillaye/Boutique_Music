@@ -18,10 +18,12 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 import packageException.CommandeException;
 import packageException.ConnexionException;
+import packageException.GenreException;
 import packageException.InscriptionException;
 import packageException.ListAlbumException;
 import packageModel.Album;
 import packageModel.AlbumCart;
+import packageModel.Categorie;
 import packageModel.Utilisateur;
 
 /**
@@ -328,7 +330,7 @@ public class AccessDB {
         
     }
     
-    public ArrayList<Album> getAlbumPromo() throws ListAlbumException
+    /*public ArrayList<Album> getAlbumPromo() throws ListAlbumException
     {
         ArrayList<Album> arrayAlbum = new ArrayList<Album>();
         
@@ -393,7 +395,7 @@ public class AccessDB {
         }        
         
         return arrayAlbum;
-    }
+    }*/
     
     
     public void ConfirmerCommande(Utilisateur util)throws CommandeException
@@ -472,6 +474,103 @@ public class AccessDB {
                 throw new CommandeException("sqlConnexionError");
             }  
         }       
+    }
+    
+    
+    public ArrayList<Categorie> getCategories() throws GenreException
+    {
+        try
+        {
+            ArrayList<Categorie> arrCat = new ArrayList<Categorie>();
+            Context ctx = new InitialContext();
+            DataSource source = (DataSource) ctx.lookup("jdbc/MusicStore");
+            connexion = source.getConnection();
+            
+            String requeteSQL= "SELECT * FROM GENRE";
+            
+            PreparedStatement prepStat = connexion.prepareStatement(requeteSQL);           
+            ResultSet donnees = prepStat.executeQuery();
+            
+            while (donnees.next())
+            {
+                Categorie newCat = new Categorie();
+                newCat.setIdCategorie(donnees.getInt(1));
+                newCat.setLibelle(donnees.getString(2));
+                arrCat.add(newCat);
+            }
+            
+            return arrCat;
+        }
+        catch(SQLException ex)
+        {
+            throw new GenreException("errorSQL");
+        }
+        catch(NamingException ex)
+        {
+            throw new GenreException("errorNaming");
+        }
+        finally
+        {
+            try{connexion.close();}
+            catch(SQLException ex)
+            {
+                throw new GenreException("errorSQL");
+            }
+        }
+    }
+    
+    public ArrayList<Album> getAlbumsCategorie(Integer idCat)throws GenreException
+    {
+        try
+        {
+            ArrayList<Album> arrAlb = new ArrayList<Album>();
+            Context ctx = new InitialContext();
+            DataSource source = (DataSource) ctx.lookup("jdbc/MusicStore");
+            connexion = source.getConnection();
+            
+            String requeteSQL= "SELECT ALBUM.IDALBUM,ALBUM.TITRE,ALBUM.IDLABEL,ALBUM.PRIX,ALBUM.IMAGE, ARTISTE.NOM FROM ALBUM,GENREALBUM, ARTISTE "
+                    +" WHERE GENREALBUM.IDGENRE = ? " 
+                    +" AND GENREALBUM.IDALBUM = ALBUM.IDALBUM "
+                    +" AND ARTISTE_ALBUM.IDALBUM = ALBUM.IDALBUM "
+                    +" AND ARTISTE_ALBUM.IDARTISTE = ARTISTE.IDARTISTE;";
+            
+            PreparedStatement prepStat = connexion.prepareStatement(requeteSQL);
+            prepStat.setInt(1,idCat);
+            ResultSet donnees = prepStat.executeQuery();
+            
+            while (donnees.next())
+            {
+                Album newAlb = new Album();
+                
+                newAlb.setIdAlbum(donnees.getInt(1));
+                newAlb.setTitre(donnees.getString(2));
+                newAlb.setLabel(donnees.getString(3));
+                newAlb.setPrix(donnees.getInt(4));
+                newAlb.setImage(donnees.getString(5));
+                newAlb.setArtiste(donnees.getString(6));              
+                
+                
+                arrAlb.add(newAlb);
+            }
+            
+            return arrAlb;
+        }
+        catch(SQLException ex)
+        {
+            throw new GenreException("errorSQL");
+        }
+        catch(NamingException ex)
+        {
+            throw new GenreException("errorNaming");
+        }
+        finally
+        {
+            try{connexion.close();}
+            catch(SQLException ex)
+            {
+                throw new GenreException("errorSQL");
+            }
+        }
     }
     
 }

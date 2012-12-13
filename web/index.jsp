@@ -36,7 +36,7 @@
         <jsp:include page="/GetCategories"></jsp:include>  
         
         <c:forEach var="categorie" items="${requestScope.arrayCategories}">
-           - ${categorie.getLibelle()} -
+           <a href="/GetAlbumsCategorie?id=${categorie.getIdCategorie()}"> ${categorie.getLibelle()} </a>
         </c:forEach>
                    
             

@@ -6,21 +6,17 @@ package packageController;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import packageBusiness.Business;
-import packageException.ListAlbumException;
-import packageModel.Album;
 
 /**
  *
  * @author Emilien
  */
-public class ServletGetAlbumPromo extends HttpServlet {
+public class ServletGetAlbumsCategorie extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -35,21 +31,11 @@ public class ServletGetAlbumPromo extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        Business bu = new Business();
-        ArrayList<Album> arrayAlbum;
-        /*try
-        {
-            arrayAlbum = bu.getAlbumPromo();
-            request.setAttribute("albumsPromo", arrayAlbum);
-            if(arrayAlbum.isEmpty() == false)
-                request.setAttribute("artiste", arrayAlbum.get(0).getArtiste());
-        }
-        catch (ListAlbumException e)
-        {
-            RequestDispatcher rd = request.getRequestDispatcher("erreur.jsp");
-            request.setAttribute("reponse", e);
-            rd.forward(request, response);
-        }*/
+        
+        Integer idCat = Integer.parseInt(request.getParameter("id"));
+        Business bus = new Business;
+        
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
