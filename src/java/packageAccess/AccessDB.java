@@ -131,10 +131,10 @@ public class AccessDB {
             
             
             String requeteSQL = "SELECT Album.IDALBUM, Album.TITRE, Album.IMAGE, Artiste.NOM, Album.PRIX,"
-                                +" CASE WHEN ARTISTE.IDARTISTE = PROMOTION_ARTISTE.IDARTISTE AND PROMOTION.IDPROMOTION = PROMOTION_ARTISTE.IDPROMOTION  THEN TRUE "
+                                +" CASE WHEN EXISTS (SELECT * FROM PROMOTION) AND ARTISTE.IDARTISTE = PROMOTION_ARTISTE.IDARTISTE AND PROMOTION.IDPROMOTION = PROMOTION_ARTISTE.IDPROMOTION  THEN TRUE "
                                 +" ELSE FALSE "
                                 +" END AS PROM,"
-                                +" CASE WHEN ARTISTE.IDARTISTE = PROMOTION_ARTISTE.IDARTISTE AND PROMOTION.IDPROMOTION = PROMOTION_ARTISTE.IDPROMOTION AND PROMOTION.DATEDEB<= CURRENT_DATE AND PROMOTION.DATEFIN >= CURRENT_DATE THEN PROMOTION.PRCREMISE "
+                                +" CASE WHEN EXISTS (SELECT * FROM PROMOTION) AND ARTISTE.IDARTISTE = PROMOTION_ARTISTE.IDARTISTE AND PROMOTION.IDPROMOTION = PROMOTION_ARTISTE.IDPROMOTION AND PROMOTION.DATEDEB<= CURRENT_DATE AND PROMOTION.DATEFIN >= CURRENT_DATE THEN PROMOTION.PRCREMISE "
                                 +" ELSE 0 "
                                 +" END AS PRIXPROMO"
                                 +" FROM ALBUM,ARTISTE,PROMOTION,PROMOTION_ARTISTE,ARTISTE_ALBUM "
@@ -538,7 +538,10 @@ public class AccessDB {
                 newCat.setLibelle(donnees.getString(2));
                 arrCat.add(newCat);
             }
-            
+            if(arrCat.isEmpty())
+            {
+                throw new GenreException("errorGenreNotExist");
+            }
             return arrCat;
         }
         catch(SQLException ex)
@@ -548,6 +551,10 @@ public class AccessDB {
         catch(NamingException ex)
         {
             throw new GenreException("errorNaming");
+        }
+        catch(GenreException ex)
+        {
+            throw new GenreException(ex.toString());
         }
         finally
         {
