@@ -16,6 +16,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
+import packageException.AlbumException;
 import packageException.CommandeException;
 import packageException.ConnexionException;
 import packageException.GenreException;
@@ -641,6 +642,53 @@ public class AccessDB {
             catch(SQLException ex)
             {
                 throw new GenreException("errorSQL");
+            }
+        }
+    }
+    
+    public String getDescAlbum(Integer idAlbum, String langue)throws AlbumException
+    {
+         try
+        {
+            ArrayList<Album> arrAlb = new ArrayList<Album>();
+            Context ctx = new InitialContext();
+            DataSource source = (DataSource) ctx.lookup("jdbc/MusicStore");
+            connexion = source.getConnection();
+
+            String requeteSQL ="select TRADDESCRIPTIFALBUM " +
+                                " from TRADUCTIONALBUM " +
+                                " where IDALBUM = ? AND IDLANGUE=?";
+            
+            PreparedStatement prepStat = connexion.prepareStatement(requeteSQL);
+            prepStat.setInt(1,idAlbum);
+            prepStat.setString(2, langue);
+            ResultSet donnees;
+            donnees = prepStat.executeQuery();
+            
+            String desc="";
+            
+            if(donnees.next())
+            {
+                desc = donnees.getString(1);
+            }
+            
+            return desc;
+        }
+        
+        catch(SQLException ex)
+        {
+            throw new AlbumException(ex.toString());
+        }
+        catch(NamingException ex)
+        {
+            throw new AlbumException("errorNaming");
+        }
+        finally
+        {
+            try{connexion.close();}
+            catch(SQLException ex)
+            {
+                throw new AlbumException("errorSQL");
             }
         }
     }

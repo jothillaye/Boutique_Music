@@ -13,6 +13,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.regex.Pattern;
 import packageAccess.AccessDB;
+import packageException.AlbumException;
 import packageException.CommandeException;
 import packageException.ConnexionException;
 import packageException.GenreException;
@@ -171,6 +172,11 @@ public class Business {
     public ArrayList<Album> getAlbumsCategorie(Integer idCat)throws GenreException
     {
         return ac.getAlbumsCategorie(idCat);
+    }
+    
+    public String getDescAlbum(Integer idAlbum, String langue)throws AlbumException
+    {
+        return ac.getDescAlbum(idAlbum, langue);
     }
     
     

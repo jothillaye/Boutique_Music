@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import packageBusiness.Business;
+import packageException.AlbumException;
 import packageException.ListAlbumException;
 import packageModel.Album;
 
@@ -39,7 +40,9 @@ public class ServletGetAlbum extends HttpServlet {
         try
         {
             album = bu.getAlbum(idAlbum);
+            String desc = bu.getDescAlbum(idAlbum,"en");
             request.setAttribute("album", album);
+            request.setAttribute("desc", desc);
             RequestDispatcher rd = request.getRequestDispatcher("detail.jsp");
             rd.forward(request, response);
         }
@@ -48,7 +51,13 @@ public class ServletGetAlbum extends HttpServlet {
             RequestDispatcher rd = request.getRequestDispatcher("erreur.jsp");
             request.setAttribute("reponse", e);
             rd.forward(request, response);
-        }    
+        }
+        catch (AlbumException e)
+        {
+            RequestDispatcher rd = request.getRequestDispatcher("erreur.jsp");
+            request.setAttribute("reponse", e);
+            rd.forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
