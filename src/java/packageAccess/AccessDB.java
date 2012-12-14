@@ -97,7 +97,7 @@ public class AccessDB {
             DataSource source = (DataSource) ctx.lookup("jdbc/MusicStore");
             connexion = source.getConnection();
             
-            /*String promoSQL = " (Artiste_Album.idAlbum = Album.idAlbum AND " +
+            String promoSQL = " (Artiste_Album.idAlbum = Album.idAlbum AND " +
                 " Artiste_Album.idArtiste = Artiste.idArtiste AND " +
                 " Promotion_Artiste.idArtiste = Artiste.idArtiste AND " +
                 " Promotion_Artiste.idPromotion = Promotion.idPromotion AND " +
@@ -127,22 +127,24 @@ public class AccessDB {
             PreparedStatement prepStat = connexion.prepareStatement(requeteSQL);
             if(nbAlbum != 0) {
                 prepStat.setMaxRows(nbAlbum);
-            }*/
+            }
             
             
-            String requeteSQL = "SELECT Album.IDALBUM, Album.TITRE, Album.IMAGE, Artiste.NOM, Album.PRIX,"
-                                +" CASE WHEN EXISTS (SELECT * FROM PROMOTION) AND ARTISTE.IDARTISTE = PROMOTION_ARTISTE.IDARTISTE AND PROMOTION.IDPROMOTION = PROMOTION_ARTISTE.IDPROMOTION  THEN TRUE "
-                                +" ELSE FALSE "
-                                +" END AS PROM,"
-                                +" CASE WHEN EXISTS (SELECT * FROM PROMOTION) AND ARTISTE.IDARTISTE = PROMOTION_ARTISTE.IDARTISTE AND PROMOTION.IDPROMOTION = PROMOTION_ARTISTE.IDPROMOTION AND PROMOTION.DATEDEB<= CURRENT_DATE AND PROMOTION.DATEFIN >= CURRENT_DATE THEN PROMOTION.PRCREMISE "
-                                +" ELSE 0 "
-                                +" END AS PRIXPROMO"
-                                +" FROM ALBUM,ARTISTE,PROMOTION,PROMOTION_ARTISTE,ARTISTE_ALBUM "
-                                +" WHERE ALBUM.IDALBUM = ARTISTE_ALBUM.IDALBUM AND ARTISTE_ALBUM.IDARTISTE = ARTISTE.IDARTISTE "
-                                +" ORDER BY Album.idAlbum DESC";
+            //String requeteSQL;
+            /*requeteSQL = "SELECT Album.IDALBUM, Album.TITRE, Album.IMAGE, Artiste.NOM, Album.PRIX,"
+                         +" CASE WHEN ARTISTE.IDARTISTE = PROMOTION_ARTISTE.IDARTISTE AND PROMOTION.IDPROMOTION = PROMOTION_ARTISTE.IDPROMOTION  THEN TRUE "
+                         +" ELSE FALSE "
+                         +" END AS PROM,"
+                         +" CASE WHEN ARTISTE.IDARTISTE = PROMOTION_ARTISTE.IDARTISTE AND PROMOTION.IDPROMOTION = PROMOTION_ARTISTE.IDPROMOTION AND PROMOTION.DATEDEB<= CURRENT_DATE AND PROMOTION.DATEFIN >= CURRENT_DATE THEN PROMOTION.PRCREMISE "
+                         +" ELSE 0 "
+                         +" END AS PRIXPROMO"
+                         +" FROM ALBUM,ARTISTE,ARTISTE_ALBUM "
+                         +" INNER JOIN PROMOTION,PROMOTION_ARTISTE "
+                         +" WHERE ALBUM.IDALBUM = ARTISTE_ALBUM.IDALBUM AND ARTISTE_ALBUM.IDARTISTE = ARTISTE.IDARTISTE"
+                         +" ORDER BY Album.idAlbum DESC ";
+            */
             
-            
-            PreparedStatement prepStat = connexion.prepareStatement(requeteSQL);
+            /*PreparedStatement */prepStat = connexion.prepareStatement(requeteSQL);
             if(nbAlbum != 0) {
                 prepStat.setMaxRows(nbAlbum);
             }
