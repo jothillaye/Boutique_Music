@@ -168,4 +168,10 @@ public class Business {
        return ac.getCategories();
     }
     
+    public ArrayList<Album> getAlbumsCategorie(Integer idCat)throws GenreException
+    {
+        return ac.getAlbumsCategorie(idCat);
+    }
+    
+    
 }

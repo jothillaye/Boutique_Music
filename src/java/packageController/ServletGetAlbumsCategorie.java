@@ -6,11 +6,15 @@ package packageController;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import packageBusiness.Business;
+import packageException.GenreException;
+import packageModel.Album;
 
 /**
  *
@@ -32,8 +36,24 @@ public class ServletGetAlbumsCategorie extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        Integer idCat = Integer.parseInt(request.getParameter("id"));
-        Business bus = new Business;
+        
+        Business bus = new Business();
+        
+        try
+        {
+            Integer idCat = Integer.parseInt(request.getParameter("id"));
+            ArrayList<Album> listAlbum = bus.getAlbumsCategorie(idCat);           
+            RequestDispatcher rd = request.getRequestDispatcher("categorie.jsp");
+            request.setAttribute("albums", listAlbum);            
+            rd.forward(request, response);
+    
+        }
+        catch(GenreException ex)
+        {
+            RequestDispatcher rd = request.getRequestDispatcher("erreur.jsp");
+            request.setAttribute("reponse", ex);            
+            rd.forward(request, response);
+        }
         
         
     }

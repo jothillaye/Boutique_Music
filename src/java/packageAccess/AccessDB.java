@@ -528,11 +528,11 @@ public class AccessDB {
             DataSource source = (DataSource) ctx.lookup("jdbc/MusicStore");
             connexion = source.getConnection();
             
-            String requeteSQL= "SELECT ALBUM.IDALBUM,ALBUM.TITRE,ALBUM.IDLABEL,ALBUM.PRIX,ALBUM.IMAGE, ARTISTE.NOM FROM ALBUM,GENREALBUM, ARTISTE "
+            String requeteSQL= "SELECT ALBUM.IDALBUM,ALBUM.TITRE,ALBUM.IDLABEL,ALBUM.PRIX,ALBUM.IMAGE, ARTISTE.NOM FROM ALBUM,GENREALBUM, ARTISTE, Artiste_Album "
                     +" WHERE GENREALBUM.IDGENRE = ? " 
                     +" AND GENREALBUM.IDALBUM = ALBUM.IDALBUM "
-                    +" AND ARTISTE_ALBUM.IDALBUM = ALBUM.IDALBUM "
-                    +" AND ARTISTE_ALBUM.IDARTISTE = ARTISTE.IDARTISTE;";
+                    +" AND Artiste_Album.idAlbum = ALBUM.IDALBUM "
+                    +" AND ARTISTE_ALBUM.IDARTISTE = ARTISTE.IDARTISTE";
             
             PreparedStatement prepStat = connexion.prepareStatement(requeteSQL);
             prepStat.setInt(1,idCat);
@@ -545,10 +545,11 @@ public class AccessDB {
                 newAlb.setIdAlbum(donnees.getInt(1));
                 newAlb.setTitre(donnees.getString(2));
                 newAlb.setLabel(donnees.getString(3));
-                newAlb.setPrix(donnees.getInt(4));
+                newAlb.setPrix(donnees.getDouble(4));
                 newAlb.setImage(donnees.getString(5));
                 newAlb.setArtiste(donnees.getString(6));              
-                
+                newAlb.setPromo(false);
+                //Pour le moment ... setAlbum(false)
                 
                 arrAlb.add(newAlb);
             }
@@ -557,7 +558,7 @@ public class AccessDB {
         }
         catch(SQLException ex)
         {
-            throw new GenreException("errorSQL");
+            throw new GenreException(ex.toString());
         }
         catch(NamingException ex)
         {

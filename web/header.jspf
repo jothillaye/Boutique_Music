@@ -106,6 +106,14 @@
         <li class="droite"><a href="account.jps"><fmt:message key="myAccount"/></a></li>
         <li class="droite"><a href="info.jsp"><fmt:message key="info"/></a></li>
     </ul>
+    <!--Categories !!! -->
+    Categories <p>
+            <jsp:include page="/GetCategories"></jsp:include>  
+        
+        <c:forEach var="categorie" items="${requestScope.arrayCategories}">
+           <a href="GetAlbumsCategorie?id=${categorie.getIdCategorie()}"> ${categorie.getLibelle()}   </a>
+        </c:forEach>
+    <!-- Categories !!! -->
 </div>
     
 </body>

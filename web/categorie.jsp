@@ -1,9 +1,8 @@
 <%-- 
-    Document   : index
-    Created on : 8 nov. 2012, 15:26:25
-    Author     : BAVAY Emilien - THILLAYE Joachim
+    Document   : categorie
+    Created on : 14 déc. 2012, 09:13:02
+    Author     : Emilien
 --%>
-<%-- any content can be specified here e.g.: --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -17,7 +16,7 @@
         <link rel="stylesheet" type="text/css" href="style/design.css" media="all" />
         <fmt:setBundle basename="packageLangue.lang" scope="session"/>
         <c:set var="pagename" scope="request" value="index.jsp" />        
-        <title>MusicStore - <fmt:message key="indexTitle"/></title>
+        <title>MusicStore - <fmt:message key="categorieTitle"/></title>
     </head>
 
 <body>
@@ -31,20 +30,9 @@
 <!-- #contenu -->
 <div id="contenu">
     <div id="grid">
-        <center>                       
-            
-        <jsp:include page="/albumPromo"></jsp:include>
-        <c:if test="${not empty requestScope.albumsPromo}">
-            <p class="titleIndex"><fmt:message key="promo"/></p>
-            <p class="titleIndex"><b><u>${artiste}</u></b></p>
-            <c:forEach var="albumPromo" items="${requestScope.albumsPromo}">
-                <h4><a class="linkAlbumPromo" href="getAlbum?idAlbum=${albumPromo.idAlbum}">- ${albumPromo.titre}</a></h4>
-            </c:forEach><br />
-        </c:if>
-        
-        <p class="titleIndex"><fmt:message key="nouvAjout"/></p>
-        <jsp:include page="/albums?nbAlbum=8"></jsp:include>        
-        <c:forEach var="album" items="${requestScope.albums}">
+        <center>
+              
+        <c:forEach var="album" items="${albums}">
             <div class="grid_element">
                 <c:if test="${album.promo}">
                     <img alt="" src="./style/img/LogoPromo.png" class="promoLogo" />
@@ -63,7 +51,6 @@
             </div>                           
         </c:forEach>
         </center>
-        <a href="listing.jsp">Listing</a>
     </div>
 </div>
 
@@ -73,3 +60,4 @@
 
 </body>
 </html>
+
