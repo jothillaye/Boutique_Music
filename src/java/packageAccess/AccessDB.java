@@ -256,16 +256,21 @@ public class AccessDB {
                 prepStat.setInt(1, idAlbum);
                 donnees = prepStat.executeQuery();
                 */
+            
+
+                
+            
                 String requeteSQL = "SELECT Album.idAlbum, Album.titre, Album.prix, Album.image, Artiste.nom, Label.Nom, Label.Image,"
-                                +" CASE WHEN ARTISTE.IDARTISTE = PROMOTION_ARTISTE.IDARTISTE AND PROMOTION.IDPROMOTION = PROMOTION_ARTISTE.IDPROMOTION  THEN TRUE "
-                                +" ELSE FALSE "
-                                +" END AS PROM,"
-                                +" CASE WHEN ARTISTE.IDARTISTE = PROMOTION_ARTISTE.IDARTISTE AND PROMOTION.IDPROMOTION = PROMOTION_ARTISTE.IDPROMOTION AND PROMOTION.DATEDEB<= CURRENT_DATE AND PROMOTION.DATEFIN >= CURRENT_DATE THEN PROMOTION.PRCREMISE "
-                                +" ELSE 0 "
-                                +" END AS PRIXPROMO"
+                                +  " CASE WHEN Promotion_Artiste.idArtiste = Artiste.idArtiste THEN true "
+                                +  " ELSE false "
+                                + "END, "
+                                + "  CASE WHEN Promotion_Artiste.idArtiste = Artiste.idArtiste THEN (Album.Prix - (Album.Prix * Promotion.prcremise * 0.01))"
+                                + "          ELSE Album.Prix"
+                                +"   END"
                                 +" FROM ALBUM,ARTISTE,PROMOTION,PROMOTION_ARTISTE,ARTISTE_ALBUM,LABEL"
                                 +" WHERE ALBUM.IDALBUM = ARTISTE_ALBUM.IDALBUM AND ARTISTE_ALBUM.IDARTISTE = ARTISTE.IDARTISTE "
-                                +" AND ALBUM.IDALBUM = ? AND LABEL.IDLABEL=ALBUM.IDLABEL";
+                                +" AND ALBUM.IDALBUM = ? AND LABEL.IDLABEL=ALBUM.IDLABEL"
+                                +" AND Promotion_Artiste.idPromotion = Promotion.idPromotion AND Promotion.datedeb <= current_date AND Promotion.datefin >= current_date";
                 
                 PreparedStatement prepStat = connexion.prepareStatement(requeteSQL);
                 prepStat.setInt(1, idAlbum);
@@ -585,19 +590,21 @@ public class AccessDB {
                     +" AND ARTISTE_ALBUM.IDARTISTE = ARTISTE.IDARTISTE"
                     ;*/
             String requeteSQL ="SELECT Album.IDALBUM, Album.TITRE, Album.IMAGE, Artiste.NOM, Album.PRIX,"
-                                +" CASE WHEN ARTISTE.IDARTISTE = PROMOTION_ARTISTE.IDARTISTE AND PROMOTION.IDPROMOTION = PROMOTION_ARTISTE.IDPROMOTION  THEN TRUE "
-                                +" ELSE FALSE "
-                                +" END AS PROM,"
-                                +" CASE WHEN ARTISTE.IDARTISTE = PROMOTION_ARTISTE.IDARTISTE AND PROMOTION.IDPROMOTION = PROMOTION_ARTISTE.IDPROMOTION AND PROMOTION.DATEDEB<= CURRENT_DATE AND PROMOTION.DATEFIN >= CURRENT_DATE THEN PROMOTION.PRCREMISE "
-                                +" ELSE 0 "
-                                +" END AS PRIXPROMO"
+                                +  " CASE WHEN Promotion_Artiste.idArtiste = Artiste.idArtiste THEN true "
+                                +  " ELSE false "
+                                + "END, "
+                                + "  CASE WHEN Promotion_Artiste.idArtiste = Artiste.idArtiste THEN (Album.Prix - (Album.Prix * Promotion.prcremise * 0.01))"
+                                + "          ELSE Album.Prix"
+                                +"   END"
                                 +" FROM ALBUM,ARTISTE,PROMOTION,PROMOTION_ARTISTE,ARTISTE_ALBUM,GENREALBUM "
                                 +" WHERE ALBUM.IDALBUM = ARTISTE_ALBUM.IDALBUM AND ARTISTE_ALBUM.IDARTISTE = ARTISTE.IDARTISTE "
-                                +" AND GENREALBUM.IDALBUM = ALBUM.IDALBUM AND GENREALBUM.IDGENRE = ?";
+                                +" AND GENREALBUM.IDALBUM = ALBUM.IDALBUM AND GENREALBUM.IDGENRE = ?" 
+                                + "AND Promotion_Artiste.idPromotion = Promotion.idPromotion AND Promotion.datedeb <= current_date AND Promotion.datefin >= current_date";
             
             PreparedStatement prepStat = connexion.prepareStatement(requeteSQL);
             prepStat.setInt(1,idCat);
-            ResultSet donnees = prepStat.executeQuery();
+            ResultSet donnees;
+            donnees = prepStat.executeQuery();
             
             while (donnees.next())
             {
@@ -619,6 +626,7 @@ public class AccessDB {
             
             return arrAlb;
         }
+        
         catch(SQLException ex)
         {
             throw new GenreException(ex.toString());
