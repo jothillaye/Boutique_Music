@@ -98,20 +98,20 @@ public class AccessDB {
             DataSource source = (DataSource) ctx.lookup("jdbc/MusicStore");
             connexion = source.getConnection();
             
-            /*String promoSQL = " (Artiste_Album.idAlbum = Album.idAlbum AND " +
+            String promoSQL = " (Artiste_Album.idAlbum = Album.idAlbum AND " +
                 " Artiste_Album.idArtiste = Artiste.idArtiste AND " +
                 " Promotion_Artiste.idArtiste = Artiste.idArtiste AND " +
                 " Promotion_Artiste.idPromotion = Promotion.idPromotion AND " +
                 " Promotion.datedeb <= current_date AND Promotion.datefin >= current_date) ";
             
             String requeteSQL = "SELECT DISTINCT Album.idAlbum, Album.titre, Album.image, Artiste.nom, Album.Prix, " +
+                 " CASE WHEN " + promoSQL +
+                    " THEN true " +
+                    " ELSE false " +
+                " END, " +                    
                 " CASE WHEN " + promoSQL +
                     " THEN (Album.Prix - (Album.Prix * Promotion.prcremise * 0.01)) " +
                     " ELSE Album.Prix " +
-                " END, " +
-                " CASE WHEN " + promoSQL +
-                    " THEN true " +
-                    " ELSE false " +
                 " END " +
                 " FROM Album, Artiste_Album, Artiste, Promotion, Promotion_Artiste " +
                 " WHERE " +
@@ -124,15 +124,10 @@ public class AccessDB {
                             " WHERE " + promoSQL + " ))" +
                         " END " +
                     " ORDER BY Album.idAlbum DESC";
-                    
-            PreparedStatement prepStat = connexion.prepareStatement(requeteSQL);
-            if(nbAlbum != 0) {
-                prepStat.setMaxRows(nbAlbum);
-            }*/
             
             
             
-            String requeteSQL = "SELECT Album.idAlbum, Album.titre, Album.image, Artiste.nom, Album.Prix, "
+            /*String requeteSQL = "SELECT DISTINCT Album.idAlbum, Album.titre, Album.image, Artiste.nom, Album.Prix, "
                  +  " CASE WHEN Promotion_Artiste.idArtiste = Artiste.idArtiste THEN true "
                  +  " ELSE false "
                  + "END, "
@@ -144,17 +139,16 @@ public class AccessDB {
                 + "WHERE Artiste_Album.idAlbum = Album.idAlbum AND Artiste_Album.idArtiste = Artiste.idArtiste "
                 + "AND Promotion_Artiste.idPromotion = Promotion.idPromotion AND Promotion.datedeb <= current_date AND Promotion.datefin >= current_date"
                 + " ORDER BY album.idalbum DESC"   ;
-            
+            */
             
             PreparedStatement prepStat = connexion.prepareStatement(requeteSQL);
             if(nbAlbum != 0) {
                 prepStat.setMaxRows(nbAlbum);
             }
-            ResultSet donnees = prepStat.executeQuery();         
             
             
             
-            
+            ResultSet donnees = prepStat.executeQuery();   
             while (donnees.next())
             {
                 
@@ -167,7 +161,7 @@ public class AccessDB {
                 album.setPromo(donnees.getBoolean(6));
                 if(donnees.getBoolean(6))
                 {
-                    album.setPrixPromo(album.getPrix()*(1-(donnees.getDouble(7)/100)));
+                    album.setPrixPromo(donnees.getDouble(7) );
                 }
 
                 arrayAlbum.add(album);
