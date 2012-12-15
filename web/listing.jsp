@@ -43,7 +43,7 @@
                 </a>
                 <span class="album-name">${album.titre}</span><span class="album-artist">${album.artiste}</span>
                 <c:if test="${album.promo}">
-                    <span class="pricePromo-box">$${album.getPrixFormat()}</span>
+                    <span class="pricePromo-box">$${album.prix}</span>
                     <span class="price-box">$${album.getPrixPromoFormat()}</span>
                 </c:if>
                 <c:if test="${!album.promo}">

@@ -43,10 +43,10 @@
                     Options
                 </div>
                 <div>
-                    <c:if test="${album.getPromo()}"><img id="promoLogoDetail" alt="" src="./style/img/LogoPromo.png" /></c:if>
-                    <p><span class="titleBox"><fmt:message key="priceAlbum"/> :</span> ${album.getPromo() ? album.getPrixPromoFormat() : album.getPrixFormat()} $</p>            
+                    <c:if test="${album.promo}"><img id="promoLogoDetail" alt="" src="./style/img/LogoPromo.png" /></c:if>
+                    <p><span class="titleBox"><fmt:message key="priceAlbum"/> :</span> ${album.getPromo() ? album.getPrixPromoFormat() : album.prix} $</p>            
                 </div>
-                <form name="addToCart" method="post" action="ServletAjoutPanier?ID=${album.getIdAlbum()}">
+                <form name="addToCart" method="post" action="ServletAjoutPanier?ID=${album.idAlbum}">
                     <p>
                         <span class="titleBox"><fmt:message key="quantityAlbum"/></span>            
                         <select name="qte" id="qteBox">
