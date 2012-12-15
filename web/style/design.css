@@ -207,12 +207,12 @@ body {
     font-family: 'Trebuchet MS', Verdana, Arial, Helvetica, san-serif;
     text-transform: uppercase;
 }
-.linkAlbumPromo {
-    text-decoration: none;
+#promoBox {
+    border: 1px dotted tomato;   
     font-family: 'Trebuchet MS', Verdana, Arial, Helvetica, san-serif;
     color: tomato;
+    padding:3px;
 }
-
 /* Formulaire d'enregistrement */
 form.register{
     padding-left:10px;

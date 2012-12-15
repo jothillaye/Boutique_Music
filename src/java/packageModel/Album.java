@@ -11,7 +11,7 @@ import java.text.DecimalFormat;
  * @author BAVAY Emilien - THILLAYE Joachim
  */
 public class Album implements Serializable{
-    private Integer idAlbum;
+    private Integer idAlbum, prcRemise;
     private String titre, image, artiste, label, labelImg;
     private double prix, prixPromo;
     private Boolean promo;
@@ -49,6 +49,7 @@ public class Album implements Serializable{
     public String getLabel() {return label;}
     public String getLabelImg() {return labelImg;}
     public Boolean getPromo() {return promo;}
+    public Integer getPrcRemise() {return prcRemise;}
     
     // Setters
     public void setIdAlbum(Integer idAlbum) {this.idAlbum = idAlbum;}
@@ -60,5 +61,6 @@ public class Album implements Serializable{
     public void setLabel(String label) {this.label = label;}
     public void setLabelImg(String labelImg) {this.labelImg = labelImg;}
     public void setPromo(Boolean promo) {this.promo = promo;}
+    public void setPrcRemise(Integer prcRemise) {this.prcRemise = prcRemise;}
     
 }

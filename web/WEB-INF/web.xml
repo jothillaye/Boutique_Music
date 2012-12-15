@@ -28,8 +28,8 @@
         <servlet-class>packageController.ServletPromotions</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ServletGetAlbumPromo</servlet-name>
-        <servlet-class>packageController.ServletGetAlbumPromo</servlet-class>
+        <servlet-name>ServletGetArtistePromo</servlet-name>
+        <servlet-class>packageController.ServletGetArtistePromo</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ServletDeconnexion</servlet-name>
@@ -92,8 +92,8 @@
         <url-pattern>/ServletPromotions</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ServletGetAlbumPromo</servlet-name>
-        <url-pattern>/albumPromo</url-pattern>
+        <servlet-name>ServletGetArtistePromo</servlet-name>
+        <url-pattern>/artistePromo</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ServletDeconnexion</servlet-name>

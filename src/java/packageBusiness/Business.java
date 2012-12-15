@@ -144,10 +144,10 @@ public class Business {
         return ac.getAlbum(idAlbum);
     }
     
-   /* public ArrayList<Album> getAlbumPromo() throws ListAlbumException
+    public Album getArtistePromo() throws ListAlbumException
     {
-        return ac.getAlbumPromo();
-    }*/
+        return ac.getArtistePromo();
+    }
     
     public void ConfirmerCommande(Utilisateur util)throws CommandeException
     {

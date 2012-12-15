@@ -5,8 +5,6 @@
 package packageController;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -20,7 +18,7 @@ import packageModel.Album;
  *
  * @author Emilien
  */
-public class ServletGetAlbumPromo extends HttpServlet {
+public class ServletGetArtistePromo extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -36,20 +34,19 @@ public class ServletGetAlbumPromo extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         Business bu = new Business();
-        ArrayList<Album> arrayAlbum;
-        /*try
+        Album album;
+        try
         {
-            arrayAlbum = bu.getAlbumPromo();
-            request.setAttribute("albumsPromo", arrayAlbum);
-            if(arrayAlbum.isEmpty() == false)
-                request.setAttribute("artiste", arrayAlbum.get(0).getArtiste());
+            album = bu.getArtistePromo();
+            request.setAttribute("artistePromo", album.getArtiste());
+            request.setAttribute("prcPromo", album.getPrcRemise());
         }
         catch (ListAlbumException e)
         {
             RequestDispatcher rd = request.getRequestDispatcher("erreur.jsp");
             request.setAttribute("reponse", e);
             rd.forward(request, response);
-        }*/
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
