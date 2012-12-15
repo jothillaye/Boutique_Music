@@ -42,8 +42,9 @@ public class ServletGetAlbumsArtiste extends HttpServlet {
         {
             Integer idAlbum = Integer.parseInt(request.getParameter("id"));
             ArrayList<Album> album = bu.getAlbumsArtiste(idAlbum);
-            request.setAttribute("album", album);
             RequestDispatcher rd = request.getRequestDispatcher("artiste.jsp");          
+            request.setAttribute("album", album);
+            request.setAttribute("idArtiste", album.get(0).getIdArtiste());
             rd.forward(request, response);    
             
         }

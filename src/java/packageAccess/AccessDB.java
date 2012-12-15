@@ -595,7 +595,7 @@ public class AccessDB {
             DataSource source = (DataSource) ctx.lookup("jdbc/MusicStore");
             connexion = source.getConnection();
             
-            String requeteSQL ="SELECT Album.IDALBUM, Album.TITRE, Album.IMAGE, Artiste.NOM, Album.PRIX,"
+            String requeteSQL ="SELECT Album.IDALBUM, Album.TITRE, Album.IMAGE, Artiste.NOM, Album.PRIX, Artiste.idArtiste, "
                                 + " CASE WHEN Promotion_Artiste.idArtiste = Artiste.idArtiste "
                                 + "     THEN true "
                                 + "     ELSE false "
@@ -622,8 +622,9 @@ public class AccessDB {
                 album.setImage(donnees.getString(3));
                 album.setArtiste(donnees.getString(4));  
                 album.setPrix(donnees.getDouble(5));
-                album.setPromo(donnees.getBoolean(6));
-                album.setPrixPromo(donnees.getDouble(7));
+                album.setIdArtiste(donnees.getInt(6));
+                album.setPromo(donnees.getBoolean(7));
+                album.setPrixPromo(donnees.getDouble(8));
                 
                 arrAlb.add(album);
             }
