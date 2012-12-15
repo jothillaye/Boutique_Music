@@ -111,6 +111,7 @@
         <c:forEach var="categorie" items="${requestScope.arrayCategories}">
             <a href="GetAlbumsCategorie?id=${categorie.getIdCategorie()}"> ${categorie.getLibelle()}</a>
         </c:forEach>
+        <a href="listing.jsp"><fmt:message key="toutArt"/></a>
     <!-- Categories !!! -->
 </div>
     

@@ -17,7 +17,7 @@
 	<link rel="stylesheet" type="text/css" href="style/design.css" media="all" />
         <fmt:setBundle basename="packageLangue.lang" scope="session"/>
         <c:set var="pagename" scope="request" value="confirmation.jsp" />
-	<title>MusicStore - <fmt:message key="cartTitle"/></title>
+	<title>MusicStore - <fmt:message key="commande"/></title>
         
 </head>
 

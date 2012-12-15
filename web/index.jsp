@@ -58,7 +58,7 @@
             </div>                           
         </c:forEach>
         </center>
-        <a href="listing.jsp">Listing</a>
+        
     </div>
 </div>
 
