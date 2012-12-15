@@ -26,7 +26,8 @@
 <!-- #global -->
 <div id="global">
     
-    <%@include file="header.jspf" %>    
+    <%@include file="header.jspf" %> 
+    <jsp:include page="/Cart"></jsp:include>  
     <jsp:include page="/Confirmation"></jsp:include>
     <div id="contenu">
         <c:if test="${not empty sessionScope.user.hasmMapPanier}">
