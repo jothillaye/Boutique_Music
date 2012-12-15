@@ -294,6 +294,8 @@
                 <span id="span_pw"> </span><br/>
                 <label for="Confirmation"><fmt:message key="passConfirm"/></label> <input type="password" name="pwconfirm" id="pwconfirm" onkeyup="validateSamePw(); "/> 
                 <span id="span_pwconfirm"> </span><br/>
+                <br/>
+                <fmt:message key="facult"/><br/>
                 
             <input type="submit"  value="<fmt:message key="buttonSubmit"/>" id="submitForm"  />
         </form>
