@@ -59,8 +59,11 @@
         <a href="ServletLangue?lang=en&pagename=${requestScope.pagename}"><img alt="" src="./style/img/lang/flag_en.png" width="16" /></a>
     </div>
     <a href="index.jsp"><img alt="" src="./style/img/page_title.png" width="400" /></a>
+    
     <p class="sous-titre">
-        <fmt:message key="notRegisteredMsg"/> <strong><a href="register.jsp"><fmt:message key="registerLink"/></a></strong>
+        <c:if test="${empty sessionScope.user.mail}">
+            <fmt:message key="notRegisteredMsg"/> <strong><a href="register.jsp"><fmt:message key="registerLink"/></a></strong>
+        </c:if>
     </p>
 </div>
 
@@ -68,14 +71,13 @@
 <div id="navigation">
     <ul>
         <li class="gauche"><a href="cart.jsp"><fmt:message key="viewCart"/></a></li>        
-        <c:if test = "${empty sessionScope.user.mail}">
+        <c:if test="${empty sessionScope.user.mail}">
             <li class="gauche"><a href="#" onclick="displayLoginBox()"><fmt:message key="logIn"/></a></li>
             
             <div id="loginBox" >
                 <form action="connexion" method="post" onsubmit="return checkLogin()" name="loginForm">                
                     <input type="hidden" name="url" value="${requestScope.pagename}" />
-                    <li class="gauche">
-                        
+                    <li class="gauche">                        
                         <c:if test="${empty emailMsg}">
                             <input type="text" name="login" id="login" value="email" onclick="this.value=''" size="10"><br />
                         </c:if>
