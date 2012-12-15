@@ -38,6 +38,7 @@ public class ServletGetArtistePromo extends HttpServlet {
         try
         {
             album = bu.getArtistePromo();
+            //request.setAttribute("idArtiste");
             request.setAttribute("artistePromo", album.getArtiste());
             request.setAttribute("prcPromo", album.getPrcRemise());
         }

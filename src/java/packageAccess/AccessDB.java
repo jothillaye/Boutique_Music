@@ -294,7 +294,7 @@ public class AccessDB {
             connexion = source.getConnection();
 
             //String requeteSQL = "select Album.idAlbum, Album.titre, Album.prix, Album.image, Artiste.nom, PROMOTION.PRCREMISE from ARTISTE, ALBUM, ARTISTE_ALBUM, LABEL, PROMOTION,PROMOTION_ARTISTE where PROMOTION.DATEFIN >= CURRENT_DATE and PROMOTION_ARTISTE.IDARTISTE = ARTISTE.IDARTISTE and PROMOTION_ARTISTE.IDPROMOTION = PROMOTION.IDPROMOTION and ARTISTE_ALBUM.IDARTISTE = ARTISTE.IDARTISTE and ARTISTE_ALBUM.IDALBUM = ALBUM.IDALBUM and ALBUM.IDLABEL = LABEL.IDLABEL";
-            String requeteSQL = "SELECT Artiste.nom, Promotion.prcremise"
+            String requeteSQL = "SELECT Artiste.nom, Promotion.prcremise,Artiste.id"
                     + " FROM Artiste, Album, Artiste_Album, Label, Promotion, Promotion_Artiste"
                     + " WHERE Promotion.datedeb <= current_date"
                     + " AND Promotion.datefin >= current_date"
@@ -313,6 +313,7 @@ public class AccessDB {
                 Album album = new Album();
                 album.setArtiste(donnees.getString(1));
                 album.setPrcRemise(donnees.getInt(2));
+               
                 
                 return album;
             }
