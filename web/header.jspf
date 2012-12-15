@@ -109,7 +109,7 @@
     <br />
         <jsp:include page="/GetCategories"></jsp:include>          
         <c:forEach var="categorie" items="${requestScope.arrayCategories}">
-            <a class="catMenu" href="GetAlbumsCategorie?id=${categorie.getIdCategorie()}"> ${categorie.getLibelle()}</a>
+            <a href="GetAlbumsCategorie?id=${categorie.getIdCategorie()}"> ${categorie.getLibelle()}</a>
         </c:forEach>
     <!-- Categories !!! -->
 </div>

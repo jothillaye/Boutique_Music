@@ -38,7 +38,7 @@
             <thead>
                 <tr>
                     <td width="80"> </td>
-                    <td width="420"><fmt:message key="productName"/></td>
+                    <td width="440"><fmt:message key="productName"/></td>
                     <td width="100"><fmt:message key="unitPrice"/></td>
                     <td width="80"><fmt:message key="quantity"/></td>
                     <td width="100"><fmt:message key="subTotal"/></td>              
@@ -47,13 +47,11 @@
             </thead>
             <tfoot>
                 <tr>
-                    
+                    <td colspan="5">&nbsp;</td>
                 </tr>
             </tfoot>
             <tbody>
                 <form name="cart" method="post">
-                
-                
                 <c:forEach var="album" items="${sessionScope.user.hasmMapPanier}">
                     <tr>
                        <td><img alt="" src="./style/img/album/${album.value.getImage()}" width="50px" height="50px" /></td>
@@ -66,13 +64,14 @@
                                             
                    </tr>
                 </c:forEach>
-                  <input type="submit"  value="<fmt:message key="buttonUpdate"/>" id="submitForm"  />          
+                <tr>
+                    <td colspan="5" id="totalCart">TOTAL : $${total}</td>
+                </tr>
                 </form>
-                total $${total}
             </tbody>
             </form>
         </table>
-        <p><a href="ConfirmerCommande"><fmt:message key="confirmCommande"/></a></p>
+        <div id="commander"><a href="ConfirmerCommande"><fmt:message key="commande"/></a></div>
     </c:if>
     <c:if test="${empty sessionScope.user.hasmMapPanier}">
         <fmt:message key="cartEmpty"/>

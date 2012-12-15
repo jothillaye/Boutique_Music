@@ -45,21 +45,21 @@ public class ServletCart extends HttpServlet {
             
             for (Iterator iter = util.getHasmMapPanier().entrySet().iterator(); iter.hasNext();) //Vérification des quantités dans la hashmap
             {
-                    Map.Entry data = (Map.Entry)iter.next();
-                    AlbumCart album = (AlbumCart)data.getValue();
-                    if(album.getQte()<1)
-                    {
-                        throw new CommandeException("qteInvalid");
+                Map.Entry data = (Map.Entry)iter.next();
+                AlbumCart album = (AlbumCart)data.getValue();
+                if(album.getQte()<1)
+                {
+                    throw new CommandeException("qteInvalid");
+                }
+                else
+                {
+                    if(album.getPromo()) {
+                        tot+= album.getQte() * album.getPrixPromo();
                     }
-                    else
-                    {
-                        if(album.getPromo()) {
-                            tot+= album.getQte() * album.getPrixPromo();
-                        }
-                        else {
-                            tot+=album.getQte() * album.getPrix();
-                        }
+                    else {
+                        tot+=album.getQte() * album.getPrix();
                     }
+                }
             }
             DecimalFormat myFormatter = new DecimalFormat("#.##");
             String outputTot = myFormatter.format(tot);

@@ -30,7 +30,8 @@
 
 <!-- #contenu -->
 <div id="contenu">
-    
+    <h2>EL MIOUZIK STORE S.A.</h2>
+    <p></p>
 </div>
 
 <%@include file="footer.jspf" %>

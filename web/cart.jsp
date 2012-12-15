@@ -48,13 +48,13 @@
             <tfoot>
                 <tr>
                     <td colspan="2"><a href="index.jsp"><fmt:message key="continueShopping"/></a></td>
-                    <td colspan="4"><input id="submitCart" type="submit" value='<fmt:message key="updateCart"/>' /></td>
+                    <td colspan="4"><input type="submit" id="submitCart" value='<fmt:message key="updateCart"/>' /></td>
                 </tr>
             </tfoot>
             <tbody>    
                <c:forEach var="album" items="${sessionScope.user.hasmMapPanier}">
                     <tr>
-                       <td><img alt="" src="./style/img/album/${album.value.getImage()}" width="50px" height="50px" /></td>
+                        <td><img alt="" src="./style/img/album/${album.value.getImage()}" width="50px" height="50px" /></td>
                         <td class="alignLeft"><h5><a href="getAlbum?idAlbum=${album.value.getIdAlbum()}">${album.value.getArtiste()} - ${album.value.getTitre()}</a></h5></td>
                         <td>$${album.value.getPromo() ? album.value.getPrixPromoFormat() : album.value.getPrixFormat()}</td>
                         <td>
@@ -70,7 +70,7 @@
             </tbody>
             </form>
         </table>
-        <p><a href="confirmation.jsp"><fmt:message key="confirmCommande"/></a></p>
+        <div id="commander"><a href="confirmation.jsp"><fmt:message key="confirmCommande"/></a></div>
     </c:if>
     <c:if test="${empty sessionScope.user.hasmMapPanier}">
         <fmt:message key="cartEmpty"/>
