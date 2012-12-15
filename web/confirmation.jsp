@@ -27,7 +27,7 @@
 <div id="global">
     
     <%@include file="header.jspf" %>    
-    
+    <jsp:include page="/Confirmation"></jsp:include>
     <div id="contenu">
         <c:if test="${not empty sessionScope.user.hasmMapPanier}">
         <c:if test="${not empty message}">

@@ -5,24 +5,22 @@
 package packageController;
 
 import java.io.IOException;
-import java.util.Locale;
+import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.jsp.jstl.core.Config;
 import packageBusiness.Business;
-import packageException.AlbumException;
-import packageException.ListAlbumException;
-import packageModel.Album;
+import packageException.CommandeException;
+import packageModel.Utilisateur;
 
 /**
  *
- * @author Joachim
+ * @author Emilien
  */
-public class ServletGetAlbum extends HttpServlet {
+public class ServletConfirmation extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -37,32 +35,23 @@ public class ServletGetAlbum extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        Integer idAlbum = Integer.parseInt(request.getParameter("idAlbum"));
-        Business bu = new Business();
-        Album album;
+        Business bus = new Business();
+        
+        HttpSession sess = request.getSession();
+        Utilisateur util = (Utilisateur)sess.getAttribute("user");
         try
         {
-            album = bu.getAlbum(idAlbum);
-            HttpSession session = request.getSession();
-            Locale locale = (Locale)Config.get(session, Config.FMT_LOCALE);
-
-            String desc = bu.getDescAlbum(idAlbum,locale.toString());
-            request.setAttribute("album", album);
-            request.setAttribute("desc", desc);
-            RequestDispatcher rd = request.getRequestDispatcher("detail.jsp");
-            rd.forward(request, response);
+            if(util.getIdUtilisateur()==0)
+            {
+                throw new CommandeException("errorConnectionCommande");
+            }
+            
         }
-        catch (ListAlbumException e)
+       catch(CommandeException ex)
         {
-            RequestDispatcher rd = request.getRequestDispatcher("erreur.jsp");
-            request.setAttribute("reponse", e);
-            rd.forward(request, response);
-        }
-        catch (AlbumException e)
-        {
-            RequestDispatcher rd = request.getRequestDispatcher("erreur.jsp");
-            request.setAttribute("reponse", e);
-            rd.forward(request, response);
+            RequestDispatcher redirect = request.getRequestDispatcher("erreur.jsp");
+            request.setAttribute("reponse",ex);
+            redirect.forward(request, response);
         }
     }
 

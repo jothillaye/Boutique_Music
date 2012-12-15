@@ -70,7 +70,7 @@
             </tbody>
             </form>
         </table>
-        <p><a href="ConfirmerCommande"><fmt:message key="confirmCommande"/></a></p>
+        <p><a href="confirmation.jsp"><fmt:message key="confirmCommande"/></a></p>
     </c:if>
     <c:if test="${empty sessionScope.user.hasmMapPanier}">
         <fmt:message key="cartEmpty"/>
