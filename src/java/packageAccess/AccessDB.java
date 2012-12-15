@@ -179,7 +179,8 @@ public class AccessDB {
                                 + " END, "
                                 + " CASE WHEN Promotion_Artiste.idArtiste = Artiste.idArtiste "
                                 + "     THEN (Album.Prix - (Album.Prix * Promotion.prcremise * 0.01))"
-                                + " END"
+                                + " END,"
+                                + " Artiste.idartiste "
                                 + " FROM ALBUM,ARTISTE,PROMOTION,PROMOTION_ARTISTE,ARTISTE_ALBUM,LABEL"
                                 + " WHERE ALBUM.IDALBUM = ARTISTE_ALBUM.IDALBUM AND ARTISTE_ALBUM.IDARTISTE = ARTISTE.IDARTISTE "
                                 + " AND ALBUM.IDALBUM = ? AND LABEL.IDLABEL=ALBUM.IDLABEL"
@@ -200,6 +201,7 @@ public class AccessDB {
                     album.setLabelImg(donnees.getString(7));
                     album.setPromo(donnees.getBoolean(8));
                     album.setPrixPromo(donnees.getDouble(9));
+                    album.setIdArtiste(donnees.getInt(10));
                 }
                 else
                 {

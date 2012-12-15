@@ -28,7 +28,7 @@
     
     <div id="contenu">
         <div id="detailPage">
-            <div id="titre">${album.artiste} - ${album.titre}</div>
+            <div id="titre"><a href="getAlbumsArtiste?id=${album.idArtiste}">${album.artiste}</a> - ${album.titre}</div>
             
             <div id="illustration">
                 <img alt="" src="./style/img/album/${album.image}" height="400" width="400" />
