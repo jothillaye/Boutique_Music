@@ -55,7 +55,7 @@ public class ServletRemoveAlbum extends HttpServlet {
         catch(NumberFormatException e)
         {
             RequestDispatcher rd = request.getRequestDispatcher("cart.jsp");
-            request.setAttribute("message","getAlbumException");
+            request.setAttribute("message","errorNbArg");
             rd.forward(request, response);        
         }    
         catch(RemoveAlbumException e)

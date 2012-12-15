@@ -39,6 +39,7 @@ public class ServletGetCategories extends HttpServlet {
         
         try
         {
+            
             ArrayList<Categorie> cat = bus.getCategories();
             request.setAttribute("arrayCategories", cat);
         }
@@ -46,6 +47,12 @@ public class ServletGetCategories extends HttpServlet {
         {
             RequestDispatcher rd = request.getRequestDispatcher("erreur.jsp");
             request.setAttribute("reponse", ex);
+            rd.forward(request, response);
+        }
+        catch(NumberFormatException ex)
+        {
+            RequestDispatcher rd = request.getRequestDispatcher("erreur.jsp");
+            request.setAttribute("reponse", "errorNbArg");            
             rd.forward(request, response);
         }
         

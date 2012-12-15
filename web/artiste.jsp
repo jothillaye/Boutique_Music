@@ -17,7 +17,7 @@
         <link rel="stylesheet" type="text/css" href="style/design.css" media="all" />
         <fmt:setBundle basename="packageLangue.lang" scope="session"/>
         <c:set var="pagename" scope="request" value="getAlbumsArtiste?id=${idArtiste}" />        
-        <title>MusicStore - <fmt:message key="indexTitle"/></title>
+        <title>MusicStore - <fmt:message key="listeArtisteTitle"/></title>
     </head>
 
 <body>

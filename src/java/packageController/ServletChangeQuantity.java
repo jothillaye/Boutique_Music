@@ -81,7 +81,7 @@ public class ServletChangeQuantity extends HttpServlet {
         catch(NumberFormatException e)
         {
             RequestDispatcher rd = request.getRequestDispatcher("cart.jsp");
-            request.setAttribute("message",e);
+            request.setAttribute("message","errorNumber");
             rd.forward(request, response);   
         }    
         catch(ChangeQuantityException e)

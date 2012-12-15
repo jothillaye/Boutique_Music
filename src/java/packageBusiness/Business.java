@@ -71,7 +71,7 @@ public class Business {
             throw new InscriptionException("errorStreet");
         } 
         
-        if(Pattern.matches("[a-zA-Z0-9]+", numero)==false)
+        if(Pattern.matches("[0-9]+", numero)==false)
         {
             throw new InscriptionException("errorNumero");
         }
@@ -181,6 +181,11 @@ public class Business {
     public ArrayList<Album> getAlbumsArtiste(Integer idArtiste)throws AlbumException
     {
         return ac.getAlbumsArtiste(idArtiste);
+    }
+
+    public String getGenre(Integer idCat) throws GenreException
+    {
+        return ac.getGenre(idCat);
     }
     
     

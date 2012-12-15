@@ -51,7 +51,7 @@ public class ServletConfirmerCommande extends HttpServlet {
             {
             bus.ConfirmerCommande(util);
             RequestDispatcher redirect = request.getRequestDispatcher("confirmationCommande.jsp");
-            request.setAttribute("reponse","granSuccès !!"); // bon à modifier :p
+            request.setAttribute("reponse","commandeConfirm"); // bon à modifier :p
             redirect.forward(request, response);
             
             util.setHasmMapPanier(new HashMap());

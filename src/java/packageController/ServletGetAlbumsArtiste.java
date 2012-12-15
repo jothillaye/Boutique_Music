@@ -54,6 +54,12 @@ public class ServletGetAlbumsArtiste extends HttpServlet {
             request.setAttribute("reponse", ex);            
             rd.forward(request, response);                   
         }
+        catch(NumberFormatException ex)
+        {
+           RequestDispatcher rd = request.getRequestDispatcher("erreur.jsp");
+            request.setAttribute("reponse", "errorNbArg");            
+            rd.forward(request, response);
+        }
         //getAlbumsArtiste
        
     }

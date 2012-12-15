@@ -16,7 +16,7 @@
         <link rel="stylesheet" type="text/css" href="style/design.css" media="all" />
         <fmt:setBundle basename="packageLangue.lang" scope="session"/>
         <c:set var="pagename" scope="request" value="index.jsp" />
-	<title>MusicStore - <fmt:message key="confirmationTitre"/></title>	
+	<title>MusicStore - <fmt:message key="${reponse}"/></title>	
 </head>
 
 <body>
@@ -27,7 +27,7 @@
     <%@include file="header.jspf" %>
     
     <div id="contenu">
-         <p><fmt:message key="confirmationTitre"/> :  <fmt:message key="${reponse}"/></p>
+         <fmt:message key="${reponse}"/></p>
     </div>    	
 	
     <%@include file="footer.jspf" %>

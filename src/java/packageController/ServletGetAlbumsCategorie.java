@@ -40,8 +40,10 @@ public class ServletGetAlbumsCategorie extends HttpServlet {
         try
         {
             Integer idCat = Integer.parseInt(request.getParameter("id"));
+            String genre = bus.getGenre(idCat);
             ArrayList<Album> listAlbum = bus.getAlbumsCategorie(idCat);           
             RequestDispatcher rd = request.getRequestDispatcher("categorie.jsp");
+            request.setAttribute("genre", genre);      
             request.setAttribute("albums", listAlbum);            
             rd.forward(request, response);
     
@@ -50,6 +52,12 @@ public class ServletGetAlbumsCategorie extends HttpServlet {
         {
             RequestDispatcher rd = request.getRequestDispatcher("erreur.jsp");
             request.setAttribute("reponse", ex);            
+            rd.forward(request, response);
+        }
+        catch(NumberFormatException ex)
+        {
+            RequestDispatcher rd = request.getRequestDispatcher("erreur.jsp");
+            request.setAttribute("reponse", "errorNbArg");            
             rd.forward(request, response);
         }
         

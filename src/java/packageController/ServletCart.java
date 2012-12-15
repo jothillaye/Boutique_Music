@@ -49,7 +49,7 @@ public class ServletCart extends HttpServlet {
                 AlbumCart album = (AlbumCart)data.getValue();
                 if(album.getQte()<1)
                 {
-                    throw new CommandeException("qteInvalid");
+                    throw new CommandeException("errorQte");
                 }
                 else
                 {
@@ -64,7 +64,7 @@ public class ServletCart extends HttpServlet {
             DecimalFormat myFormatter = new DecimalFormat("#.##");
             String outputTot = myFormatter.format(tot);
             
-            RequestDispatcher rd = request.getRequestDispatcher("cart.jsp");
+            //RequestDispatcher rd = request.getRequestDispatcher("cart.jsp");
             request.setAttribute("total",outputTot);
             //rd.forward(request, response);
         }

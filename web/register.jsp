@@ -79,7 +79,7 @@
             function validateNumero()
             {
                 var numero = document.forms["register"]["numero"].value;
-                var myTest = new RegExp("^[a-zA-Z0-9]{1,50}","g"); 
+                var myTest = new RegExp("^[0-9]{1,10}$","g"); 
                    if (myTest.test(numero)==false || numero == "" || numero==null)
                     {
                        span_numero.innerHTML="<fmt:message key="invalidNumber"/>";

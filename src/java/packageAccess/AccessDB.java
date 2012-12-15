@@ -72,7 +72,7 @@ public class AccessDB {
         }    
         catch (NamingException e)
         {
-            throw new ConnexionException("sqlException");
+            throw new ConnexionException("errorNaming");
         }    
         finally
         {
@@ -141,11 +141,11 @@ public class AccessDB {
         }
         catch (SQLException e)
         {
-            throw new ListAlbumException("listAlbumException"+e.getMessage());
+            throw new ListAlbumException("sqlException");
         }
         catch (NamingException e) 
         {
-            throw new ListAlbumException("sqlException");
+            throw new ListAlbumException("errorNaming");
         }
         finally
         {
@@ -212,11 +212,11 @@ public class AccessDB {
         }
         catch (SQLException e)
         {
-            throw new ListAlbumException("getAlbumException");
+            throw new ListAlbumException("sqlException");
         }
         catch (NamingException e) 
         {
-            throw new ListAlbumException("sqlException");
+            throw new ListAlbumException("errorNaming");
         }
         finally
         {
@@ -226,7 +226,7 @@ public class AccessDB {
             }
             catch (SQLException e)
             {
-                throw new ListAlbumException("sqlConnexionError");
+                throw new ListAlbumException("sqlException");
             }  
         }
         
@@ -267,11 +267,11 @@ public class AccessDB {
         }
         catch(SQLException ex)
         {
-            throw new InscriptionException("addUserException");
+            throw new InscriptionException("sqlException");
         }
         catch(NamingException ex)
         {
-            throw new InscriptionException("sqlException");
+            throw new InscriptionException("errorNaming");
         }
         finally
         {
@@ -281,7 +281,7 @@ public class AccessDB {
             }
             catch (SQLException e)
             {
-                throw new InscriptionException("sqlConnexionError");
+                throw new InscriptionException("sqlException");
             }  
         }
         
@@ -341,7 +341,7 @@ public class AccessDB {
             }
             catch (SQLException e)
             {
-                throw new ListAlbumException("sqlConnexionError");
+                throw new ListAlbumException("sqlException");
             }  
         }        
     }
@@ -357,7 +357,7 @@ public class AccessDB {
                     AlbumCart album = (AlbumCart)data.getValue();
                     if(album.getQte()<1)
                     {
-                        throw new CommandeException("errorQteCommande");
+                        throw new CommandeException("qteInvalid");
                     }
             }
             Context cont = new InitialContext();
@@ -404,11 +404,15 @@ public class AccessDB {
         }
         catch(SQLException ex)
         {
-            throw new CommandeException("errorSQL");
+            throw new CommandeException("sqlException");
         }
         catch(NamingException ex)
         {
             throw new CommandeException("errorNaming");
+        }
+        catch(CommandeException ex)
+        {
+            throw new CommandeException(ex.toString());
         }
         finally
         {
@@ -418,7 +422,7 @@ public class AccessDB {
             }
             catch (SQLException e)
             {
-                throw new CommandeException("sqlConnexionError");
+                throw new CommandeException("sqlException");
             }  
         }       
     }
@@ -453,7 +457,7 @@ public class AccessDB {
         }
         catch(SQLException ex)
         {
-            throw new GenreException("errorSQL");
+            throw new GenreException("sqlException");
         }
         catch(NamingException ex)
         {
@@ -468,7 +472,7 @@ public class AccessDB {
             try{connexion.close();}
             catch(SQLException ex)
             {
-                throw new GenreException("errorSQL");
+                throw new GenreException("sqlException");
             }
         }
     }
@@ -531,7 +535,7 @@ public class AccessDB {
             try{connexion.close();}
             catch(SQLException ex)
             {
-                throw new GenreException("errorSQL");
+                throw new GenreException("sqlException");
             }
         }
     }
@@ -578,7 +582,7 @@ public class AccessDB {
             try{connexion.close();}
             catch(SQLException ex)
             {
-                throw new AlbumException("errorSQL");
+                throw new AlbumException("sqlException");
             }
         }
     }
@@ -634,7 +638,7 @@ public class AccessDB {
         
         catch(SQLException ex)
         {
-            throw new AlbumException(ex.toString());
+            throw new AlbumException("sqlException");
         }
         catch(NamingException ex)
         {
@@ -646,8 +650,61 @@ public class AccessDB {
         }
             catch(SQLException ex)
             {
-                throw new AlbumException("errorSQL");
+                throw new AlbumException("sqlException");
             }
         }
-    }      
+    }  
+ 
+    public String getGenre(Integer idCat) throws GenreException
+    {
+                
+        try
+        {
+            Context ctx = new InitialContext();
+            DataSource source = (DataSource)ctx.lookup("jdbc/MusicStore");
+            connexion = source.getConnection();        
+            
+            String requeteSQL = "SELECT LABEL FROM GENRE WHERE GENRE.IDGENRE = ?";
+            PreparedStatement prepStat = connexion.prepareStatement(requeteSQL);
+            prepStat.setInt(1, idCat);
+            ResultSet donnees = prepStat.executeQuery();
+            String genre="";
+            if(donnees.next())
+            {
+                genre = donnees.getString(1);
+            }    
+            else
+            {
+                throw new GenreException("errorGenre");
+            }
+            
+            return genre;
+        }
+        catch (SQLException e)
+        {
+            throw new GenreException("sqlConnexionError");
+        }    
+        catch (NamingException e)
+        {
+            throw new GenreException("errorNaming");
+        }    
+        catch(GenreException ex)
+        {
+            throw new GenreException(ex.toString());
+        }
+        finally
+        {
+            try
+            {
+            connexion.close(); 
+            }
+            catch (SQLException e)
+            {
+            throw new GenreException("sqlConnexionError");
+            }  
+        }
+    
+    }
+     
+     
  }

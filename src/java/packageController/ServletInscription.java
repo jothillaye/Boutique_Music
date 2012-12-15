@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import packageBusiness.Business;
+import packageException.InscriptionException;
 /**
  *
  * @author Emilien
@@ -52,7 +53,7 @@ public class ServletInscription extends HttpServlet {
             request.setAttribute("reponse", "Félicitation, votre compte a été correctement créé.");
             redirect.forward(request, response);
         }
-        catch(Exception ex)
+        catch(InscriptionException ex)
         {
             RequestDispatcher redirect = request.getRequestDispatcher("erreur.jsp");
             request.setAttribute("reponse",ex);
