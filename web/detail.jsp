@@ -41,11 +41,15 @@
                 </div>
                 <div id="option">
                     Options
-                </div>
-                <div>
-                    <c:if test="${album.promo}"><img id="promoLogoDetail" alt="" src="./style/img/LogoPromo.png" /></c:if>
-                    <p><span class="titleBox"><fmt:message key="priceAlbum"/> :</span> ${album.getPromo() ? album.getPrixPromoFormat() : album.prix} $</p>            
-                </div>
+                </div>                    
+                    <p>
+                        <span class="titleBox"><fmt:message key="priceAlbum"/> : </span>
+                        <c:if test="${not album.promo}">${album.prix}</c:if>
+                        <c:if test="${album.promo}">
+                            <img id="promoLogoDetail" alt="" src="./style/img/LogoPromo.png" />
+                            <span id="prixBarre">${album.prix}</span> ${album.prixPromoFormat} (${album.prcRemise}%)
+                        </c:if>
+                    </p>     
                 <form name="addToCart" method="post" action="ServletAjoutPanier?ID=${album.idAlbum}">
                     <p>
                         <span class="titleBox"><fmt:message key="quantityAlbum"/></span>            

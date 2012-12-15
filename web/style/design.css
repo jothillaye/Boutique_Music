@@ -298,9 +298,13 @@ form.register span {
     color: #FFFFFF;
     background: url(./img/btnSubmit.png) top left no-repeat;
 }
+#prixBarre {
+    color: #990000;
+    text-decoration: line-through;    
+}
 #promoLogoDetail{
     position: absolute;
-    margin-left: 225px;
+    margin-left: 170px;
     margin-top: -10px;
     width:30px;    
 }

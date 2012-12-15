@@ -172,13 +172,16 @@ public class AccessDB {
             DataSource source = (DataSource) ctx.lookup("jdbc/MusicStore");
             connexion = source.getConnection();
             
-                String requeteSQL = "SELECT Album.idAlbum, Album.titre, Album.prix, Album.image, Artiste.nom, Label.Nom, Label.Image,"
+                String requeteSQL = "SELECT Album.idAlbum, Album.titre, Album.prix, Album.image, Artiste.nom, Label.Nom, Label.Image, "
                                 + " CASE WHEN Promotion_Artiste.idArtiste = Artiste.idArtiste "
                                 + "     THEN true "
                                 + "     ELSE false "
                                 + " END, "
                                 + " CASE WHEN Promotion_Artiste.idArtiste = Artiste.idArtiste "
                                 + "     THEN (Album.Prix - (Album.Prix * Promotion.prcremise * 0.01))"
+                                + " END,"
+                                + " CASE WHEN Promotion_Artiste.idArtiste = Artiste.idArtiste "
+                                + "     THEN Promotion.prcremise"
                                 + " END,"
                                 + " Artiste.idartiste "
                                 + " FROM ALBUM,ARTISTE,PROMOTION,PROMOTION_ARTISTE,ARTISTE_ALBUM,LABEL"
@@ -201,7 +204,8 @@ public class AccessDB {
                     album.setLabelImg(donnees.getString(7));
                     album.setPromo(donnees.getBoolean(8));
                     album.setPrixPromo(donnees.getDouble(9));
-                    album.setIdArtiste(donnees.getInt(10));
+                    album.setPrcRemise(donnees.getInt(10));
+                    album.setIdArtiste(donnees.getInt(11));
                 }
                 else
                 {
