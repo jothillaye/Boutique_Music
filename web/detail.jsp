@@ -42,11 +42,14 @@
                 <div id="option">
                     Options
                 </div>
-                <p><span class="titleBox"><fmt:message key="priceAlbum"/> :</span>${album.getPromo() ? album.getPrixPromoFormat() : album.getPrixFormat()} $</p>            
+                <div>
+                    <c:if test="${album.getPromo()}"><img id="promoLogoDetail" alt="" src="./style/img/LogoPromo.png" /></c:if>
+                    <p><span class="titleBox"><fmt:message key="priceAlbum"/> :</span> ${album.getPromo() ? album.getPrixPromoFormat() : album.getPrixFormat()} $</p>            
+                </div>
                 <form name="addToCart" method="post" action="ServletAjoutPanier?ID=${album.getIdAlbum()}">
                     <p>
                         <span class="titleBox"><fmt:message key="quantityAlbum"/></span>            
-                        <select name="qte" id="qte">
+                        <select name="qte" id="qteBox">
                             <option>1</option>
                             <option>2</option>
                             <option>3</option>

@@ -24,10 +24,6 @@
         <servlet-class>packageController.ServletConnexion</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ServletPromotions</servlet-name>
-        <servlet-class>packageController.ServletPromotions</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>ServletGetArtistePromo</servlet-name>
         <servlet-class>packageController.ServletGetArtistePromo</servlet-class>
     </servlet>
@@ -86,10 +82,6 @@
     <servlet-mapping>
         <servlet-name>ServletConnexion</servlet-name>
         <url-pattern>/connexion</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ServletPromotions</servlet-name>
-        <url-pattern>/ServletPromotions</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ServletGetArtistePromo</servlet-name>

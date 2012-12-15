@@ -157,6 +157,11 @@ body {
     margin: 0;
 }
 
+/* Catégories */
+.catMenu a {
+    color: #AA0000;    
+}
+
 /* Index */
 .grid_element {    
     position : relative;
@@ -208,9 +213,9 @@ body {
     text-transform: uppercase;
 }
 #promoBox {
-    border: 1px dotted tomato;   
+    border: 1px dotted black;
     font-family: 'Trebuchet MS', Verdana, Arial, Helvetica, san-serif;
-    color: tomato;
+    color: black;
     padding:3px;
 }
 /* Formulaire d'enregistrement */
@@ -242,7 +247,7 @@ form.register span {
     background-color: #A4A4A4;
     margin-bottom: 5px;
     padding: 5px;
-    font-family: Arial;
+    font-family: 'Trebuchet MS', Verdana, Arial, Helvetica, san-serif;
     font-size: 1.6em;
     font-weight: 900;
     text-transform: uppercase;
@@ -265,6 +270,7 @@ form.register span {
     color : #FFFFFF;
 }
 #inputQte #desc {
+    width: 240px;
     padding: 8px;
     padding-bottom: 15px;
     margin-bottom: 15px;
@@ -301,7 +307,14 @@ form.register span {
 }
 #promoLogoDetail{
     position: absolute;
-    width:40px;    
+    margin-left: 225px;
+    margin-top: -10px;
+    width:30px;    
+}
+#qteBox {
+    text-align: right;
+    background-color: #F6911D;
+    border: 1px solid gainsboro;
 }
 
 /* Page Cart */
