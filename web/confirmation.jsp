@@ -54,13 +54,13 @@
                 <form name="cart" method="post">
                 <c:forEach var="album" items="${sessionScope.user.hasmMapPanier}">
                     <tr>
-                       <td><img alt="" src="./style/img/album/${album.value.getImage()}" width="50px" height="50px" /></td>
-                        <td class="alignLeft"><h5><a href="getAlbum?idAlbum=${album.value.getIdAlbum()}">${album.value.getArtiste()} - ${album.value.getTitre()}</a></h5></td>
+                       <td><img alt="" src="./style/img/album/${album.value.image}" width="50px" height="50px" /></td>
+                        <td class="alignLeft"><h5><a href="getAlbum?idAlbum=${album.value.idAlbum}">${album.value.artiste} - ${album.value.titre}</a></h5></td>
                         <td>$${album.value.getPromo() ? album.value.getPrixPromoFormat() : album.value.getPrixFormat()}</td>
                         <td>
-                            ${album.value.getQte()}
+                            ${album.value.qte}
                         </td>
-                        <td> $${album.value.getTot()}</td>
+                        <td> $${album.value.tot}</td>
                                             
                    </tr>
                 </c:forEach>

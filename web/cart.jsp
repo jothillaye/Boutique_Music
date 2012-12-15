@@ -27,7 +27,7 @@
 <div id="global">
     
     <%@include file="header.jspf" %>    
-    
+    <jsp:include page="/Cart"></jsp:include>  
     <div id="contenu">
         <c:if test="${not empty sessionScope.user.hasmMapPanier}">
         <c:if test="${not empty message}">
@@ -54,14 +54,14 @@
             <tbody>    
                <c:forEach var="album" items="${sessionScope.user.hasmMapPanier}">
                     <tr>
-                        <td><img alt="" src="./style/img/album/${album.value.getImage()}" width="50px" height="50px" /></td>
-                        <td class="alignLeft"><h5><a href="getAlbum?idAlbum=${album.value.getIdAlbum()}">${album.value.getArtiste()} - ${album.value.getTitre()}</a></h5></td>
-                        <td>$${album.value.getPromo() ? album.value.getPrixPromoFormat() : album.value.getPrixFormat()}</td>
+                       <td><img alt="" src="./style/img/album/${album.value.image}" width="50px" height="50px" /></td>
+                        <td class="alignLeft"><h5><a href="getAlbum?idAlbum=${album.value.idAlbum}">${album.value.artiste} - ${album.value.titre}</a></h5></td>
+                        <td>$${album.value.promo ? album.value.getPrixPromoFormat() : album.value.prix}</td>
                         <td>
-                             <input type="number" name="quantity${album.value.getIdAlbum()}" id="quantity" min="0" max="100" step="1" value="${album.value.getQte()}" >
+                             <input type="number" name="quantity${album.value.idAlbum}" id="quantity" min="0" max="100" step="1" value="${album.value.qte}" >
                         </td>
-                        <td> $${album.value.getTot()}</td>
-                        <td><a href="removeAlbum?idAlbum=${album.value.getIdAlbum()}"><img alt="" src="./style/img/Delete.png" width="20px" /></a></td>                       
+                        <td> $${album.value.tot}</td>
+                        <td><a href="removeAlbum?idAlbum=${album.value.idAlbum}"><img alt="" src="./style/img/Delete.png" width="20px" /></a></td>                       
                    </tr>
                 </c:forEach>                
                 <tr>

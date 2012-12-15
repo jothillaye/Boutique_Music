@@ -66,7 +66,7 @@ public class ServletCart extends HttpServlet {
             
             RequestDispatcher rd = request.getRequestDispatcher("cart.jsp");
             request.setAttribute("total",outputTot);
-            rd.forward(request, response);
+            //rd.forward(request, response);
         }
         catch(CommandeException ex)
         {

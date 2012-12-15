@@ -74,19 +74,19 @@ public class ServletChangeQuantity extends HttpServlet {
                     util.getHasmMapPanier().remove(arrayRemove.get(i));
                 }
                 
-                RequestDispatcher rd = request.getRequestDispatcher("Cart");
+                RequestDispatcher rd = request.getRequestDispatcher("cart.jsp");
                 rd.forward(request, response);
             }
         }
         catch(NumberFormatException e)
         {
-            RequestDispatcher rd = request.getRequestDispatcher("Cart");
+            RequestDispatcher rd = request.getRequestDispatcher("cart.jsp");
             request.setAttribute("message",e);
             rd.forward(request, response);   
         }    
         catch(ChangeQuantityException e)
         {
-            RequestDispatcher rd = request.getRequestDispatcher("Cart");
+            RequestDispatcher rd = request.getRequestDispatcher("cart.jsp");
             request.setAttribute("message",e);
             rd.forward(request, response);
         }

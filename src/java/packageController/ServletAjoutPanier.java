@@ -78,7 +78,7 @@ public class ServletAjoutPanier extends HttpServlet {
                 }
                 
                 sess.setAttribute("user",util);
-                RequestDispatcher rd = request.getRequestDispatcher("Cart");
+                RequestDispatcher rd = request.getRequestDispatcher("cart.jsp");
                 rd.forward(request, response);
            // }                   
 

@@ -71,7 +71,7 @@ public class Business {
             throw new InscriptionException("errorStreet");
         } 
         
-        if(Pattern.matches("[0-9]+", numero)==false)
+        if(Pattern.matches("[a-zA-Z0-9]+", numero)==false)
         {
             throw new InscriptionException("errorNumero");
         }

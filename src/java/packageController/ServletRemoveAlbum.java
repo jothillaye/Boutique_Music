@@ -49,18 +49,18 @@ public class ServletRemoveAlbum extends HttpServlet {
                 throw new RemoveAlbumException("albumNoExist");  
             }
 
-            RequestDispatcher rd = request.getRequestDispatcher("Cart");
+            RequestDispatcher rd = request.getRequestDispatcher("cart.jsp");
             rd.forward(request, response);  
         }
         catch(NumberFormatException e)
         {
-            RequestDispatcher rd = request.getRequestDispatcher("Cart");
+            RequestDispatcher rd = request.getRequestDispatcher("cart.jsp");
             request.setAttribute("message","getAlbumException");
             rd.forward(request, response);        
         }    
         catch(RemoveAlbumException e)
         {
-            RequestDispatcher rd = request.getRequestDispatcher("Cart");
+            RequestDispatcher rd = request.getRequestDispatcher("cart.jsp");
             request.setAttribute("message",e);
             rd.forward(request, response);        
         }                

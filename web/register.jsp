@@ -79,20 +79,18 @@
             function validateNumero()
             {
                 var numero = document.forms["register"]["numero"].value;
-                var myTest = new RegExp("[0-9]$","g"); 
+                var myTest = new RegExp("^[a-zA-Z0-9]{1,50}","g"); 
                    if (myTest.test(numero)==false || numero == "" || numero==null)
                     {
                        span_numero.innerHTML="<fmt:message key="invalidNumber"/>";
-                       document.getElementById("numero").style.borderColor='RED'; 
-                       
+                       document.getElementById("numero").style.borderColor='RED';                        
                        return false;
                        
                     }
                     else
                     {
                         span_numero.innerHTML="";
-                        document.getElementById("numero").style.borderColor='Green';
-                        
+                        document.getElementById("numero").style.borderColor='Green';                        
                         return true;
                     }     
             }
@@ -122,7 +120,7 @@
             function validateBoite()
             {
                 var boite = document.forms["register"]["boite"].value;
-                var myTest = new RegExp("^[a-zA-Z0-9]{0,15}","g"); // 2 à 25 caractères
+                var myTest = new RegExp("^[a-zA-Z0-9]{0,15}$","g"); // 2 à 25 caractères
                    if (myTest.test(boite)==false  || boite==null)
                     {
                        span_boite.innerHTML="<fmt:message key="invalidBox"/>";
