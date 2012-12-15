@@ -4,7 +4,6 @@
  */
 package packageModel;
 
-import java.util.HashMap;
 import java.util.Locale;
 import javax.servlet.annotation.WebListener;
 import javax.servlet.http.HttpSession;
