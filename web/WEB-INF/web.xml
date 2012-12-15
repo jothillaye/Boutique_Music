@@ -63,6 +63,10 @@
         <servlet-name>ServletConfirmation</servlet-name>
         <servlet-class>packageController.ServletConfirmation</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletGetAlbumsArtiste</servlet-name>
+        <servlet-class>packageController.ServletGetAlbumsArtiste</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletLangue</servlet-name>
         <url-pattern>/ServletLangue</url-pattern>
@@ -122,6 +126,10 @@
     <servlet-mapping>
         <servlet-name>ServletConfirmation</servlet-name>
         <url-pattern>/Confirmation</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletGetAlbumsArtiste</servlet-name>
+        <url-pattern>/getAlbumsArtiste</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

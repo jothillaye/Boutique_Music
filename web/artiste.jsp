@@ -31,15 +31,9 @@
 <!-- #contenu -->
 <div id="contenu">
     <div id="grid">
-        <center>            
-        <jsp:include page="/artistePromo"></jsp:include>
-        <c:if test="${not empty requestScope.artistePromo}">            
-            <div id="promoBox"><fmt:message key="promoArtiste"/> <b><u><a href="getAlbumsArtiste?id=${idArtiste}">${artistePromo}</a></u></b> <fmt:message key="promoPrc"/> <b>${prcPromo}%</b></div>
-        </c:if>
+        <center>
             
-        <p class="titleIndex"><fmt:message key="nouvAjout"/></p>
-        <jsp:include page="/albums?nbAlbum=12"></jsp:include>        
-        <c:forEach var="album" items="${requestScope.albums}">
+        <c:forEach var="album" items="${album}">
             <div class="grid_element">
                 <c:if test="${album.promo}">
                     <img alt="" src="./style/img/LogoPromo.png" class="promoLogo" />
@@ -49,7 +43,7 @@
                 </a>
                 <span class="album-name">${album.titre}</span><span class="album-artist">${album.artiste}</span>
                 <c:if test="${album.promo}">
-                    <span class="pricePromo-box">$${album.promo}</span>
+                    <span class="pricePromo-box">$${album.prix}</span>
                     <span class="price-box">$${album.getPrixPromoFormat()}</span>
                 </c:if>
                 <c:if test="${!album.promo}">
@@ -58,7 +52,6 @@
             </div>                           
         </c:forEach>
         </center>
-        <a href="listing.jsp">Listing</a>
     </div>
 </div>
 

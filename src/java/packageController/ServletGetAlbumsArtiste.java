@@ -5,20 +5,22 @@
 package packageController;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import packageBusiness.Business;
-import packageException.ListAlbumException;
+import packageException.AlbumException;
 import packageModel.Album;
 
 /**
  *
  * @author Emilien
  */
-public class ServletGetArtistePromo extends HttpServlet {
+public class ServletGetAlbumsArtiste extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -33,21 +35,26 @@ public class ServletGetArtistePromo extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        
         Business bu = new Business();
-        Album album;
+        
         try
         {
-            album = bu.getArtistePromo();
-            request.setAttribute("idArtiste",album.getIdArtiste());
-            request.setAttribute("artistePromo", album.getArtiste());
-            request.setAttribute("prcPromo", album.getPrcRemise());
+            Integer idAlbum = Integer.parseInt(request.getParameter("id"));
+            ArrayList<Album> album = bu.getAlbumsArtiste(idAlbum);
+            request.setAttribute("album", album);
+            RequestDispatcher rd = request.getRequestDispatcher("artiste.jsp");          
+            rd.forward(request, response);    
+            
         }
-        catch (ListAlbumException e)
+        catch(AlbumException ex)
         {
             RequestDispatcher rd = request.getRequestDispatcher("erreur.jsp");
-            request.setAttribute("reponse", e);
-            rd.forward(request, response);
+            request.setAttribute("reponse", ex);            
+            rd.forward(request, response);                   
         }
+        //getAlbumsArtiste
+       
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

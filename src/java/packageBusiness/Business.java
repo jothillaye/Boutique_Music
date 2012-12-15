@@ -178,5 +178,10 @@ public class Business {
         return ac.getDescAlbum(idAlbum, langue);
     }
     
+    public ArrayList<Album> getAlbumsArtiste(Integer idArtiste)throws AlbumException
+    {
+        return ac.getAlbumsArtiste(idArtiste);
+    }
+    
     
 }
