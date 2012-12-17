@@ -47,7 +47,7 @@ public class ServletAjoutPanier extends HttpServlet {
         try
         {
               
-            if(qte<1)
+            if(qte<1 || qte>100)
             {
                 throw new AjoutException("errorQte");
             }

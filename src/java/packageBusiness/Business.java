@@ -154,7 +154,7 @@ public class Business {
         {
                 Map.Entry data = (Map.Entry)iter.next();
                 AlbumCart album = (AlbumCart)data.getValue();
-                if(album.getQte()<1)
+                if(album.getQte()<1 || album.getQte()>100)
                 {
                     throw new CommandeException("errorQteCommande");
                 }
