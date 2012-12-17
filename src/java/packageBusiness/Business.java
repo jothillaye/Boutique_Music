@@ -56,17 +56,17 @@ public class Business {
             throw new InscriptionException("errorField");
         }
         
-        if(Pattern.matches("[a-zA-Z -]+",prenom)==false)
+        if(Pattern.matches("[a-zA-Z -]{2,100}+",prenom)==false)
         {
             throw new InscriptionException("errorFirstName");
         }
         
-        if(Pattern.matches("[a-zA-Z -]{2,50}+",nom)==false)
+        if(Pattern.matches("[a-zA-Z -]{2,100}+",nom)==false)
         {
             throw new InscriptionException("errorName");
         }
         
-        if(Pattern.matches("[a-zA-Z0-9 -]{2,50}+",rue)==false)
+        if(Pattern.matches("[a-zA-Z0-9 -]{2,255}+",rue)==false)
         {
             throw new InscriptionException("errorStreet");
         } 
@@ -76,12 +76,12 @@ public class Business {
             throw new InscriptionException("errorNumero");
         }
         
-        if(Pattern.matches("[a-zA-Z0-9]{0,15}+",boite)==false)
+        if(Pattern.matches("[a-zA-Z0-9]{0,10}+",boite)==false)
         {
             throw new InscriptionException("errorBox");
         }
         
-        if(Pattern.matches("[a-zA-Z -]{2,50}+",localite)==false)
+        if(Pattern.matches("[a-zA-Z -]{2,100}+",localite)==false)
         {
             throw new InscriptionException("errorLocality");
         }
@@ -96,7 +96,7 @@ public class Business {
             throw new InscriptionException("errorMail");
         }
         
-        if(Pattern.matches("[/.0-9/+//]{8,50}+",numTel)==false)
+        if(Pattern.matches("[/.0-9/+//]{8,30}+",numTel)==false)
         {
             throw new InscriptionException("errorPhone");
         }
