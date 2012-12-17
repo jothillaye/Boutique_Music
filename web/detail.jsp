@@ -40,7 +40,7 @@
                     ${desc}
                 </div>
                 <div id="option">
-                    Options
+                    <fmt:message key="option"/>
                 </div>                    
                     <p>
                         <span class="titleBox"><fmt:message key="priceAlbum"/> : </span>
