@@ -368,11 +368,10 @@ public class AccessDB {
             DataSource source = (DataSource)cont.lookup("jdbc/MusicStore");
             connexion = source.getConnection();
             
-            String requeteSQL = "INSERT INTO COMMANDE (IDUTILISATEUR,STATUT,DATE) VALUES(?,?,CURRENT DATE)";
+            String requeteSQL = "INSERT INTO COMMANDE (IDUTILISATEUR,DATE) VALUES(?,CURRENT DATE)";
             
             PreparedStatement prepStat = connexion.prepareStatement(requeteSQL);
             prepStat.setInt(1,util.getIdUtilisateur() );
-            prepStat.setString(2, "0");
             prepStat.executeUpdate();
             
             requeteSQL = "SELECT IDCommande, IDUtilisateur from Commande where IDUTILISATEUR=? AND IDCommande=(SELECT MAX(IDCommande) from Commande)";
