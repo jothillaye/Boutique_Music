@@ -43,7 +43,8 @@ public class ServletGetAlbumsCategorie extends HttpServlet {
             String genre = bus.getGenre(idCat);
             ArrayList<Album> listAlbum = bus.getAlbumsCategorie(idCat);           
             RequestDispatcher rd = request.getRequestDispatcher("categorie.jsp");
-            request.setAttribute("genre", genre);      
+            request.setAttribute("genre", genre); 
+            request.setAttribute("idGenre", idCat); 
             request.setAttribute("albums", listAlbum);            
             rd.forward(request, response);
     

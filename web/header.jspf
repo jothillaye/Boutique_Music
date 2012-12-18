@@ -111,7 +111,7 @@
     <br />
         <jsp:include page="/GetCategories"></jsp:include>          
         <c:forEach var="categorie" items="${requestScope.arrayCategories}">
-            <a href="GetAlbumsCategorie?id=${categorie.getIdCategorie()}"> ${categorie.getLibelle()}</a>
+            <a href="GetAlbumsCategorie?id=${categorie.idCategorie}"> ${categorie.libelle}</a>
         </c:forEach>
         <a href="listing.jsp"><fmt:message key="toutArt"/></a>
     <!-- Categories !!! -->
