@@ -160,6 +160,11 @@ body {
     margin-right: 10px;
     text-align: right;
 }
+#recherche input {
+    border: 1px solid #F0E39E;
+    color: #F0E39E;
+    background: rgba(0, 0, 0, 0.2);
+}
 
 /* Index */
 .grid_element {    

@@ -276,7 +276,7 @@
                 <span id="span_prenom"> </span><br/>
             <label for="Nom"><fmt:message key="lastName"/></label> <input type="text" name="nom" id="nom" onkeyup="validateNom();  "/> 
                 <span id="span_nom"> </span><br/>
-                <label for="Rue"><fmt:message key="street"/></label> <input type="text" name="rue" id="rue"  onkeyup="validateRue();"/> 
+            <label for="Rue"><fmt:message key="street"/></label> <input type="text" name="rue" id="rue"  onkeyup="validateRue();"/> 
                 <span id="span_rue"> </span><br/>
             <label for="Numero"><fmt:message key="houseNumber"/></label> <input type="text" name="numero" id="numero" onkeyup="validateNumero();  " /> 
                 <span id="span_numero"> </span><br/>
@@ -284,15 +284,15 @@
                 <span id="span_boite"> </span><br/>
             <label for="Localite"><fmt:message key="locality"/></label> <input type="text" name="localite" id="localite"  onkeyup="validateLocalite();"/> 
                 <span id="span_localite"> </span><br/>
-           <label for="Code postal"><fmt:message key="postalCode"/></label> <input type="text" name="codepostal" id="codepostal" onkeyup="validateCodePostal();  "/> 
+            <label for="Code postal"><fmt:message key="postalCode"/></label> <input type="text" name="codepostal" id="codepostal" onkeyup="validateCodePostal();  "/> 
                 <span id="span_codepostal"> </span><br/>
             <label for="Mail"><fmt:message key="mail"/></label> <input type="text" name="mail" id="mail" onkeyup="validateMail();  "/> 
                 <span id="span_mail"> </span><br/>
-                <label for="Tel"><fmt:message key="phone"/></label> <input type="text" name="tel" id="tel" onkeyup="validateTel();"/>
+            <label for="Tel"><fmt:message key="phone"/></label> <input type="text" name="tel" id="tel" onkeyup="validateTel();"/>
                 <span id="span_tel"> </span><br/>        
             <label for="Mot de passe"><fmt:message key="password"/></label> <input type="password" name="pw" id="pw" onkeyup="validatePw();  "/> 
                 <span id="span_pw"> </span><br/>
-                <label for="Confirmation"><fmt:message key="passConfirm"/></label> <input type="password" name="pwconfirm" id="pwconfirm" onkeyup="validateSamePw(); "/> 
+            <label for="Confirmation"><fmt:message key="passConfirm"/></label> <input type="password" name="pwconfirm" id="pwconfirm" onkeyup="validateSamePw(); "/> 
                 <span id="span_pwconfirm"> </span><br/>
                 <br/>
                 <fmt:message key="facult"/><br/>

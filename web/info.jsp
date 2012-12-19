@@ -30,8 +30,7 @@
 
 <!-- #contenu -->
 <div id="contenu">
-    <fmt:message key="about"/>
-    <p></p>
+    <p><fmt:message key="about"/></p>
 </div>
 
 <%@include file="footer.jspf" %>
