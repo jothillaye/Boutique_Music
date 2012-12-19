@@ -1,23 +1,23 @@
 -- *********************************************
 -- * Standard SQL generation                   
 -- *--------------------------------------------
-DROP TABLE TRADUCTIONPROMOTION;
-DROP TABLE GenreAlbum;
-DROP TABLE ARTISTE_ALBUM;
-DROP TABLE LIGNECOMMANDE;
-DROP TABLE PROMOTION_ARTISTE;
-DROP TABLE TITRE_ALBUM;
-DROP TABLE TRADUCTIONALBUM;
-DROP TABLE TRADUCTIONARTISTE;
-DROP TABLE ALBUM;
-DROP TABLE ARTISTE;
-DROP TABLE CHANSON;
-DROP TABLE COMMANDE;
-DROP TABLE GENRE;
-DROP TABLE LABEL;
-DROP TABLE LANGUE;
-DROP TABLE PROMOTION;
-DROP TABLE UTILISATEUR;
+--DROP TABLE TRADUCTIONPROMOTION;
+--DROP TABLE GenreAlbum;
+--DROP TABLE ARTISTE_ALBUM;
+--DROP TABLE LIGNECOMMANDE;
+--DROP TABLE PROMOTION_ARTISTE;
+--DROP TABLE TITRE_ALBUM;
+--DROP TABLE TRADUCTIONALBUM;
+--DROP TABLE TRADUCTIONARTISTE;
+--DROP TABLE ALBUM;
+--DROP TABLE ARTISTE;
+--DROP TABLE CHANSON;
+--DROP TABLE COMMANDE;
+--DROP TABLE GENRE;
+--DROP TABLE LABEL;
+--DROP TABLE LANGUE;
+--DROP TABLE PROMOTION;
+--DROP TABLE UTILISATEUR;
 
 create table Album (
      IDAlbum int not null GENERATED ALWAYS AS IDENTITY
@@ -50,7 +50,6 @@ create table Commande (
      (START WITH 1, INCREMENT BY 1),
      IDUtilisateur int not null,
      Date date not null,
-     Statut varchar(255) not null,
      constraint ID_Commande_ID primary key (IDCommande));
 
 create table Label (
@@ -96,11 +95,6 @@ create table TraductionAlbum (
      TradDescriptifAlbum varchar(1000) not null,
      constraint ID_TraductionAlbum_ID primary key (IDLangue, IDAlbum));
 
-create table TraductionArtiste (
-     IDArtiste int not null,
-     IDLangue varchar(2) not null,
-     TradDescArtiste varchar(10000) not null,
-     constraint ID_TraductionArtiste_ID primary key (IDLangue, IDArtiste));
 	 
 create table GenreAlbum(
 		IDGenre int not null,
@@ -113,18 +107,7 @@ create table Genre(
 		Label varchar(255) not null,
 		constraint ID_Genre_ID primary key(IDGenre));
 
---create table TraductionGenre (
---     IDGenre int not null GENERATED ALWAYS AS IDENTITY
---     (START WITH 1, INCREMENT BY 1),
---     IDLangue int not null,
---     TradLibelle varchar(20) not null,
---     constraint ID_TraductionGenre_ID primary key (IDGenre, IDLangue));
 
-create table TraductionPromotion (
-     IDLangue varchar(2) not null,
-     IDPromotion int not null,
-     TradDescPromo varchar(1000) not null,
-     constraint ID_TraductionPromotion_ID primary key (IDPromotion, IDLangue));
 
 create table Utilisateur (        
      IDUtilisateur int not null GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
@@ -136,7 +119,7 @@ create table Utilisateur (
      Adr_Boite varchar(10) not null,
      Adr_CodePostal int not null,
      Adr_Localite varchar(100) not null,
-     NumTel varchar(20) not null,
+     NumTel varchar(30) not null,
      MotDePasse varchar(255) not null,
      constraint ID_Utilisateur_ID primary key (IDUtilisateur));
 
@@ -200,32 +183,15 @@ alter table TraductionAlbum add constraint FKTra_Alb_FK
      foreign key (IDAlbum)
      references Album;
 
-alter table TraductionArtiste add constraint FKTra_Lan_2
-     foreign key (IDLangue)
-     references Langue;
-
-alter table TraductionArtiste add constraint FKTra_Art_FK
-     foreign key (IDArtiste)
-     references Artiste;
-
---alter table TraductionGenre add constraint FKTra_Lan_1_FK
---     foreign key (IDLangue)
---     references Langue;
-
---alter table TraductionGenre add constraint FKTra_Gen
---     foreign key (IDGenre)
---     references Genre;
-
-alter table TraductionPromotion add constraint FKTra_Pro
-     foreign key (IDPromotion)
-     references Promotion;
-
-alter table TraductionPromotion add constraint FKTra_Lan_FK
-     foreign key (IDLangue)
-     references Langue;
 
 ALTER TABLE LigneCommande
 ADD CHECK (QUANTITE>0);
+
+ALTER TABLE LigneCommande
+ADD CHECK (QUANTITE<=100);
+
+ALTER TABLE LigneCommande
+ADD CHECK(PRIX>0);
 
 
 -- Index Section
@@ -285,23 +251,6 @@ create unique index ID_Titre_Album_IND
 create index FKTit_Cha_IND
      on Titre_Album (IDTitre);
 
-create unique index ID_TraductionAlbum_IND
-     on TraductionAlbum (IDLangue, IDAlbum);
-
-create index FKTra_Alb_IND
-     on TraductionAlbum (IDAlbum);
-
-create unique index ID_TraductionArtiste_IND
-     on TraductionArtiste (IDLangue, IDArtiste);
-
-create index FKTra_Art_IND
-     on TraductionArtiste (IDArtiste);
-
-create unique index ID_TraductionPromotion_IND
-     on TraductionPromotion (IDPromotion, IDLangue);
-
-create index FKTra_Lan_IND
-     on TraductionPromotion (IDLangue);
 
 create unique index ID_Utilisateur_IND
      on Utilisateur (IDUtilisateur);
