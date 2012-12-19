@@ -154,6 +154,12 @@ body {
     padding: 0;
     margin: 0;
 }
+#recherche {
+    float:right;
+    margin-top: -25px;
+    margin-right: 10px;
+    text-align: right;
+}
 
 /* Index */
 .grid_element {    

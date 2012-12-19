@@ -5,7 +5,6 @@
 package packageController;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -38,12 +37,12 @@ public class ServletRecherche extends HttpServlet {
         Business bu = new Business();
         try
         {
-          ArrayList<Album> album =  bu.getRecherche(request.getParameter("artiste"),request.getParameter("album"));
-          request.setAttribute("albums", album);
-          RequestDispatcher rd = request.getRequestDispatcher("recherche.jsp");
-          rd.forward(request, response);
-            
-            
+            ArrayList<Album> album =  bu.getRecherche(request.getParameter("artiste"),request.getParameter("album"));
+            request.setAttribute("albums", album);
+            RequestDispatcher rd = request.getRequestDispatcher("recherche.jsp");
+            request.setAttribute("artiste", request.getParameter("artiste")); 
+            request.setAttribute("album", request.getParameter("album")); 
+            rd.forward(request, response);
         }
         catch(AlbumException ex)
         {

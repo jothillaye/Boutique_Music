@@ -58,12 +58,6 @@
         <a href="ServletLangue?lang=fr&pagename=${requestScope.pagename}"><img alt="" src="./style/img/lang/flag_fr.png" width="16" /></a>
         <a href="ServletLangue?lang=en&pagename=${requestScope.pagename}"><img alt="" src="./style/img/lang/flag_en.png" width="16" /></a>
     </div>
-    <from>
-        <form class="register" name="register" method="post" action="ServletRecherche"><!--action="register"-->                 
-            <label for="Artiste"><fmt:message key="Artiste"/></label> <input type="text" name="artiste" id="artiste" /> 
-            <label for="Album"><fmt:message key="Album"/></label> <input type="text" name="album" id=album" />    
-            <input type="submit"  value="<fmt:message key="buttonRecherche"/>" id="submitForm"  />
-    </from>
     <a href="index.jsp"><img alt="" src="./style/img/page_title.png" width="400" /></a>
     
     <p class="sous-titre">
@@ -71,6 +65,13 @@
             <fmt:message key="notRegisteredMsg"/> <strong><a href="register.jsp"><fmt:message key="registerLink"/></a></strong>
         </c:if>
     </p>
+    <div id="recherche">
+        <form method="post" action="ServletRecherche">              
+            <label for="Artiste"><fmt:message key="Artiste"/>:</label> <input type="text" name="artiste" size="10" /> 
+            <label for="Album"><fmt:message key="Album"/>:</label> <input type="text" name="album" size="10" />    
+            <input type="submit"  value="<fmt:message key="buttonRecherche"/>" id="submitForm"  />
+        </form> 
+    </div>
 </div>
 
 <!-- #navigation -->
@@ -103,7 +104,6 @@
                 </form>                
             </div>  
         </c:if>
-                    
         <c:if test = "${not empty sessionScope.user.mail}">
             <li class="droite">
                 <span id="connectedMsg">
