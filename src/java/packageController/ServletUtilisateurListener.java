@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package packageModel;
+package packageController;
 
 import java.util.Locale;
 import javax.servlet.annotation.WebListener;
@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 import javax.servlet.jsp.jstl.core.Config;
+import packageModel.Utilisateur;
 
 /**
  * Web application lifecycle listener.
@@ -17,7 +18,7 @@ import javax.servlet.jsp.jstl.core.Config;
  * @author Emilien
  */
 @WebListener()
-public class UtilisateurListener implements HttpSessionListener {
+public class ServletUtilisateurListener implements HttpSessionListener {
 
     @Override
     public void sessionCreated(HttpSessionEvent se) {

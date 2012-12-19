@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
     <listener>
-        <listener-class>packageModel.UtilisateurListener</listener-class>
+        <listener-class>packageController.ServletUtilisateurListener</listener-class>
     </listener>
     <servlet>
         <servlet-name>ServletLangue</servlet-name>
@@ -67,6 +67,10 @@
         <servlet-name>ServletGetAlbumsArtiste</servlet-name>
         <servlet-class>packageController.ServletGetAlbumsArtiste</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletRecherche</servlet-name>
+        <servlet-class>packageController.ServletRecherche</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletLangue</servlet-name>
         <url-pattern>/ServletLangue</url-pattern>
@@ -130,6 +134,10 @@
     <servlet-mapping>
         <servlet-name>ServletGetAlbumsArtiste</servlet-name>
         <url-pattern>/getAlbumsArtiste</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletRecherche</servlet-name>
+        <url-pattern>/ServletRecherche</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

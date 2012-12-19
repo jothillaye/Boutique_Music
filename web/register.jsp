@@ -39,7 +39,7 @@
             function validatePrenom()
             {           
                 var prenom = document.forms["register"]["prenom"].value;
-                var myPrenomTest = new RegExp("^[a-zA-Z]{1}[a-zA-Z-]{2,100}$","g"); // 2 à 16 caractères
+                var myPrenomTest = new RegExp("^[a-zA-Z]{1}[a-zA-Z-]{2,100}$","g"); 
                 if (myPrenomTest.test(prenom)==false || prenom=="" || prenom==null)
                 {
                     span_prenom.innerHTML="<fmt:message key="invalidFirstName"/>";
@@ -59,7 +59,7 @@
             function validateNom()
             {
                 var nom = document.forms["register"]["nom"].value;
-                var myTest = new RegExp("^[a-zA-Z]{1,100}$","g"); // 2 à 25 caractères
+                var myTest = new RegExp("^[a-zA-Z]{1}[a-zA-Z-]{2,100}$","g"); // 2 à 25 caractères
                    if (myTest.test(nom)==false || nom == "" || nom==null)
                     {
                        span_nom.innerHTML="<fmt:message key="invalidName"/>";
@@ -99,7 +99,7 @@
             function validateRue()
             {
                 var rue = document.forms["register"]["rue"].value;
-                var myTest = new RegExp("^[a-zA-Z0-9]{2,255}","g"); // 2 à 25 caractères
+                var myTest = new RegExp("^[a-zA-Z0-9 ]{2,255}$","g"); 
                    if (myTest.test(rue)==false || rue == "" || rue==null)
                     {
                        span_rue.innerHTML="<fmt:message key="invalidStreet"/>";
@@ -120,7 +120,7 @@
             function validateBoite()
             {
                 var boite = document.forms["register"]["boite"].value;
-                var myTest = new RegExp("^[a-zA-Z0-9]{0,10}$","g"); // 2 à 25 caractères
+                var myTest = new RegExp("^[a-zA-Z0-9]{0,10}$","g"); 
                    if (myTest.test(boite)==false  || boite==null)
                     {
                        span_boite.innerHTML="<fmt:message key="invalidBox"/>";

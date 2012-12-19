@@ -251,7 +251,7 @@ public class AccessDB {
             PreparedStatement prepStat = connexion.prepareStatement(requeteSQL);
             prepStat.setString(1, util.getNom());
             prepStat.setString(2,util.getPrenom());
-            prepStat.setString(3,util.getRue());
+            prepStat.setString(3,util.getRue());            
             prepStat.setInt(4,util.getNumero());
             prepStat.setString(5, util.getBoite());
             prepStat.setInt(6,util.getCodepostal() );  
@@ -708,6 +708,75 @@ public class AccessDB {
         }
     
     }
+    
+     public ArrayList<Album> getRecherche(String artiste,String alb)throws AlbumException
+    {
+        try
+        {
+            ArrayList<Album> arrAlb = new ArrayList<Album>();
+            Context ctx = new InitialContext();
+            DataSource source = (DataSource) ctx.lookup("jdbc/MusicStore");
+            connexion = source.getConnection();
+            
+            String requeteSQL ="SELECT Album.IDALBUM, Album.TITRE, Album.IMAGE, Artiste.NOM, Album.PRIX, Artiste.idArtiste, "
+                                + " CASE WHEN Promotion_Artiste.idArtiste = Artiste.idArtiste "
+                                + "     THEN true "
+                                + "     ELSE false "
+                                + " END, "
+                                + " CASE WHEN Promotion_Artiste.idArtiste = Artiste.idArtiste "
+                                + "     THEN (Album.Prix - (Album.Prix * Promotion.prcremise * 0.01))"
+                                + " END"
+                                + " FROM ALBUM,ARTISTE,PROMOTION,PROMOTION_ARTISTE,ARTISTE_ALBUM "
+                                + " WHERE ALBUM.IDALBUM = ARTISTE_ALBUM.IDALBUM AND ARTISTE_ALBUM.IDARTISTE = ARTISTE.IDARTISTE "
+                                + " AND Promotion_Artiste.idPromotion = Promotion.idPromotion AND Promotion.datedeb <= current_date AND Promotion.datefin >= current_date"
+                                + " AND UCASE(ALBUM.titre) like UCASE(?) And UCASE(Artiste.nom) like UCASE(?)";
+            
+            PreparedStatement prepStat = connexion.prepareStatement(requeteSQL);
+            prepStat.setString(1,"%" + alb + "%");
+            prepStat.setString(2,"%" + artiste + "%");
+            ResultSet donnees;
+            donnees = prepStat.executeQuery();
+            
+            while (donnees.next())
+            {
+                Album album = new Album();
+                
+                album.setIdAlbum(donnees.getInt(1));
+                album.setTitre(donnees.getString(2));
+                album.setImage(donnees.getString(3));
+                album.setArtiste(donnees.getString(4));  
+                album.setPrix(donnees.getDouble(5));
+                album.setIdArtiste(donnees.getInt(6));
+                album.setPromo(donnees.getBoolean(7));
+                album.setPrixPromo(donnees.getDouble(8));
+                
+                arrAlb.add(album);
+            }
+            
+            return arrAlb;
+        }
+        
+        catch(SQLException ex)
+        {
+            throw new AlbumException("sqlException");
+        }
+        catch(NamingException ex)
+        {
+            throw new AlbumException("errorNaming");
+        }
+        finally
+        {
+            try{connexion.close();
+        }
+            catch(SQLException ex)
+            {
+                throw new AlbumException("sqlException");
+            }
+        }
+    }  
+    
+    
+    
      
      
  }

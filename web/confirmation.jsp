@@ -57,7 +57,7 @@
                     <tr>
                        <td><img alt="" src="./style/img/album/${album.value.image}" width="50px" height="50px" /></td>
                         <td class="alignLeft"><h5><a href="getAlbum?idAlbum=${album.value.idAlbum}">${album.value.artiste} - ${album.value.titre}</a></h5></td>
-                        <td>$${album.value.getPromo() ? album.value.getPrixPromoFormat() : album.value.getPrixFormat()}</td>
+                        <td>$${album.value.promo ? album.value.getPrixPromoFormat() : album.value.prix}</td>
                         <td>
                             ${album.value.qte}
                         </td>

@@ -188,5 +188,10 @@ public class Business {
         return ac.getGenre(idCat);
     }
     
+    public ArrayList<Album> getRecherche(String artiste,String alb)throws AlbumException
+    {
+        return ac.getRecherche(artiste, alb);
+    }
+    
     
 }
