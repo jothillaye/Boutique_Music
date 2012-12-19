@@ -24,10 +24,8 @@ public class ServletUtilisateurListener implements HttpSessionListener {
     public void sessionCreated(HttpSessionEvent se) {
         HttpSession session = se.getSession(); // Récupération de la session en cours
         Utilisateur user = new Utilisateur();
-        //HashMap<Integer, AlbumCart> hashMapPanier = new HashMap();
         user.setMail("");
         user.setIdUtilisateur(0);
-        //user.setHasmMapPanier(hashMapPanier);
         session.setAttribute("user", user);
         Locale locale = new Locale("fr");
         Config.set(session, Config.FMT_LOCALE, locale);

@@ -14,25 +14,12 @@ public class GenreException extends Exception {
     
     public GenreException(String erreur)
     {
-        this.setErreur(erreur);
+        this.erreur = erreur;
     }
     
     public String toString()
     {
-        return this.getErreur();
+        return this.erreur;
     }
 
-    /**
-     * @return the erreur
-     */
-    public String getErreur() {
-        return erreur;
-    }
-
-    /**
-     * @param erreur the erreur to set
-     */
-    public void setErreur(String erreur) {
-        this.erreur = erreur;
-    }
 }

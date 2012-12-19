@@ -63,10 +63,8 @@ public class ServletCart extends HttpServlet {
             }
             DecimalFormat myFormatter = new DecimalFormat("#.##");
             String outputTot = myFormatter.format(tot);
-            
-            //RequestDispatcher rd = request.getRequestDispatcher("cart.jsp");
             request.setAttribute("total",outputTot);
-            //rd.forward(request, response);
+            
         }
         catch(CommandeException ex)
         {

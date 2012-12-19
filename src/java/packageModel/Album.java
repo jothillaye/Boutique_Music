@@ -53,7 +53,7 @@ public class Album implements Serializable{
     public Integer getIdArtiste() {return idArtiste;}
     public Integer getIdCategorie() {return idCategorie;}
     
-    // Setters
+  
     public void setIdAlbum(Integer idAlbum) {this.idAlbum = idAlbum;}
     public void setTitre(String titre) {this.titre = titre;}
     public void setPrix(double prix) {this.prix = prix;}

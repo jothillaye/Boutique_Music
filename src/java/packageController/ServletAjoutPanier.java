@@ -53,12 +53,7 @@ public class ServletAjoutPanier extends HttpServlet {
             }
             Business busi = new Business();
             Album alb =  busi.getAlbum(idAlbum);
-            // if(alb==null)
-            //{
-                //throw new AjoutException("errorUnknowAlbum");
-            //}
-            //else
-            //{
+
                 if(util.getHasmMapPanier().containsKey(idAlbum))
                 {
                     AlbumCart abCart = (AlbumCart)util.getHasmMapPanier().get(idAlbum);
@@ -80,12 +75,11 @@ public class ServletAjoutPanier extends HttpServlet {
                 sess.setAttribute("user",util);
                 RequestDispatcher rd = request.getRequestDispatcher("cart.jsp");
                 rd.forward(request, response);
-           // }                   
+                           
 
         } 
         catch (ListAlbumException ex) 
         {
-            //Logger.getLogger(ServletAjoutPanier.class.getName()).log(Level.SEVERE, null, ex);
                 RequestDispatcher rd = request.getRequestDispatcher("erreur.jsp");
                 request.setAttribute("reponse",ex);
                 rd.forward(request, response);
@@ -94,8 +88,7 @@ public class ServletAjoutPanier extends HttpServlet {
         {
                 RequestDispatcher rd = request.getRequestDispatcher("erreur.jsp");
                 request.setAttribute("reponse",ex);
-                rd.forward(request, response);
-            
+                rd.forward(request, response);           
         }
 
 

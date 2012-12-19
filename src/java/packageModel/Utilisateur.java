@@ -29,16 +29,16 @@ public class Utilisateur implements Serializable{
     
     public Utilisateur(String nom,String prenom,String rue,Integer numero,String boite,String localite,Integer codePostal, String email,String motDePasse,String numTel)
     {
-        this.setBoite(boite);
-        this.setCodepostal(codePostal);
-        this.setLocalite(localite);
-        this.setMail(email);
-        this.setNom(nom);
-        this.setNumero(numero);
-        this.setPassword(motDePasse);
-        this.setPrenom(prenom);
-        this.setRue(rue);
-        this.setNumTel(numTel);
+        this.boite = boite;
+        this.codepostal = codePostal;
+        this.localite = localite;
+        this.mail = email;
+        this.nom = nom;
+        this.numero= numero;
+        this.password=motDePasse;
+        this.prenom = prenom;
+        this.rue = rue;
+        this.numTel = numTel;
     }
 
     public Utilisateur(){}

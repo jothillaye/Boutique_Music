@@ -44,7 +44,7 @@ public class AccessDB {
             DataSource source = (DataSource)ctx.lookup("jdbc/MusicStore");
             connexion = source.getConnection();        
             
-            String requeteSQL = "SELECT motdepasse, prenom, IDUTILISATEUR FROM utilisateur WHERE mail = ?";
+            String requeteSQL = "SELECT motdepasse, prenom, IDUTILISATEUR FROM utilisateur WHERE mail = LCASE(?)";
             PreparedStatement prepStat = connexion.prepareStatement(requeteSQL);
             prepStat.setString(1, login);
             ResultSet donnees = prepStat.executeQuery();
@@ -247,7 +247,7 @@ public class AccessDB {
             
             String requeteSQL = "INSERT INTO UTILISATEUR" + 
                                 "(NOM, PRENOM, ADR_RUE, ADR_NUMERO, ADR_BOITE, ADR_CODEPOSTAL, ADR_LOCALITE,MAIL,MOTDEPASSE,NUMTEL)"
-                                + "VALUES(?,?,?,?,?,?,?,?,?,?)";
+                                + "VALUES(?,?,?,?,?,?,?,LCASE(?),?,?)";
             PreparedStatement prepStat = connexion.prepareStatement(requeteSQL);
             prepStat.setString(1, util.getNom());
             prepStat.setString(2,util.getPrenom());

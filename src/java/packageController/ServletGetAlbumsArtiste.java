@@ -60,7 +60,6 @@ public class ServletGetAlbumsArtiste extends HttpServlet {
             request.setAttribute("reponse", "errorNbArg");            
             rd.forward(request, response);
         }
-        //getAlbumsArtiste
        
     }
 
