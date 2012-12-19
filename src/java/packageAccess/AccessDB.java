@@ -737,6 +737,8 @@ public class AccessDB {
             ResultSet donnees;
             donnees = prepStat.executeQuery();
             
+
+            
             while (donnees.next())
             {
                 Album album = new Album();
@@ -753,12 +755,18 @@ public class AccessDB {
                 arrAlb.add(album);
             }
             
+            if(arrAlb.isEmpty())
+            {
+                throw new AlbumException("noResult");
+            }
+            
             return arrAlb;
         }
         
         catch(SQLException ex)
         {
-            throw new AlbumException("sqlException");
+            throw new AlbumException(ex.toString());
+            //throw new AlbumException("sqlException");
         }
         catch(NamingException ex)
         {
