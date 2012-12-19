@@ -17,7 +17,7 @@
         <link rel="stylesheet" type="text/css" href="style/design.css" media="all" />
         <fmt:setBundle basename="packageLangue.lang" scope="session"/>
         <c:set var="pagename" scope="request" value="info.jsp" />        
-        <title>MusicStore - <fmt:message key="indexTitle"/></title>
+        <title>MusicStore - Info</title>
     </head>
 
 <body>
@@ -30,7 +30,7 @@
 
 <!-- #contenu -->
 <div id="contenu">
-    <h2>EL MIOUZIK STORE S.A.</h2>
+    <fmt:message key="about"/>
     <p></p>
 </div>
 
