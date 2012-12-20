@@ -18,7 +18,7 @@ import packageModel.Utilisateur;
  * @author Emilien
  */
 @WebListener()
-public class ServletUtilisateurListener implements HttpSessionListener {
+public class UtilisateurListener implements HttpSessionListener {
 
     @Override
     public void sessionCreated(HttpSessionEvent se) {
